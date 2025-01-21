@@ -48,3 +48,17 @@ Fire Emblem/Final Fantasy Tactics/various SRPGs
 > Possible twist: the units and game logic are explicitly based on Chess rather than bespoke fantasy classes
 > Engineering challenge: challenging enemy AI and the construction of solvable challenges
 
+1. Pong
+A simple two-player paddle game where players try to bounce a ball past each other. You can add scoring and increase ball speed over time.
+
+2. Tower Defense
+Defend a base by placing turrets to stop waves of enemies. Include upgrades for turrets and different enemy types.
+
+3. Racing Game
+A top-down racing game where players avoid obstacles and complete laps. You can add AI opponents for extra challenge.
+
+3. RPG Adventure
+A small RPG with a character, enemies, and a health/mana system. Players can battle enemies, find items, and explore a simple map.
+
+4. Idle Clicker Game
+A game where players click or perform simple actions to earn resources and unlock upgrades.
