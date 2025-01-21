@@ -14,3 +14,17 @@ Tank Touble:
 -->IDEA: Use a shrinking map and/or portals to allow tanks to teleport to different
          maze locations
 
+Kung Fu (1984)
+Possible twists:
+-Player has to find the enemies on each floor 
+-Some NPCs are on the player's team, they can help but player loses points (or health) if they hit them 
+
+Snake
+Possible twists:
+-Player has a set amount of time to get to food before the map gets smaller
+-There are ’poisonous’ foods that the snake has to avoid
+-Can choose between different foods (player gets more points if they eat food close to the edges)
+
+Simon memory game
+- This concept could be combined with another game so that the player has to complete tasks or fight enemies in a specific order 
+
