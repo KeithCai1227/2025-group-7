@@ -1,0 +1,16 @@
+Snake:
+-->IDEA: Add terrain effects e.g. water which slows down, ice which is "slippery",
+         spikes which damage unless armour acquired
+-->IDEA: Obstacles grow over time and therefore become harder to avoid
+
+Flappy Bird:
+-->IDEA: Gravity randomly "flips" which means the user has to change their technique
+
+Asteroids:
+-->IDEA: Wormholes appear on the screen which allow debris and your ship to 
+         teleport to different locations on the screen
+
+Tank Touble:
+-->IDEA: Use a shrinking map and/or portals to allow tanks to teleport to different
+         maze locations
+
