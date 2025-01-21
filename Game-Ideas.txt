@@ -62,3 +62,16 @@ A small RPG with a character, enemies, and a health/mana system. Players can bat
 
 4. Idle Clicker Game
 A game where players click or perform simple actions to earn resources and unlock upgrades.
+
+### Translation:
+
+Snake
+Add a two-player mode where players compete to score points. Colliding with the opponent's body or obstacles results in death.  
+Tetris
+Introduce different difficulty levels. Also, add a two-player cooperative mode where both players work together to clear blocks on a larger background.  
+Tank Battle
+Allow certain obstacles to be destroyed, and include special weapons like lasers or rockets. Some terrains have unique effects, such as hiding in grass or increased speed on ice.  
+Breakout
+Introduce randomly moving ghosts that obstruct the ball's movement. Defeating a ghost rewards an extra ball.  
+Shooter
+Add different weapons and special skills, such as full-screen attacks or invincible stealth mode.
