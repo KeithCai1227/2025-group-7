@@ -28,3 +28,23 @@ Possible twists:
 Simon memory game
 - This concept could be combined with another game so that the player has to complete tasks or fight enemies in a specific order 
 
+Vampire Survivors
+> The game: you control the movement of a character who is being attacked by a growing horde of monsters, gathering power ups and weapons that auto-fire endlessly without your input.
+> Possible twist: the logic of the game is reversed, so that you start with full power against a large but fixed number of monsters, and you must clear the map while your weapons and power ups become less powerful over time.
+> Engineering challenge: large number of independently moving enemies.
+
+Grand Theft Auto
+> The game: you navigate a 2D city from a top down perspective, on foot but primarily by car, and complete various criminal missions while evading police.
+> Possible twists: the structure of the game remains the same except the cars operate with a much more unforgiving simulation-based physics system OR you play as police rather than criminal and the goal of the game is to immobilise the chased car.
+> Engineering challenge: simulating city traffic, fine tuning car handling, generating satisfying organic car chases.
+
+Decathlete (Sega)/International Track and Field (Konami)
+> The game: arcade game, played against second player or CPU, in which you compete in a variety of athletic events events via a range of input methods (eg rhythmic button mashing, precisely timed button presses etc).
+> Possible twist: real world athletic events are replaced with fictitious futuristic contests with unusual rule sets and more involved input patterns.
+> Engineering challenge: building a highly responsive game that can make reliably reward accurate inputs.
+
+Fire Emblem/Final Fantasy Tactics/various SRPGs
+> The game (/genre): turn based tactics on a grid in which you use various combat classes (eg knight, swordsman, archer etc) to defeat enemies or achieve map-based objectives.
+> Possible twist: the units and game logic are explicitly based on Chess rather than bespoke fantasy classes
+> Engineering challenge: challenging enemy AI and the construction of solvable challenges
+
