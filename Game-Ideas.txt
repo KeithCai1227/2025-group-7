@@ -63,8 +63,6 @@ A small RPG with a character, enemies, and a health/mana system. Players can bat
 4. Idle Clicker Game
 A game where players click or perform simple actions to earn resources and unlock upgrades.
 
-### Translation:
-
 Snake
 Add a two-player mode where players compete to score points. Colliding with the opponent's body or obstacles results in death.  
 Tetris
