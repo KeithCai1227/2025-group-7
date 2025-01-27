@@ -73,3 +73,8 @@ Breakout
 Introduce randomly moving ghosts that obstruct the ball's movement. Defeating a ghost rewards an extra ball.  
 Shooter
 Add different weapons and special skills, such as full-screen attacks or invincible stealth mode.
+
+Ajinkya's Picks:
+
+1. Tanks. Why: not too ambitious yet not too simple. Lots of scope for change (new weapons, abilities, maps).
+2. Kung Fu. Why: seems like a fun game, creating basic character animations sounds interesting.
