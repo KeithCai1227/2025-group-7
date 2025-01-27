@@ -13,7 +13,7 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 ![Grp-7](https://github.com/user-attachments/assets/501cd6fb-302c-42bb-9cf5-6fb428ba4358)
 
-- Group member 1, name, email, role
+- Group member 1, Yaseer Alluwaim, ct24605@bristol.ac.uk, role
 - Group member 2, name, email, role
 - Group member 3, name, email, role
 - Group member 4, name, email, role
