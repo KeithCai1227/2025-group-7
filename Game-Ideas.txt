@@ -1,3 +1,28 @@
+Idea write-ups:
+
+> TANK TROUBLE
+A multiplayer combat game in which players move tanks around a maze-like map, from a top-down 2D perspective, and score points by eliminating rival tanks.
+Core mechanics:
+- operating the tanks with "tank controls" in which forward and backwards inputs move the tank, and left and right inputs pivot rather than giving lateral movement
+- collecting power-ups to make your tank sturdier and more powerful, and strategically cutting opponents off from power-ups
+- firing shots effectively to hit moving enemy tanks, making use of projectiles that ricochet off walls in a predictable way
+Potential "twists":
+- shrinking maps
+- use of teleportation portals that can relocate your tank instantaneously
+- more complex map layouts that include areas that inflict terrain effects
+- destructable environments to make the game more dynamic
+
+> TOWER DEFENSE
+A single player strategy game in which the player seeks to defend a tower from successive waves of enemies by placing defensive objects along predicted paths of attack.
+Core mechanics:
+- Placement of defensive elements prior to attack by enemy waves
+- Collection of currency as a result of successfully eliminating enemy attackers
+- Use of currency to maintain, repair, upgrade, and build new defensive elements
+Potential "twists":
+- tbd...
+
+-------------------------------
+
 Snake:
 -->IDEA: Add terrain effects e.g. water which slows down, ice which is "slippery",
          spikes which damage unless armour acquired
@@ -97,3 +122,5 @@ Defend a base by placing turrets to stop waves of enemies. Include upgrades for 
 GUO's picks:
 1.snake ：Simple and easy to get started, with more ideas to explore.
 2.Tower Defense：Relatively low development cost and high potential for gameplay innovation.
+
+Harry's picks: Tank Trouble and Tower Defense
