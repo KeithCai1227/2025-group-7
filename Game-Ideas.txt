@@ -63,8 +63,8 @@ A small RPG with a character, enemies, and a health/mana system. Players can bat
 4. Idle Clicker Game
 A game where players click or perform simple actions to earn resources and unlock upgrades.
 
-Snake
-Add a two-player mode where players compete to score points. Colliding with the opponent's body or obstacles results in death.  
+Snake game: 
+Eating one food upgrades the snake by one level. Subsequently, the number of foods required to upgrade doubles each time (2, 4, 8, etc.). Upon leveling up, the player can choose one of three upgrade options: length increase, speed boost, shield, teleportation, magnetism, or faster upgrades. By default, leveling up increases the snake's length and decreases its speed. There are moving monsters and obstacles on the map. Players can obtain weapons to attack the monsters. The game features a score mode and a multiplayer mode.
 Tetris
 Introduce different difficulty levels. Also, add a two-player cooperative mode where both players work together to clear blocks on a larger background.  
 Tank Battle
@@ -73,6 +73,8 @@ Breakout
 Introduce randomly moving ghosts that obstruct the ball's movement. Defeating a ghost rewards an extra ball.  
 Shooter
 Add different weapons and special skills, such as full-screen attacks or invincible stealth mode.
+Box-pushing game:
+Within a time limit, players must create products and deliver them to designated locations, earning scores within a limited number of lives. Randomly moving small monsters act as obstacles, while a large monster tracks and attacks the player. Small monsters can be crushed with boxes, but the large monster can only be avoided. Delivering a certain number of products generates random items, such as speed boosts, additional boxes, shields, or shoes that allow players to stomp on small monsters.
 
 Ajinkya's Picks:
 
@@ -91,3 +93,7 @@ A game where players click or perform simple actions to earn resources and unloc
 
 2. Tower Defense
 Defend a base by placing turrets to stop waves of enemies. Include upgrades for turrets and different enemy types.
+
+GUO's picks:
+1.snake ：Simple and easy to get started, with more ideas to explore.
+2.Tower Defense：Relatively low development cost and high potential for gameplay innovation.
