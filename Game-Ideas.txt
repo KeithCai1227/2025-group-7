@@ -1,3 +1,17 @@
+Final idea: Tank Trouble
+
+Our current plan for our version of the game incorporates all of the standard game mechanics:
+-Two tanks manoeuvre around a maze-like map, shooting each other with bullets
+-Players use key controls to move back and forth, and pivot left and right
+-Bullets ricochet off of walls, bringing an extra challenge to the game
+As in the original game, we will also include power-ups:
+-Our initial ideas include a laser power-up that replaces the standard bullets when obtained
+We have added two main twists to the game:
+-When a tank stays on the square of a grid for a particular number of seconds, that square disappears and leaves a ‘hole’ in the map which tanks can later fall through
+-Some of the walls of the map break when hit with bullets, changing the map as the game progresses
+A potential challenge of developing this game could be coding the behaviour of an NPC if we choose to incorporate a single-player mode. 
+
+
 Idea write-ups:
 
 > TANK TROUBLE
