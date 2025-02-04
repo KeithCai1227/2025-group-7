@@ -1,0 +1,36 @@
+STAKEHOLDERS:
+
+-->experienced gamers
+-->inexperienced gamers
+-->children
+-->gamers with disabilities and impairments
+
+-->developers
+-->game testers (i.e. other teams)
+-->game mainters
+-->project manager
+-->UX and UI designers
+
+-->third party service providers e.g. GitHub, p5.js
+
+-->university (exam board)
+
+EPICS:
+
+(1) Responsive game with unique features and intuitive mechanics
+(2) Game with immersive visualisations and audio effects and easy for visually impaired
+(3) Coherent theme to the game
+(4) Intuitive game with guidance for controls
+(5) Game with no bugs or errors and maintainable code
+(6) Taking input from gamers e.g. gamer name and keeping track of state data related to the players e.g. tank health, bullets left
+(7) Management of size and complexity of game to enable running on third party platforms
+(8) Documentation and tracking of game development
+
+USER STORIES AND ACCEPTANCE CRITERIA:
+
+-->As a gamer I want an enjoyable experience so that I return later on.
+-->Given I have already played the game, when I return to play again, then I want sustained enjoyment and replay value.
+
+-->As a developer, I want a body of images from the designer so that I can understand dimensions and incorporate these into the game.
+-->Given I have a game template, when I integrate the graphics, then I want the images to be scalable.
+
