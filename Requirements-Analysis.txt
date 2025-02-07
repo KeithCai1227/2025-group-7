@@ -34,3 +34,8 @@ USER STORIES AND ACCEPTANCE CRITERIA:
 -->As a developer, I want a body of images from the designer so that I can understand dimensions and incorporate these into the game.
 -->Given I have a game template, when I integrate the graphics, then I want the images to be scalable.
 
+-->As an inexperienced gamer I want to have simple information about controlling the game so that I can participate without having prior experience of similar games.
+-->Given I choose to play the game, when I start playing, then I will be given information about inputs - or else have easy access to such information.
+
+-->As a project manager, I want to have a functional game that executes on the basic mechanics of this genre, so that end-users of the product have an experience that can easily understand.
+-->Given external users play the game, when they start playing then the game makes intuitive sense, behaves in a reasonable way, and does not malfunction.
