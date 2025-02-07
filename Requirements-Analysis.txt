@@ -42,3 +42,9 @@ USER STORIES AND ACCEPTANCE CRITERIA:
 
 -->As a third party service provider, I want the program uploaded on our server to be compact and with renders fast
 -->Given I uploaded the game on our server, when I check the game, I want the users to enjoy playing it even with slow internet
+
+–->As an experienced gamer, I want to have a unique experience that distinguishes this game from others
+-->Given I have never played the game before, when I start playing the game for the first time, I want it to be different enough from the original version that I have reason to continue to play
+
+-->As a child/inexperienced gamer, I want the game to be playable for me by not being too challenging
+-->Given this is one of my first gaming experiences, when I start playing the game, I want to be able to get through the easiest rounds
