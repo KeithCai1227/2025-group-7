@@ -7,7 +7,7 @@ STAKEHOLDERS:
 
 -->developers
 -->game testers (i.e. other teams)
--->game mainters
+-->game maintainers
 -->project manager
 -->UX and UI designers
 
@@ -39,3 +39,6 @@ USER STORIES AND ACCEPTANCE CRITERIA:
 
 -->As a project manager, I want to have a functional game that executes on the basic mechanics of this genre, so that end-users of the product have an experience that can easily understand.
 -->Given external users play the game, when they start playing then the game makes intuitive sense, behaves in a reasonable way, and does not malfunction.
+
+-->As a third party service provider, I want the program uploaded on our server to be compact and with renders fast
+-->Given I uploaded the game on our server, when I check the game, I want the users to enjoy playing it even with slow internet
