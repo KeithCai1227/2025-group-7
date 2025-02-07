@@ -33,6 +33,8 @@ USER STORIES AND ACCEPTANCE CRITERIA:
 
 -->As a developer, I want a body of images from the designer so that I can understand dimensions and incorporate these into the game.
 -->Given I have a game template, when I integrate the graphics, then I want the images to be scalable.
+-->Given I have a game template, when I load in the tank images, then I expect to see two distinguishable tank images on the map.
+-->Given I have a game template, when I load in a weapon or upgrade image, then I expect to see the upgrade or weapon on the map.
 
 -->As an inexperienced gamer I want to have simple information about controlling the game so that I can participate without having prior experience of similar games.
 -->Given I choose to play the game, when I start playing, then I will be given information about inputs - or else have easy access to such information.
@@ -53,3 +55,10 @@ USER STORIES AND ACCEPTANCE CRITERIA:
 -->  Given I am in the game process,When I am playing the game,Then I want the UI elements (buttons, menus, health bar, bullet count, etc.) to be visually diverse and have clear color contrasts, making them easy to recognize and use.
 -->  As an inexperienced gamer, I want to receive instructions on how to play so that I can quickly understand the controls.
 -->  Given I am entering the game for the first time,When I start playing,Then I want an in-game tutorial or guidance to appear, explaining how to move the tank, shoot, and understand the basic game mechanics.
+
+-->As a developer, I want the core game mechanics in place, so that I can use this to base detailed game design upon.
+-->Given I am testing the game in my browser, when I start the game, then I expect to see the map, two tanks and a scoreboard.
+-->Given I am testing the game in my browser, when I press the "fire" button, then I expect the corresponding tank to fire a bullet.
+-->Given I am testing the game in my browser, when a bullet is fired, then it should travel indefinitely through the map for a given time limit.
+-->Given I am testing the game in my browser, when I press any of the navigation keys, then the tank should travel in the given direction.
+-->Given I am testing the game in my browser, when I drive my tank into a wall, then no part of the tank should intersect with the wall.
