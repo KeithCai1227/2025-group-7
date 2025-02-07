@@ -48,3 +48,8 @@ USER STORIES AND ACCEPTANCE CRITERIA:
 
 -->As a child/inexperienced gamer, I want the game to be playable for me by not being too challenging
 -->Given this is one of my first gaming experiences, when I start playing the game, I want to be able to get through the easiest rounds
+
+-->  As a child, I wanted the game interface to be colorful and diverse in style so that I would be attracted to enjoy the game.
+-->  Given I am in the game process,When I am playing the game,Then I want the UI elements (buttons, menus, health bar, bullet count, etc.) to be visually diverse and have clear color contrasts, making them easy to recognize and use.
+-->  As an inexperienced gamer, I want to receive instructions on how to play so that I can quickly understand the controls.
+-->  Given I am entering the game for the first time,When I start playing,Then I want an in-game tutorial or guidance to appear, explaining how to move the tank, shoot, and understand the basic game mechanics.
