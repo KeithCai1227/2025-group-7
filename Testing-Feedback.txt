@@ -1,0 +1,9 @@
+Feedback from testathon (5/2/25):
+-->Consider having bullets lose energy every "bounce" (coefficient of restitution)
+-->Make all walls breakable, prevents tanks getting trapped by holes
+-->Consider making holes slow-down (rather than kill) tanks
+
+Feedback from testing with cohort (6/2/25):
+-->Consider a duplicating bullet special weapon
+-->Conside a store with points rewards e.g. tank speed upgrade
+-->Consider if holes randomly change location
