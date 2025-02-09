@@ -1,3 +1,26 @@
+------------------
+--- WEEK THREE ---
+------------------
+
+Final idea: Tank Trouble
+
+Our current plan for our version of the game incorporates all of the standard game mechanics:
+-Two tanks manoeuvre around a maze-like map, shooting each other with bullets
+-Players use key controls to move back and forth, and pivot left and right
+-Bullets ricochet off of walls, bringing an extra challenge to the game
+As in the original game, we will also include power-ups:
+-Our initial ideas include a laser power-up that replaces the standard bullets when obtained
+We have added two main twists to the game:
+-When a tank stays on the square of a grid for a particular number of seconds, that square disappears and leaves a ‘hole’ in the map which tanks can later fall through
+-Some of the walls of the map break when hit with bullets, changing the map as the game progresses
+A potential challenge of developing this game could be coding the behaviour of an NPC if we choose to incorporate a single-player mode. 
+
+
+
+------------------
+---- WEEK TWO ----
+------------------
+
 Idea write-ups:
 
 > TANK TROUBLE
@@ -21,7 +44,13 @@ Core mechanics:
 Potential "twists":
 - tbd...
 
--------------------------------
+
+
+------------------
+---- WEEK ONE ----
+------------------
+---- IDEATION ----
+------------------
 
 Snake:
 -->IDEA: Add terrain effects e.g. water which slows down, ice which is "slippery",
@@ -39,6 +68,8 @@ Tank Touble:
 -->IDEA: Use a shrinking map and/or portals to allow tanks to teleport to different
          maze locations
 
+---
+
 Kung Fu (1984)
 Possible twists:
 -Player has to find the enemies on each floor 
@@ -52,6 +83,8 @@ Possible twists:
 
 Simon memory game
 - This concept could be combined with another game so that the player has to complete tasks or fight enemies in a specific order 
+
+---
 
 Vampire Survivors
 > The game: you control the movement of a character who is being attacked by a growing horde of monsters, gathering power ups and weapons that auto-fire endlessly without your input.
@@ -73,6 +106,8 @@ Fire Emblem/Final Fantasy Tactics/various SRPGs
 > Possible twist: the units and game logic are explicitly based on Chess rather than bespoke fantasy classes
 > Engineering challenge: challenging enemy AI and the construction of solvable challenges
 
+---
+
 1. Pong
 A simple two-player paddle game where players try to bounce a ball past each other. You can add scoring and increase ball speed over time.
 
@@ -88,18 +123,32 @@ A small RPG with a character, enemies, and a health/mana system. Players can bat
 4. Idle Clicker Game
 A game where players click or perform simple actions to earn resources and unlock upgrades.
 
+---
+
 Snake game: 
 Eating one food upgrades the snake by one level. Subsequently, the number of foods required to upgrade doubles each time (2, 4, 8, etc.). Upon leveling up, the player can choose one of three upgrade options: length increase, speed boost, shield, teleportation, magnetism, or faster upgrades. By default, leveling up increases the snake's length and decreases its speed. There are moving monsters and obstacles on the map. Players can obtain weapons to attack the monsters. The game features a score mode and a multiplayer mode.
+
 Tetris
 Introduce different difficulty levels. Also, add a two-player cooperative mode where both players work together to clear blocks on a larger background.  
+
 Tank Battle
 Allow certain obstacles to be destroyed, and include special weapons like lasers or rockets. Some terrains have unique effects, such as hiding in grass or increased speed on ice.  
+
 Breakout
 Introduce randomly moving ghosts that obstruct the ball's movement. Defeating a ghost rewards an extra ball.  
+
 Shooter
 Add different weapons and special skills, such as full-screen attacks or invincible stealth mode.
+
 Box-pushing game:
 Within a time limit, players must create products and deliver them to designated locations, earning scores within a limited number of lives. Randomly moving small monsters act as obstacles, while a large monster tracks and attacks the player. Small monsters can be crushed with boxes, but the large monster can only be avoided. Delivering a certain number of products generates random items, such as speed boosts, additional boxes, shields, or shoes that allow players to stomp on small monsters.
+
+
+------------------
+---- WEEK ONE ----
+------------------
+----- VOTING -----
+------------------
 
 Ajinkya's Picks:
 
@@ -123,4 +172,6 @@ GUO's picks:
 1.snake ：Simple and easy to get started, with more ideas to explore.
 2.Tower Defense：Relatively low development cost and high potential for gameplay innovation.
 
-Harry's picks: Tank Trouble and Tower Defense
+Harry's picks:
+1. Tank Trouble 
+2. Tower Defense

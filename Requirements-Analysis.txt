@@ -1,0 +1,64 @@
+STAKEHOLDERS:
+
+-->experienced gamers
+-->inexperienced gamers
+-->children
+-->gamers with disabilities and impairments
+
+-->developers
+-->game testers (i.e. other teams)
+-->game maintainers
+-->project manager
+-->UX and UI designers
+
+-->third party service providers e.g. GitHub, p5.js
+
+-->university (exam board)
+
+EPICS:
+
+(1) Responsive game with unique features and intuitive mechanics
+(2) Game with immersive visualisations and audio effects and easy for visually impaired
+(3) Coherent theme to the game
+(4) Intuitive game with guidance for controls
+(5) Game with no bugs or errors and maintainable code
+(6) Taking input from gamers e.g. gamer name and keeping track of state data related to the players e.g. tank health, bullets left
+(7) Management of size and complexity of game to enable running on third party platforms
+(8) Documentation and tracking of game development
+
+USER STORIES AND ACCEPTANCE CRITERIA:
+
+-->As a gamer I want an enjoyable experience so that I return later on.
+-->Given I have already played the game, when I return to play again, then I want sustained enjoyment and replay value.
+
+-->As a developer, I want a body of images from the designer so that I can understand dimensions and incorporate these into the game.
+-->Given I have a game template, when I integrate the graphics, then I want the images to be scalable.
+-->Given I have a game template, when I load in the tank images, then I expect to see two distinguishable tank images on the map.
+-->Given I have a game template, when I load in a weapon or upgrade image, then I expect to see the upgrade or weapon on the map.
+
+-->As an inexperienced gamer I want to have simple information about controlling the game so that I can participate without having prior experience of similar games.
+-->Given I choose to play the game, when I start playing, then I will be given information about inputs - or else have easy access to such information.
+
+-->As a project manager, I want to have a functional game that executes on the basic mechanics of this genre, so that end-users of the product have an experience that can easily understand.
+-->Given external users play the game, when they start playing then the game makes intuitive sense, behaves in a reasonable way, and does not malfunction.
+
+-->As a third party service provider, I want the program uploaded on our server to be compact and with renders fast
+-->Given I uploaded the game on our server, when I check the game, I want the users to enjoy playing it even with slow internet
+
+–->As an experienced gamer, I want to have a unique experience that distinguishes this game from others
+-->Given I have never played the game before, when I start playing the game for the first time, I want it to be different enough from the original version that I have reason to continue to play
+
+-->As a child/inexperienced gamer, I want the game to be playable for me by not being too challenging
+-->Given this is one of my first gaming experiences, when I start playing the game, I want to be able to get through the easiest rounds
+
+-->  As a child, I wanted the game interface to be colorful and diverse in style so that I would be attracted to enjoy the game.
+-->  Given I am in the game process,When I am playing the game,Then I want the UI elements (buttons, menus, health bar, bullet count, etc.) to be visually diverse and have clear color contrasts, making them easy to recognize and use.
+-->  As an inexperienced gamer, I want to receive instructions on how to play so that I can quickly understand the controls.
+-->  Given I am entering the game for the first time,When I start playing,Then I want an in-game tutorial or guidance to appear, explaining how to move the tank, shoot, and understand the basic game mechanics.
+
+-->As a developer, I want the core game mechanics in place, so that I can use this to base detailed game design upon.
+-->Given I am testing the game in my browser, when I start the game, then I expect to see the map, two tanks and a scoreboard.
+-->Given I am testing the game in my browser, when I press the "fire" button, then I expect the corresponding tank to fire a bullet.
+-->Given I am testing the game in my browser, when a bullet is fired, then it should travel indefinitely through the map for a given time limit.
+-->Given I am testing the game in my browser, when I press any of the navigation keys, then the tank should travel in the given direction.
+-->Given I am testing the game in my browser, when I drive my tank into a wall, then no part of the tank should intersect with the wall.

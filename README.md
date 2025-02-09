@@ -5,9 +5,13 @@
 
 Link to your game [PLAY HERE](https://peteinfo.github.io/COMSM0166-project-template/)
 
+Link to game ideas: [HERE](https://github.com/UoB-COMSM0166/2025-group-7/blob/f06ff86a68514414d8ebfe9873cceb3a018d9c7c/Game-Ideas.txt)
+
 Your game lives in the [/docs](/docs) folder, and is published using Github pages to the link above.
 
 Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
+
+[![Watch the video](https://img.youtube.com/vi/U0QKMWBccW0/0.jpg)](https://www.youtube.com/watch?v=U0QKMWBccW0)
 
 ## Your Group
 
