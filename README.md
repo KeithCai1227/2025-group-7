@@ -36,7 +36,23 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 ### Requirements 
 
 - 15% ~750 words
-- Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop? 
+- Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
+
+- Ideation
+Initial ideation was conducted through individual submission of game inspirations through Github. We narrowed the choices down to two core ideas – a tank combat game inspired by Tank Trouble, and a generic Tower Defence game – by simple group voting, which we then confirmed by an in-person meeting.
+One common point in support of both options was the scope they offered for innovation on the existing formula, and a feeling that the engineering challenges they offered were correctly pitched for the length of the project.
+
+- Prototyping
+Both ideas were prototyped during the January 28 workshop, with Tank Trouble prototyped on paper and Tower Defence prototyped via Powerpoint. The team agreed to focus on the Tank Trouble prototype at the outset, indicating an existing common preference for that idea.
+After prototyping, the decision was taken to focus on the Tank Trouble idea because of the team’s greater familiarity with the core game mechanics – and because we had already identified some interesting twists on the existing game design that would help differentiate our game from its inspiration.
+
+- Testing Feedback
+Testing of the paper prototype at the February 6 workshop elicited useful feedback on the design of the game, and some of the engineering challenges we might face.
+On game design, some people were confused about the “one hit to kill” philosophy present in the original game – thinking it would make the game too chaotic and might undermine the value of power-ups that enhance the tank’s weapons. Others were unsure of certain ideas about environmental destructibility, highlighting the importance of communicating this information to the player visually.
+On engineering, we were warned that a two player game operated from a single keyboard might risk input conflicts, allowing one player to prevent another player from moving by spamming keys and confusing the game. 
+
+- User Stories
+
 
 ### Design
 
