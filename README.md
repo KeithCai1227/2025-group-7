@@ -13,6 +13,8 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 [![Watch the video](https://img.youtube.com/vi/U0QKMWBccW0/0.jpg)](https://www.youtube.com/watch?v=U0QKMWBccW0)
 
+link to prototype make by Ajinkya: [HERE](https://xdyasser.github.io/ajinkya-ideas/)
+
 ## Your Group
 
 ![Grp-7](https://github.com/user-attachments/assets/501cd6fb-302c-42bb-9cf5-6fb428ba4358)
