@@ -13,9 +13,11 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 [![Watch the video](https://img.youtube.com/vi/U0QKMWBccW0/0.jpg)](https://www.youtube.com/watch?v=U0QKMWBccW0)
 
-link to prototype make by Ajinkya: [HERE](https://xdyasser.github.io/ajinkya-ideas/)
+link to prototype made by Ajinkya: [HERE](https://xdyasser.github.io/ajinkya-ideas/)
 
 link to prototype made by Harry: [HERE](https://hjx92.github.io/uob_software_engineering/)
+
+link to prototype made by Nagat: [HERE](https://noeg18.github.io/tt-prototype/)
 
 ## Your Group
 
