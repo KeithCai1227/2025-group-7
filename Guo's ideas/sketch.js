@@ -67,19 +67,24 @@ if (gameOver) {
     }
   }
 }
+
 function checkBulletHitTank(tank, otherTank) {
   for (let i = 0; i < tank.bullets.length; i++) {
     let bullet = tank.bullets[i];
-
-    if (dist(bullet.x, bullet.y, otherTank.x, otherTank.y) < 15 && otherTank.alive) {
-      otherTank.alive = false;
+    
+    if (dist(bullet.x, bullet.y, tank1.x, tank1.y) < 15 && tank1.alive) {
+      tank1.alive = false;
       gameOver = true;
-
-      return;
+      console.log("Tank 1 is hit!");
+    }
+    
+    if (dist(bullet.x, bullet.y, tank2.x, tank2.y) < 15 && tank2.alive) {
+      tank2.alive = false;
+      gameOver = true;
+      console.log("Tank 2 is hit!");
     }
   }
 }
-
 
 function displayGameOverScreen() {
   fill(0, 0, 0, 150); 
