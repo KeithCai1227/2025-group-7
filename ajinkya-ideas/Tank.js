@@ -46,6 +46,7 @@ class Tank {
     }
 
     drawTank() {
+        angleMode(RADIANS);
         push();
         translate(this.locX, this.locY);
         rotate(Math.PI/2 - this.travelDirection);
@@ -62,17 +63,17 @@ class Tank {
 
     updatePosition() {
         //rotate tank 
-        if (kb.pressing(37) && this.canRotate) {
+        if (keyIsDown(LEFT_ARROW) && this.canRotate) {
             this.travelDirection += this.rotationSpeed*(Math.PI/180);
-        } else if (kb.pressing(39) && this.canRotate) {
+        } else if (keyIsDown(RIGHT_ARROW) && this.canRotate) {
             this.travelDirection -= this.rotationSpeed*(Math.PI/180);
         } 
         
         //move tank forwards and backwards
-        if (kb.pressing(38) && this.canMoveForwards) {
+        if (keyIsDown(UP_ARROW) && this.canMoveForwards) {
             this.locX += this.travelSpeed*Math.cos(this.travelDirection);
             this.locY -= this.travelSpeed*Math.sin(this.travelDirection);
-        } else if (kb.pressing(40) && this.canMoveBackwards){
+        } else if (keyIsDown(DOWN_ARROW) && this.canMoveBackwards){
             this.locX -= this.travelSpeed*Math.cos(this.travelDirection);
             this.locY += this.travelSpeed*Math.sin(this.travelDirection);
         }
