@@ -15,8 +15,10 @@ function draw() {
 }
 
 //detect if spacebar is pressed to fire bullet of tank
+/*
 function keyPressed() {
     if (keyCode === SPACEBAR_CODE) {
         gameMap.fireBullet(gameMap.tanks[0]);
     }
 }
+*/

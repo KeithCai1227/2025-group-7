@@ -62,17 +62,17 @@ class Tank {
 
     updatePosition() {
         //rotate tank 
-        if (keyIsDown(LEFT_ARROW) && this.canRotate) {
+        if (kb.pressing(37) && this.canRotate) {
             this.travelDirection += this.rotationSpeed*(Math.PI/180);
-        } else if (keyIsDown(RIGHT_ARROW) && this.canRotate) {
+        } else if (kb.pressing(39) && this.canRotate) {
             this.travelDirection -= this.rotationSpeed*(Math.PI/180);
         } 
         
         //move tank forwards and backwards
-        if (keyIsDown(UP_ARROW) && this.canMoveForwards) {
+        if (kb.pressing(38) && this.canMoveForwards) {
             this.locX += this.travelSpeed*Math.cos(this.travelDirection);
             this.locY -= this.travelSpeed*Math.sin(this.travelDirection);
-        } else if (keyIsDown(DOWN_ARROW) && this.canMoveBackwards){
+        } else if (kb.pressing(40) && this.canMoveBackwards){
             this.locX -= this.travelSpeed*Math.cos(this.travelDirection);
             this.locY += this.travelSpeed*Math.sin(this.travelDirection);
         }

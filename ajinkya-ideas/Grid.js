@@ -53,6 +53,7 @@ class Grid{
     }
 
     generateMap(){
+        
         //at the moment, this only generates a manual map for a 6-by-10 grid
         if (this.numRows == 6 && this.numCols == 10) {
             this.gridVertWalls = [
@@ -72,35 +73,60 @@ class Grid{
                 [0,0,0,0,0,0,0,0,0,0],
                 [1,1,1,1,1,1,1,1,1,1]
             ];
+
+            //instantiate the sprites for the vertical walls
+            for (let rowCount = 0; rowCount < this.numRows; rowCount++) {
+                for (let colCount = 0; colCount <= this.numCols; colCount++) {
+                    if (this.gridVertWalls[rowCount][colCount] == 1){
+                        let sprX = this.canvasOffsetX + colCount*this.gridCellSize;
+                        let sprY = this.canvasOffsetY + (rowCount + 0.5)*this.gridCellSize;
+                        this.gridVertWalls[rowCount][colCount] = new Sprite(sprX, sprY, this.wallWidth, this.gridCellSize + this.wallWidth, 'static');
+                        this.gridVertWalls[rowCount][colCount].color = color(0, 0, 0);
+                        this.gridVertWalls[rowCount][colCount].autoDraw = false;
+                        this.gridVertWalls[rowCount][colCount].autoUpdate = false;
+                    }
+                }
+            }
+
+            //instantiate the sprites for the horizontal walls
+            for (let rowCount = 0; rowCount <= this.numRows; rowCount++) {
+                for (let colCount = 0; colCount < this.numCols; colCount++) {
+                    if (this.gridHorzWalls[rowCount][colCount] == 1){
+                        let sprX = this.canvasOffsetX + (colCount + 0.5)*this.gridCellSize;
+                        let sprY = this.canvasOffsetY + rowCount*this.gridCellSize;
+                        this.gridHorzWalls[rowCount][colCount] = new Sprite(sprX, sprY, this.gridCellSize + this.wallWidth, this.wallWidth, 'static');
+                        this.gridHorzWalls[rowCount][colCount].color = color(0, 0, 0);
+                        this.gridHorzWalls[rowCount][colCount].autoDraw = false;
+                        this.gridHorzWalls[rowCount][colCount].autoUpdate = false;
+                    }
+                }
+            }
         }
+        
     }
 
     drawMap(){
+        //draw the background of the grid
         fill(255, 255, 255);
         strokeWeight(0);
         rect(this.canvasOffsetX, this.canvasOffsetY, this.numCols*this.gridCellSize, this.numRows*this.gridCellSize);
-
-        strokeWeight(this.wallWidth);
+        
         for (let rowCount = 0; rowCount < this.numRows; rowCount++) {
             for (let colCount = 0; colCount <= this.numCols; colCount++) {
-                if (this.gridVertWalls[rowCount][colCount] == 1){
-                    let startX = this.canvasOffsetX + colCount*this.gridCellSize;
-                    let startY = this.canvasOffsetY + rowCount*this.gridCellSize;
-                    line(startX, startY, startX, startY + this.gridCellSize);
+                if (this.gridVertWalls[rowCount][colCount] != 0){
+                    this.gridVertWalls[rowCount][colCount].draw();
                 }
             }
         }
 
         for (let rowCount = 0; rowCount <= this.numRows; rowCount++) {
             for (let colCount = 0; colCount < this.numCols; colCount++) {
-                if (this.gridHorzWalls[rowCount][colCount] == 1){
-                    let startX = this.canvasOffsetX + colCount*this.gridCellSize;
-                    let startY = this.canvasOffsetY + rowCount*this.gridCellSize;
-                    line(startX, startY, startX + this.gridCellSize, startY);
+                if (this.gridHorzWalls[rowCount][colCount] != 0){
+                    this.gridHorzWalls[rowCount][colCount].draw();
                 }
             }
         }
-
+        
         for (let count = 0; count < this.activeBullets.length; count++) {
             this.activeBullets[count].drawBullet();
         }
