@@ -64,7 +64,6 @@ class Tank {
         rect(0, - this.TURRET_RAD/2, this.GUN_WIDTH, this.GUN_LENGTH);
         rectMode(CORNER);
         pop();
-        
 
         //this.tankSprite.draw();
     }
@@ -72,23 +71,23 @@ class Tank {
     updatePosition() {
         //rotate tank 
         if (keyIsDown(LEFT_ARROW) && this.canRotate) {
-            this.travelDirection += this.rotationSpeed*(Math.PI/180);
+            this.tankSprite.rotation -= this.rotationSpeed*(Math.PI/180);
         } else if (keyIsDown(RIGHT_ARROW) && this.canRotate) {
-            this.travelDirection -= this.rotationSpeed*(Math.PI/180);
+            this.tankSprite.rotation += this.rotationSpeed*(Math.PI/180);
         } 
         
         //move tank forwards and backwards
         if (keyIsDown(UP_ARROW) && this.canMoveForwards) {
-            this.locX += this.travelSpeed*Math.cos(this.travelDirection);
-            this.locY -= this.travelSpeed*Math.sin(this.travelDirection);
+            this.tankSprite.x += this.travelSpeed*Math.sin(this.tankSprite.rotation);
+            this.tankSprite.y -= this.travelSpeed*Math.cos(this.tankSprite.rotation);
         } else if (keyIsDown(DOWN_ARROW) && this.canMoveBackwards){
-            this.locX -= this.travelSpeed*Math.cos(this.travelDirection);
-            this.locY += this.travelSpeed*Math.sin(this.travelDirection);
+            this.tankSprite.x -= this.travelSpeed*Math.sin(this.tankSprite.rotation);
+            this.tankSprite.y += this.travelSpeed*Math.cos(this.tankSprite.rotation);
         }
 
-        this.tankSprite.x = this.locX;
-        this.tankSprite.y = this.locY;
-        this.tankSprite.rotation = -this.travelDirection + (Math.PI/2);
+        //this.tankSprite.x = this.locX;
+        //this.tankSprite.y = this.locY;
+        //this.tankSprite.rotation = -this.travelDirection + (Math.PI/2);
     }
 
     createTankSprite(){
@@ -143,6 +142,7 @@ class Tank {
             [pts[4].x, pts[4].y]
         ]);
         newTank.color = color(255, 0, 0);
+        newTank.bounciness = 0;
         return newTank;
     }
 
