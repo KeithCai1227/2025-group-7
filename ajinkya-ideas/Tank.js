@@ -124,21 +124,20 @@ class Tank {
         pts[7].add(tankYDir.copy().mult(this.TANK_HT/2));
 
         let newTank = new Sprite([
-            /*
             [pts[0].x, pts[0].y],
             [pts[1].x, pts[1].y],
             [pts[2].x, pts[2].y],
             [pts[3].x, pts[3].y],
+            [pts[0].x, pts[0].y]
+        ]);
+
+        newTank.addCollider(0, 0, [
             [pts[4].x, pts[4].y],
             [pts[5].x, pts[5].y],
             [pts[6].x, pts[6].y],
             [pts[7].x, pts[7].y],
-            [pts[0].x, pts[0].y]
-            */
-           [161,85],[161,115],[139,115],[139,85],/*[146,85],[146,81],[154,81],[154,85],*/[161,85]
+            [pts[4].x, pts[4].y]
         ]);
-
-        newTank.addCollider(150, 100, [[-4,-15],[-4,-19],[4,-19],[4,-15],[-4,-15]]);
         newTank.color = color(255, 0, 0);
         return newTank;
     }
