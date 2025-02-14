@@ -5,7 +5,7 @@ let SPACEBAR_CODE = 32;
 
 function setup() {
     createCanvas(640, 480);
-    gameMap = new Grid(6, 10, 50, 50, 50);
+    gameMap = new Grid(6, 10, 75, 50, 50);
 }
 
 function draw() {

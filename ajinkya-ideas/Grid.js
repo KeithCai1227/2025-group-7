@@ -57,7 +57,7 @@ class Grid{
         //at the moment, this only generates a manual map for a 6-by-10 grid
         if (this.numRows == 6 && this.numCols == 10) {
             this.gridVertWalls = [
-                [1,1,0,0,0,0,0,1,0,0,1],
+                [1,1,0,0,0,0,0,1,1,1,1],
                 [1,1,0,1,0,0,0,0,0,0,1],
                 [1,0,0,1,0,0,1,0,0,1,1],
                 [1,0,0,1,0,0,1,0,0,1,1],

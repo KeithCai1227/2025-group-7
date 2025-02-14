@@ -1,0 +1,86 @@
+CLASSES:
+
+Main File:
+setup()
+Instantiate GameState Object
+
+draw():
+Calls GameState.draw()
+
+keyPressed()
+
+GameState Class:
+One instance of Map Class
+Draw() method [this calls Draw() for either introduction screen, gameplay screen or game over screen]
+StateFlag attribute [determines whether the game is starting, during gameplay or finished]
+
+Draw(){
+    Map.Draw();
+    Tank1.Draw();
+    Tank2.Draw();
+    for(projectile in projectiles){
+        projectile.draw();
+    }
+    for(collectible in collectibles){
+        collectible.draw();
+    }
+}
+
+Update(){
+    Tank1.Update();
+    Tank2.Update();
+    for(projectile in projectiles){
+        projectile.update();
+    }
+}
+
+CheckCollision(){
+    checkTankBulletCollisions();
+    checkCollectibleTankCollisions();
+    checkProjectileWallCollisions();
+}
+
+Map Class:
+Will have two instances of Tank Class
+Draw() method
+GridArray attribute with references to wall and floor instances
+
+Tank Class:
+Draw Method()
+Fire Method() [spawns an instance of the relevant weapon]
+Destroy Method() [animating the Tank desttruction]
+Update() Method
+
+Wall Class:
+Draw Method()
+
+Breakable Wall Class:
+Draw Method()
+Update Method()
+Destroy Method() [animation which occurs once the wall has been destroyed]
+HitPoints attribute
+HitMethod() [mutator for HitPoints]
+
+Projectile Class:
+X, Y attributes
+Draw Method()
+Duration attribute [how long an instantiated weapon is used for]
+Lifespan attribute [how long a weapon can exist for once used]
+Update() Method
+
+Player Class:
+Score attributer
+KeyListener() method [this detects whether relevant keys are pressed]
+
+Bullet Class:
+(Inherits Weapon Class)
+
+Weapon Class:
+NumberOfRounds attribute
+WeaponType attribute
+
+CollectibleObject Class:
+Draw() Method [shows the icon of the ability or item on the map]
+Remove() Method [shows the animation when the item is collected]
+
+
