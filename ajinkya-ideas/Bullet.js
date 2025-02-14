@@ -1,35 +1,34 @@
 class Bullet {
 
-    locX;
-    locY;
-    radius;
     incX;
     incY; 
-    travelSpeed;
-    oldLocX;
-    oldLocY;
+    bulletSprite;
 
     //travelDirection is the angle of bullet travel in radians measured
     //anticlockwise from horizontal
     constructor(locX, locY, radius, travelDirection, travelSpeed) {
-        this.locX = locX;
-        this.locY = locY;
-        this.radius = radius;
         this.incX = travelSpeed*Math.cos(travelDirection);
         this.incY = - travelSpeed*Math.sin(travelDirection);
-        this.travelSpeed = travelSpeed;
+
+        this.bulletSprite = new Sprite();
+        this.bulletSprite.x = locX;
+        this.bulletSprite.y = locY;
+        this.bulletSprite.diameter = 2*radius;
+        this.bulletSprite.color = color(0, 0, 0);
+        this.bulletSprite.bounciness = 1;
+        this.bulletSprite.autoUpdate = false;
+        this.bulletSprite.autoDraw = false;
+        this.bulletSprite.vel.x = this.incX;
+        this.bulletSprite.vel.y = this.incY;
+        this.bulletSprite.mass = 0;
+        this.bulletSprite.friction = 0;
     }
 
     drawBullet() {
-        strokeWeight(0);
-        fill(0, 0, 0);
-        ellipse(this.locX, this.locY, 2*this.radius, 2*this.radius);
+       this.bulletSprite.draw();
     }
 
     updateLocation() {
-        this.oldLocX = this.locX;
-        this.oldLocY = this.locY;
-        this.locX = this.locX + this.incX;
-        this.locY = this.locY + this.incY;
+        this.bulletSprite.update();
     }
 }

@@ -11,7 +11,7 @@ class Grid{
     activeBullets;
     tanks;
 
-    BULLET_SIZE = 5;
+    BULLET_SIZE = 3;
     BULLET_SPEED = 4;
     TANK_TRAVEL_SPD = 5;
     TANK_ROT_SPD = 5;
