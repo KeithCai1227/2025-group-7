@@ -10,6 +10,7 @@ class Tank {
     canMoveBackwards;
     canRotate;
     firePoint;
+    tankSprite;
 
     TANK_WIDTH = 22;
     TANK_HT = 30;
@@ -43,9 +44,13 @@ class Tank {
         //create a point from which bullets fired by tank will spwan
         this.firePoint = createVector(0, 0);
         this.updateFirePoint();
+
+        //create a sprite for the tank collision physics
+        this.tankSprite = this.createTankSprite();
     }
 
     drawTank() {
+        
         angleMode(RADIANS);
         push();
         translate(this.locX, this.locY);
@@ -59,6 +64,9 @@ class Tank {
         rect(0, - this.TURRET_RAD/2, this.GUN_WIDTH, this.GUN_LENGTH);
         rectMode(CORNER);
         pop();
+        
+
+        //this.tankSprite.draw();
     }
 
     updatePosition() {
@@ -77,6 +85,62 @@ class Tank {
             this.locX -= this.travelSpeed*Math.cos(this.travelDirection);
             this.locY += this.travelSpeed*Math.sin(this.travelDirection);
         }
+    }
+
+    createTankSprite(){
+        //define vectors for tank x-axis and y-axis
+        let tankYDir = createVector(Math.cos(this.travelDirection), - Math.sin(this.travelDirection));
+        let tankXDir = createVector(Math.cos(this.travelDirection - Math.PI/2), - Math.sin(this.travelDirection - Math.PI/2));
+
+        //vector for tank center
+        let tankOrigin = createVector(this.locX, this.locY);
+
+        //create an array of vector points for the tank polygon
+        //set all tank points to the center
+        let pts = [];
+        for(let count = 0; count < 8; count++){
+            pts[count] = createVector(0, 0);
+            pts[count].set(tankOrigin);
+        }
+
+        //calculate four tank corner points
+        pts[0].add(tankXDir.copy().mult(this.TANK_WIDTH/2));
+        pts[0].add(tankYDir.copy().mult(this.TANK_HT/2));
+        pts[1].add(tankXDir.copy().mult(this.TANK_WIDTH/2));
+        pts[1].sub(tankYDir.copy().mult(this.TANK_HT/2));
+        pts[2].sub(tankXDir.copy().mult(this.TANK_WIDTH/2));
+        pts[2].sub(tankYDir.copy().mult(this.TANK_HT/2));
+        pts[3].sub(tankXDir.copy().mult(this.TANK_WIDTH/2));
+        pts[3].add(tankYDir.copy().mult(this.TANK_HT/2));
+
+        //calculate gun extension points
+        pts[4].sub(tankXDir.copy().mult(this.GUN_WIDTH/2));
+        pts[4].add(tankYDir.copy().mult(this.TANK_HT/2));
+        pts[5].sub(tankXDir.copy().mult(this.GUN_WIDTH/2));
+        pts[5].add(tankYDir.copy().mult((this.GUN_LENGTH + this.TURRET_RAD)/2));
+        pts[6].add(tankXDir.copy().mult(this.GUN_WIDTH/2));
+        pts[6].add(tankYDir.copy().mult((this.GUN_LENGTH + this.TURRET_RAD)/2));
+        pts[7].add(tankXDir.copy().mult(this.GUN_WIDTH/2));
+        pts[7].add(tankYDir.copy().mult(this.TANK_HT/2));
+
+        let newTank = new Sprite([
+            /*
+            [pts[0].x, pts[0].y],
+            [pts[1].x, pts[1].y],
+            [pts[2].x, pts[2].y],
+            [pts[3].x, pts[3].y],
+            [pts[4].x, pts[4].y],
+            [pts[5].x, pts[5].y],
+            [pts[6].x, pts[6].y],
+            [pts[7].x, pts[7].y],
+            [pts[0].x, pts[0].y]
+            */
+           [161,85],[161,115],[139,115],[139,85],/*[146,85],[146,81],[154,81],[154,85],*/[161,85]
+        ]);
+
+        newTank.addCollider(150, 100, [[-4,-15],[-4,-19],[4,-19],[4,-15],[-4,-15]]);
+        newTank.color = color(255, 0, 0);
+        return newTank;
     }
 
     updatePolygonPoints() {
