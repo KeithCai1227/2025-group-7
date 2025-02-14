@@ -21,6 +21,8 @@ link to prototype made by Nagat: [HERE](https://noeg18.github.io/tt-prototype/)
 
 link to prototype made by Guo: [HERE](https://editor.p5js.org/helpmeplease/full/NVtRbMY2p)
 
+link to prototype made by Ajinkya: [HERE](https://xdyasser.github.io/Yaseer/)
+
 
 ## Your Group
 
