@@ -85,6 +85,10 @@ class Tank {
             this.locX -= this.travelSpeed*Math.cos(this.travelDirection);
             this.locY += this.travelSpeed*Math.sin(this.travelDirection);
         }
+
+        this.tankSprite.x = this.locX;
+        this.tankSprite.y = this.locY;
+        this.tankSprite.rotation = -this.travelDirection + (Math.PI/2);
     }
 
     createTankSprite(){
