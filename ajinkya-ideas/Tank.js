@@ -50,22 +50,8 @@ class Tank {
     }
 
     drawTank() {
-        
         angleMode(RADIANS);
-        push();
-        translate(this.locX, this.locY);
-        rotate(Math.PI/2 - this.travelDirection);
-        strokeWeight(0);
-        rectMode(CENTER);
-        fill(100, 100, 100);
-        rect(0, 0, this.TANK_WIDTH, this.TANK_HT);
-        fill(50, 50, 50);
-        ellipse(0, 0, this.TURRET_RAD, this.TURRET_RAD);
-        rect(0, - this.TURRET_RAD/2, this.GUN_WIDTH, this.GUN_LENGTH);
-        rectMode(CORNER);
-        pop();
-
-        //this.tankSprite.draw();
+        this.tankSprite.draw();
     }
 
     updatePosition() {
@@ -88,6 +74,7 @@ class Tank {
         //this.tankSprite.x = this.locX;
         //this.tankSprite.y = this.locY;
         //this.tankSprite.rotation = -this.travelDirection + (Math.PI/2);
+        this.tankSprite.update();
     }
 
     createTankSprite(){
@@ -143,6 +130,8 @@ class Tank {
         ]);
         newTank.color = color(255, 0, 0);
         newTank.bounciness = 0;
+        newTank.autoUpdate = false;
+        newTank.autoDraw = false;
         return newTank;
     }
 
