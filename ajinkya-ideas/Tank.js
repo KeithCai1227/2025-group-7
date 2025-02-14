@@ -5,10 +5,6 @@ class Tank {
     travelDirection;
     travelSpeed;
     rotationSpeed;
-    polygonPoints;
-    canMoveForwards;
-    canMoveBackwards;
-    canRotate;
     firePoint;
     tankSprite;
 
@@ -29,17 +25,6 @@ class Tank {
         this.rotationSpeed = rotationSpeed;
         //convert travelDirection to radians
         this.travelDirection = (Math.PI/180)*travelDirection;
-        this.canMoveForwards = true;
-        this.canMoveBackwards = true;
-        this.canRotate = true;
-
-        //create an array of vector points for the tank corners
-        this.polygonPoints = [];
-        for(let count = 0; count < this.NU_POLY_PTS; count++){
-            this.polygonPoints[count] = createVector(0, 0);
-        }
-        //set the polygon points to their initial values
-        this.updatePolygonPoints();
 
         //create a point from which bullets fired by tank will spwan
         this.firePoint = createVector(0, 0);
@@ -56,24 +41,24 @@ class Tank {
 
     updatePosition() {
         //rotate tank 
-        if (keyIsDown(LEFT_ARROW) && this.canRotate) {
+        if (keyIsDown(LEFT_ARROW)) {
             this.tankSprite.rotation -= this.rotationSpeed*(Math.PI/180);
-        } else if (keyIsDown(RIGHT_ARROW) && this.canRotate) {
+        } else if (keyIsDown(RIGHT_ARROW)) {
             this.tankSprite.rotation += this.rotationSpeed*(Math.PI/180);
         } 
         
         //move tank forwards and backwards
-        if (keyIsDown(UP_ARROW) && this.canMoveForwards) {
+        if (keyIsDown(UP_ARROW)) {
             this.tankSprite.x += this.travelSpeed*Math.sin(this.tankSprite.rotation);
             this.tankSprite.y -= this.travelSpeed*Math.cos(this.tankSprite.rotation);
-        } else if (keyIsDown(DOWN_ARROW) && this.canMoveBackwards){
+        } else if (keyIsDown(DOWN_ARROW)){
             this.tankSprite.x -= this.travelSpeed*Math.sin(this.tankSprite.rotation);
             this.tankSprite.y += this.travelSpeed*Math.cos(this.tankSprite.rotation);
         }
 
-        //this.tankSprite.x = this.locX;
-        //this.tankSprite.y = this.locY;
-        //this.tankSprite.rotation = -this.travelDirection + (Math.PI/2);
+        this.locX = this.tankSprite.x;
+        this.locY = this.tankSprite.y;
+        this.travelDirection = -this.tankSprite.rotation + (Math.PI/2);
         this.tankSprite.update();
     }
 
@@ -133,36 +118,6 @@ class Tank {
         newTank.autoUpdate = false;
         newTank.autoDraw = false;
         return newTank;
-    }
-
-    updatePolygonPoints() {
-        //define vectors for tank x-axis and y-axis
-        let tankYDir = createVector(Math.cos(this.travelDirection), - Math.sin(this.travelDirection));
-        let tankXDir = createVector(Math.cos(this.travelDirection - Math.PI/2), - Math.sin(this.travelDirection - Math.PI/2));
-
-        //vector for tank center
-        let tankOrigin = createVector(this.locX, this.locY);
-
-        //set all tank points to the center
-        for(let count = 0; count < this.NU_POLY_PTS; count++){
-            this.polygonPoints[count].set(tankOrigin);
-        }
-
-        //calculate four tank corner points
-        this.polygonPoints[0] = this.polygonPoints[0].add(tankXDir.copy().mult(this.TANK_WIDTH/2));
-        this.polygonPoints[0] = this.polygonPoints[0].add(tankYDir.copy().mult(this.TANK_HT/2));
-        this.polygonPoints[1] = this.polygonPoints[1].add(tankXDir.copy().mult(this.TANK_WIDTH/2));
-        this.polygonPoints[1] = this.polygonPoints[1].sub(tankYDir.copy().mult(this.TANK_HT/2));
-        this.polygonPoints[2] = this.polygonPoints[2].sub(tankXDir.copy().mult(this.TANK_WIDTH/2));
-        this.polygonPoints[2] = this.polygonPoints[2].sub(tankYDir.copy().mult(this.TANK_HT/2));
-        this.polygonPoints[3] = this.polygonPoints[3].sub(tankXDir.copy().mult(this.TANK_WIDTH/2));
-        this.polygonPoints[3] = this.polygonPoints[3].add(tankYDir.copy().mult(this.TANK_HT/2));
-
-        //calculate gun extension points
-        this.polygonPoints[4] = this.polygonPoints[4].add(tankXDir.copy().mult(this.GUN_WIDTH/2));
-        this.polygonPoints[4] = this.polygonPoints[4].add(tankYDir.copy().mult((this.GUN_LENGTH + this.TURRET_RAD)/2));
-        this.polygonPoints[5] = this.polygonPoints[5].sub(tankXDir.copy().mult(this.GUN_WIDTH/2));
-        this.polygonPoints[5] = this.polygonPoints[5].add(tankYDir.copy().mult((this.GUN_LENGTH + this.TURRET_RAD)/2));
     }
 
     updateFirePoint() {

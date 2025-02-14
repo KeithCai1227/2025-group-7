@@ -32,25 +32,4 @@ class Bullet {
         this.locX = this.locX + this.incX;
         this.locY = this.locY + this.incY;
     }
-
-    reverseVerticalTravel() {
-        this.incY = -this.incY;
-    }
-
-    reverseHorizontalTravel() {
-        this.incX = -this.incX;
-    }
-
-    getMaxDimX() {
-        return this.locX + this.radius;
-    }
-    getMinDimX() {
-        return this.locX - this.radius;
-    }
-    getMaxDimY() {
-        return this.locY + this.radius;
-    }
-    getMinDimY() {
-        return this.locY - this.radius;
-    }
 }
