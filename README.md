@@ -23,6 +23,7 @@ link to prototype made by Guo: [HERE](https://editor.p5js.org/helpmeplease/full/
 
 link to prototype made by Yaseer: [HERE](https://xdyasser.github.io/Yaseer/)
 
+link to prototype made by Haorui Cai: [HERE](https://keithcai1227.github.io/Tank-trouble/)
 
 ## Your Group
 
