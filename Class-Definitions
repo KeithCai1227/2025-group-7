@@ -78,6 +78,7 @@ Bullet Class:
 Weapon Class:
 NumberOfRounds attribute
 WeaponType attribute
+Capacity attribute
 
 CollectibleObject Class:
 Draw() Method [shows the icon of the ability or item on the map]
