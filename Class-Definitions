@@ -48,7 +48,7 @@ GridArray attribute with references to wall and floor instances
 Tank Class:
 Draw Method()
 Fire Method() [spawns an instance of the relevant weapon]
-Destroy Method() [animating the Tank desttruction]
+Destroy Method() [animating the Tank destruction]
 Update() Method
 
 Wall Class:
