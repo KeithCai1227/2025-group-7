@@ -7,7 +7,7 @@ function setup() {
     createCanvas(640, 480);
     let s = new Sprite(200, 200, 200, 200, 'static');
 	s.shape = 'chain';
-    myTank = new Tank(200, 200, 45, new Weapon(Weapon.BULLET_TYPE));
+    myTank = new Tank(200, 200, 90, new Weapon(Weapon.BULLET_TYPE));
 }
 
 function draw() {

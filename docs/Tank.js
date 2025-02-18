@@ -7,7 +7,7 @@ class Tank{
     static TANK_WIDTH = 20;
     static GUN_HEIGHT = 6;
     static GUN_WIDTH = 8;
-    static PROJECTILE_SPAWN_DIST = 5;
+    static PROJECTILE_SPAWN_DIST = 10;
     static UP_DIRECTION = 0;
     static DOWN_DIRECTION = 1;
     static LEFT_DIRECTION = 2;
@@ -21,11 +21,9 @@ class Tank{
     //initialDirection should be in degrees measured clockwise from x-axis
     //initialWeapon is the weapon the tank has to begin with
     constructor(locX, locY, initialDirection, initialWeapon){
-        this.locX = locX;
-        this.locY = locY;
         //AT THE MOMENT THE INITIAL DIRECTION IS VERTICAL
         //this.initialDirection = initialDirection;
-        this.initialWeapon = initialWeapon;
+        this.tankWeapon = initialWeapon;
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Sprite();
         this.tankSprite.x = locX;
@@ -48,17 +46,17 @@ class Tank{
     
     fire(){
         //Create new projectile according to appropriate weapon type
-        if(this.weaponType.numberOfRounds < this.weaponType.capacity){
+        if(this.tankWeapon.numberOfRounds < this.tankWeapon.capacity){
             let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST;
-            let projX = projDist*Math.cos(this.tankSprite.rotation);
-            let projY = projDist*Math.sin(this.tankSprite.rotation);
+            let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
+            let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation);
             
             if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
-                this.weaponType.numberOfRounds++;
-                return new Bullet(projX, projY, this.tankSprite.rotation);
+                this.tankWeapon.numberOfRounds++;
+                return new Bullet(projX, projY, this.tankSprite.rotation, 10);
             }
             else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
-                this.weaponType.numberOfRounds++;
+                this.tankWeapon.numberOfRounds++;
                 return new Laser(projX, projY, this.tankSprite.rotation);  
             }
         }
