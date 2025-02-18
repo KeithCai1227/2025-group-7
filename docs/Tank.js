@@ -26,17 +26,12 @@ class Tank{
         //this.initialDirection = initialDirection;
         this.initialWeapon = initialWeapon;
         //create a sprite in P5 Play for the tank
-        this.tankSprite = new Group();
-        let tankBody = new this.tankSprite.Sprite();
-        tankBody.x = locX;
-        tankBody.y = locY;
-        tankBody.width = this.TANK_WIDTH;
-        tankBody.height = this.TANK_HEIGHT;
-        let tankGun = new this.tankSprite.Sprite();
-        tankGun.x = locX;
-        tankGun.y = locY + (this.GUN_HEIGHT + this.TANK_HEIGHT)/2;
-        tankGun.width = this.GUN_WIDTH;
-        tankGun.height = this.GUN_HEIGHT;
+        this.tankSprite = new Sprite();
+        this.tankSprite.x = locX;
+        this.tankSprite.y = locY;
+        this.tankSprite.width = this.TANK_HEIGHT;
+        this.tankSprite.height = this.TANK_WIDTH;
+        this.tankSprite.addCollider((this.GUN_HEIGHT + this.TANK_HEIGHT)/2, 0, this.GUN_HEIGHT, this.GUN_WIDTH);
         this.tankSprite.autoUpdate = false;
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
@@ -75,7 +70,6 @@ class Tank{
     update(){
         //call the update method of the underlying sprite
         this.tankSprite.update();
-        console.log("Spd: " + this.tankSprite.speed +"Rot: " + this.tankSprite.rotation);
     }
     
     //updates the rotation and speed attributes of the tank sprite
