@@ -3,15 +3,16 @@ class Tank{
     tankWeapon; //which particular type of weapon the tank has
     tankLife; //remaining life of the tank
     tankSprite; //sprite created with P5 Play
-    TANK_HEIGHT = 20;
-    TANK_WIDTH = 10;
-    GUN_HEIGHT = 5;
-    GUN_WIDTH = 5;
+    TANK_HEIGHT = 30;
+    TANK_WIDTH = 20;
+    GUN_HEIGHT = 6;
+    GUN_WIDTH = 8;
     PROJECTILE_SPAWN_DIST = 5;
     UP_DIRECTION = 0;
     DOWN_DIRECTION = 1;
     LEFT_DIRECTION = 2;
     RIGHT_DIRECTION = 3;
+    NO_DIRECTION = 4;
     
     //note the image, rotation and speed will be attributes of the sprite
 
@@ -26,12 +27,12 @@ class Tank{
         this.initialWeapon = initialWeapon;
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Group();
-        let tankBody = new tankSprite.Sprite();
+        let tankBody = new this.tankSprite.Sprite();
         tankBody.x = locX;
         tankBody.y = locY;
         tankBody.width = this.TANK_WIDTH;
         tankBody.height = this.TANK_HEIGHT;
-        let tankGun = new tankSprite.Sprite();
+        let tankGun = new this.tankSprite.Sprite();
         tankGun.x = locX;
         tankGun.y = locY + (this.GUN_HEIGHT + this.TANK_HEIGHT)/2;
         tankGun.width = this.GUN_WIDTH;
@@ -39,6 +40,8 @@ class Tank{
         this.tankSprite.autoUpdate = false;
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
+        this.tankSprite.speed = 0;
+        this.tankSprite.rotation = 0;
     }
     
     draw(){
@@ -72,6 +75,7 @@ class Tank{
     update(){
         //call the update method of the underlying sprite
         this.tankSprite.update();
+        console.log("Spd: " + this.tankSprite.speed +"Rot: " + this.tankSprite.rotation);
     }
     
     //updates the rotation and speed attributes of the tank sprite

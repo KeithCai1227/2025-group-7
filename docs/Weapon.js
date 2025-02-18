@@ -6,12 +6,12 @@ class Weapon{
     LASER_TYPE = 1;
     
     constructor(weaponType){
-        if(weaponType == BULLET_TYPE){
+        if(weaponType == this.BULLET_TYPE){
             this.weaponType = weaponType;
             this.capacity = 20;
             this.numberOfRounds = 0;
         }
-        else if(weaponType == LASER_TYPE){
+        else if(weaponType == this.LASER_TYPE){
             this.weaponType = weaponType;
             this.capacity = 1;
             this.numberOfRounds = 0;
