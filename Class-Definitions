@@ -32,6 +32,7 @@ Update(){
     for(projectile in projectiles){
         projectile.update();
     }
+    KeyListener.Scan()
 }
 
 CheckCollision(){
@@ -65,7 +66,7 @@ Projectile Class:
 X, Y attributes
 Draw Method()
 Duration attribute [how long an instantiated weapon is used for]
-Lifespan attribute [how long a weapon can exist for once used]
+Lifespan attribute [how long a projectile can exist for once used]
 Update() Method
 
 Player Class:
