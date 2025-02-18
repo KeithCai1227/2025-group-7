@@ -18,6 +18,7 @@ class Tank{
 
     //locX and locY are the initial co-ordinates
     //initialDirection is the initial direction the tank is pointing in
+    //initialDirection should be in degrees measured clockwise from x-axis
     //initialWeapon is the weapon the tank has to begin with
     constructor(locX, locY, initialDirection, initialWeapon){
         this.locX = locX;
@@ -36,7 +37,8 @@ class Tank{
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
         this.tankSprite.speed = 0;
-        this.tankSprite.rotation = 0;
+        this.tankSprite.rotation = initialDirection;
+        this.tankSprite.color = color(150, 150, 150);
     }
     
     draw(){
