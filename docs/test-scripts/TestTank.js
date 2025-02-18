@@ -9,35 +9,35 @@ function testTank(){
     console.assert(testTank.tankSprite.speed == 0, "Tank Class: Failed speed check.");
 
     //check right rotation works properly
-    testTank.move(testTank.RIGHT_DIRECTION);
+    testTank.move(Tank.RIGHT_DIRECTION);
     console.assert(Math.round(testTank.tankSprite.rotation) == 91, "Tank Class: Failed rotation check.");
     for(count = 0; count < 9; count++){
-        testTank.move(testTank.RIGHT_DIRECTION);
+        testTank.move(Tank.RIGHT_DIRECTION);
     }
     console.assert(Math.round(testTank.tankSprite.rotation) == 100, "Tank Class: Failed rotation check.");
 
     //check left rotation works properly
     testTank.tankSprite.rotation = 90;
-    testTank.move(testTank.LEFT_DIRECTION);
+    testTank.move(Tank.LEFT_DIRECTION);
     console.assert(Math.round(testTank.tankSprite.rotation) == 89, "Tank Class: Failed rotation check.");
     for(count = 0; count < 9; count++){
-        testTank.move(testTank.LEFT_DIRECTION);
+        testTank.move(Tank.LEFT_DIRECTION);
     }
     console.assert(Math.round(testTank.tankSprite.rotation) == 80, "Tank Class: Failed rotation check.");
 
     //check forwards and backwards movement works properly
     testTank.tankSprite.rotation = 90;
-    testTank.move(testTank.UP_DIRECTION);
+    testTank.move(Tank.UP_DIRECTION);
     console.assert(testTank.tankSprite.speed == 1, "Tank Class: Failed speed check.");
-    testTank.move(testTank.DOWN_DIRECTION);
+    testTank.move(Tank.DOWN_DIRECTION);
     console.assert(testTank.tankSprite.speed == 0.5, "Tank Class: Failed speed check.");
-    testTank.move(testTank.NO_DIRECTION);
+    testTank.move(Tank.NO_DIRECTION);
     console.assert(testTank.tankSprite.speed == 0, "Tank Class: Failed speed check.");
 
     //check movement and rotation work together as intended
-    testTank.move(testTank.UP_DIRECTION);
-    testTank.move(testTank.RIGHT_DIRECTION);
+    testTank.move(Tank.UP_DIRECTION);
+    testTank.move(Tank.RIGHT_DIRECTION);
     console.assert(Math.round(testTank.tankSprite.rotation) == 92, "Tank Class: Failed rotation check.");
-    testTank.move(testTank.RIGHT_DIRECTION);
+    testTank.move(Tank.RIGHT_DIRECTION);
     console.assert(Math.round(testTank.tankSprite.rotation) == 93, "Tank Class: Failed rotation check.");
 }

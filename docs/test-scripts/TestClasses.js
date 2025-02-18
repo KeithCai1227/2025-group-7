@@ -3,7 +3,7 @@
 function setup() {
     createCanvas(640, 480);
     testWeapon();
-    //testTank();
+    testTank();
 }
 
 function draw() {
