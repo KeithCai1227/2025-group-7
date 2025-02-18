@@ -1,5 +1,8 @@
+
 function setup() {
-  new Canvas(windowWidth, windowHeight);
+  new Canvas(windowWidth,windowHeight);
+  
+  displayMode('centered');
   tiles = new Group();
   
   setMap();

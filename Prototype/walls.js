@@ -1,5 +1,6 @@
 let tiles;
 let tileSize = 24;
+let floorsize = 96;
 let cols = map1[0].length;
 let  rows = map1.length;
 let brickColors = ['#ab744f', '#a1591e', '#9c5536', '#7e411f', '#963f19'];
@@ -15,6 +16,7 @@ function setMap() {
         tile.collider = 'static';
         tile.stroke = 'rgb(110, 100, 100)';
       }
+      
     }
   }
 } 
