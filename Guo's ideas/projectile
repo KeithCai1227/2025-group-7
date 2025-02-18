@@ -1,0 +1,134 @@
+class Projectile {
+  constructor(x, y, angle, speed, lifetime,weapon,duration) {
+    this.x = x;
+    this.y = y;
+    this.angle = angle;
+    this.speed = speed;
+    this.lifetime = lifetime; 
+    this.weapon = weapon;
+    this.duration = duration;
+    this.alive = true;
+    if (weapon.weaponType === Weapon.BULLET_TYPE) {
+      this.damage = 1;
+      this.lifetime = 100;
+      this.duration = 0;
+    } else if (weapon.weaponType === Weapon.LASER_TYPE) {
+      this.damage = 5;
+      this.lifetime = 30;
+      this.duration = 300;
+    }
+  /*  
+  if (this.weapon.numberOfRounds < this.weapon.capacity) {
+      this.weapon.numberOfRounds++;
+    } else {
+      this.alive = false; 
+    }
+  */
+  }
+
+  update() {
+    if (!this.alive) return;
+   
+
+    this.x += this.speed * cos(this.angle);
+    this.y += this.speed * sin(this.angle);
+    this.lifetime--;
+    
+    if (this.duration > 0) {
+          this.duration--;
+        } else {
+           this.weapon.weaponType = Weapon.BULLET_TYPE;
+           this.damage = 1;
+           this.lifetime = 100;
+        }
+
+    if (this.lifetime <= 0) {
+      this.alive = false;
+    }
+    
+    this.checkCollision();
+   
+  }
+
+  display() {
+    if (!this.alive) return;
+    push();
+    if (this.weapon.weaponType === Weapon.BULLET_TYPE) {
+      fill(255, 255, 0); 
+    } else if (this.weapon.weaponType === Weapon.LASER_TYPE) {
+      fill(0, 255, 255); 
+      ellipse(this.x, this.y, 5, 5);
+      pop();
+  }
+  }
+  checkCollision() {
+    for (let wall of walls) {
+      if (wall.alive && rectCircleCollision(this.x, this.y, 2.5, 2.5, wall.x, wall.y, wall.w, wall.h)) {
+        this.bounce(wall);
+        wall.hit();
+      }
+    }
+  }
+rectCircleCollision(cx, cy, halfWidth, halfHeight, rx, ry, rw, rh) {
+  let closestX = constrain(cx, rx, rx + rw);
+  let closestY = constrain(cy, ry, ry + rh);
+  let distanceX = cx - closestX;
+  let distanceY = cy - closestY;
+  return (distanceX * distanceX + distanceY * distanceY) < (halfWidth * halfWidth);
+}
+  bounce(wall) {
+    if (!this.alive) return;
+
+    let left = wall.x;
+    let right = wall.x + wall.w;
+    let top = wall.y;
+    let bottom = wall.y + wall.h;
+
+    if (this.x > left && this.x < right) {
+  
+      this.angle = -this.angle;
+    } else if (this.y > top && this.y < bottom) {
+    
+      this.angle = Math.PI - this.angle;
+    }
+  }
+}
+
+
+class Bullet extends Projectile {
+  constructor(x, y, angle, speed = 7, damage = 1, lifetime = 100,duration = 0) {
+    super(x, y, angle, speed, lifetime,duration);
+    this.weapon.weaponType = Weapon.BULLET_TYPE;
+    this.damage = damage;
+  }
+
+  update() {
+    super.update();
+  }
+
+  display() {
+    if (!this.alive) return;
+    push();
+    fill(255, 255, 0);
+    ellipse(this.x, this.y, 5, 5);
+    pop();
+  }
+}
+class laser extends Projectile {
+  constructor(x, y, angle, speed = 10, damage = 10, lifetime = 5,weapontype = "laser",duration = 90) {
+    super(x, y, angle, speed, lifetime,duration);
+    this.damage = damage;
+  }
+
+  update() {
+    super.update();
+  }
+
+  display() {
+    if (!this.alive) return;
+    push();
+    fill(0, 255, 255);
+    ellipse(this.x, this.y, 5, 5);
+    pop();
+  }
+}
