@@ -1,0 +1,8 @@
+Sprint Meeting 17/2/25:
+
+--> Will perform 1-week sprint over reading week
+--> Will begin by allocating class files for people to generate outlines:
+    --> Map, Tank Classes: Yasser
+    --> Tank Class: Ajinkya
+    --> Bullet, Projectile: Guo
+    --> Player, KeyListener: Harry and Nagat

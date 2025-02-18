@@ -48,7 +48,7 @@ GridArray attribute with references to wall and floor instances
 Tank Class:
 Draw Method()
 Fire Method() [spawns an instance of the relevant weapon]
-Destroy Method() [animating the Tank desttruction]
+Destroy Method() [animating the Tank destruction]
 Update() Method
 
 Wall Class:
@@ -78,6 +78,7 @@ Bullet Class:
 Weapon Class:
 NumberOfRounds attribute
 WeaponType attribute
+Capacity attribute
 
 CollectibleObject Class:
 Draw() Method [shows the icon of the ability or item on the map]
