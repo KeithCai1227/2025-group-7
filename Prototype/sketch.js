@@ -18,6 +18,9 @@ function setup() {
   gameMap = new Grid();
   gameMap.initGrid();
   current = grid[0][0];
+  for(let i =0; i < 200; i++){
+    gameMap.generateMap();
+  }
   
   
 }
@@ -29,14 +32,14 @@ function draw() {
   
   
 
-  gameMap.generateMap();
-  if(cellsStack == 0){
+  
+  
     for(let i = 0; i < grid[0].length; i++){
       for(let j = 0; j < grid.length; j++){
         grid[j][i].show();
       }
     }
-  }
+  
   
   
 
