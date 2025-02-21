@@ -103,16 +103,16 @@ class Cell {
         let bottom = this.i < rows - 1 ? grid[this.i + 1][this.j] : undefined;
         let left = this.j > 0 ? grid[this.i][this.j - 1] : undefined;
         
-        if(top && top.visited <= (random() < 0.05? 3 : 2)){ //check top
+        if(top && top.visited < (random() < 0.09? 3 : 2)){ //check top
        this.neighbours.push(top);
         }
-        if(right && right.visited <= (random() < 0.05? 3 : 2)){ //check right
+        if(right && right.visited < (random() < 0.09? 3 : 2)){ //check right
        this.neighbours.push(right);
         }
-        if(bottom && bottom.visited <= (random() < 0.05? 3 : 2)){ //check bottom
+        if(bottom && bottom.visited < (random() < 0.09? 3 : 2)){ //check bottom
        this.neighbours.push(bottom);
         }
-        if(left && left.visited <= (random() < 0.05? 3 : 2)){ //check left
+        if(left && left.visited < (random() < 0.09? 3 : 2)){ //check left
        this.neighbours.push(left);
         }
 
