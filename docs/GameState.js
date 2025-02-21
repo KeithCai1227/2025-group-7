@@ -27,7 +27,7 @@ class GameState{
         displayMode('centered');
         this.gameMap = new Grid();
         this.gameMap.initGrid();
-        this.gameMap.drawMap();
+        this.gameMap.initMap();
         
         //create two tanks
         this.tankList = [];
@@ -44,7 +44,7 @@ class GameState{
         background(200, 200, 200);
         
         //draw the map
-         
+         this.gameMap.draw();
         //draw tanks
         for(let tankCnt = 0; tankCnt < this.tankList.length; tankCnt++){
             this.tankList[tankCnt].draw();
@@ -63,6 +63,8 @@ class GameState{
     }
     
     update(){
+        //update map
+        this.gameMap.update();
         //update tanks
         for(let tankCnt = 0; tankCnt < this.tankList.length; tankCnt++){
             this.tankList[tankCnt].update();

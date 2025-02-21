@@ -12,7 +12,8 @@ class Grid {
         walls.stroke = 'black';
         walls.overlaps(walls);
         walls.collider = ('static');
-        
+        walls.autoDraw = false;
+        walls.autoUpdate = false;
     }
 
     initGrid() {
@@ -43,9 +44,9 @@ class Grid {
         }
     //}while(this.celltack != 0);
     }
-    drawMap(){
+    initMap(){
         do {
-        this.generateMap();
+            this.generateMap();
         }while(this.celltack != 0);
 
         for(let i = 0; i < this.grid[0].length; i++){
@@ -53,6 +54,14 @@ class Grid {
             this.grid[j][i].show();
             }
         }
+    }
+
+    draw() {
+        walls.draw();
+    }
+
+    update() {
+        walls.update();
     }
 }
 
