@@ -15,10 +15,10 @@ function draw() {
 }
 
 function keyPressed() {
-    if (keyCode === SPACEBAR_CODE) {
+    if (keyCode === SPACEBAR_CODE && tankGame.tankList[0].canFire()) {
         tankGame.addProjectile(tankGame.tankList[0].fire());
     }
-    if (keyCode === Q_CODE) {
+    if (keyCode === Q_CODE && tankGame.tankList[1].canFire()) {
         tankGame.addProjectile(tankGame.tankList[1].fire());
     }
 }

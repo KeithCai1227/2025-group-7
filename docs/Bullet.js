@@ -12,6 +12,8 @@ class Bullet extends Projectile {
         this.bulletSprite.speed = 4;
         this.bulletSprite.bounciness = 1;
         this.bulletSprite.friction = 0;
+        this.bulletSprite.autoUpdate = false;
+        this.bulletSprite.autoDraw = false;
     }
     
     draw(){

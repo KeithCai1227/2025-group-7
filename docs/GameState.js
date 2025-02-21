@@ -79,8 +79,15 @@ class GameState{
         }
         
         //update projectiles
-        for(let projCnt = 0; projCnt < this.projectileList.length; projCnt++){
-            this.projectileList[projCnt].update();
+        for(let projCnt = 0; projCnt < this.projectileList.length; ){
+            if (this.projectileList[projCnt].despawnTime < millis()) {
+                this.projectileList[projCnt].bulletSprite.remove();
+                this.projectileList.splice(projCnt, 1);
+            }
+            else {
+                this.projectileList[projCnt].update();
+                projCnt++;
+            }
         } 
         
         //update collectibles
@@ -100,8 +107,18 @@ class GameState{
         this.projectileList.push(newProjectile);
     }
     
-    //for now - empty
     checkProjectileTankOverlaps(){
+        for (let i = 0; i < this.tankList.length; i++) {
+            for (let j = 0; j < this.projectileList.length; ) {
+                if (this.projectileList[j].bulletSprite.collides(this.tankList[i].tankSprite)) {
+                    this.tankList[i].hit();
+                    this.projectileList[j].bulletSprite.remove();
+                    this.projectileList.splice(j, 1);
+                    //implement tankLife initialisation and decrementer in Tank class
+                    //this.tankList[j].hit();
+                } else j++;
+            }
+        }
     }
     
     //for now - empty

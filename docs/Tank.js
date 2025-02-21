@@ -1,7 +1,6 @@
 class Tank{
 
     tankWeapon; //which particular type of weapon the tank has
-    tankLife; //remaining life of the tank
     tankSprite; //sprite created with P5 Play
     static TANK_HEIGHT = 30;
     static TANK_WIDTH = 20;
@@ -23,6 +22,7 @@ class Tank{
         //AT THE MOMENT THE INITIAL DIRECTION IS VERTICAL
         //this.initialDirection = initialDirection;
         this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
+        this.hitPoints = 5;
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Sprite();
         this.tankSprite.x = locX;
@@ -42,25 +42,29 @@ class Tank{
         //call the draw method of the underlying sprite
         this.tankSprite.draw();
     }
-    
+    canFire(){
+        return (this.tankWeapon.numberOfRounds < this.tankWeapon.capacity);
+    }
+
     fire(){
         //Create new projectile according to appropriate weapon type
-        if(this.tankWeapon.numberOfRounds < this.tankWeapon.capacity){
-            let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST;
-            let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
-            let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation);
-            
-            if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
-                this.tankWeapon.numberOfRounds++;
-                return new Bullet(projX, projY, this.tankSprite.rotation, 10);
-            }
-            else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
-                this.tankWeapon.numberOfRounds++;
-                return new Laser(projX, projY, this.tankSprite.rotation);  
-            }
+        let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST;
+        let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
+        let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation); 
+        if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
+            this.tankWeapon.numberOfRounds++;
+            return new Bullet(projX, projY, this.tankSprite.rotation, 10);
+        }
+        else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
+            this.tankWeapon.numberOfRounds++;
+            return new Laser(projX, projY, this.tankSprite.rotation);
         }
     }
-    
+
+    hit(){
+        this.hitPoints--;
+    }
+
     //animates tank destruction
     destroy(){
         //AT THE MOMENT NO ANIMATION IS DISPLAYED
