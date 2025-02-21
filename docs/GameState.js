@@ -1,12 +1,13 @@
+
+
 class GameState{
     projectileList;
     tankList;
     collectibleList;
-    mapTiles;
     keyListener;
     CANVAS_WIDTH = 960;
     CANVAS_HEIGHT = 480;
-    
+    gameMap;
     TANK1X = 200;
     TANK1Y = 200;
     TANK2X = 300;
@@ -22,15 +23,11 @@ class GameState{
         this.projectileList = [];
         this.collectibleList = [];
         
-        //generate map - code needs updating once exact map functions written
-        this.mapTiles = new Group();
-        
-        //UNCOMMENT THIS ONCE THE FUNCTION HAS BEEN WRITTEN
-        //setMap();
-        
-        //TEMPORARY BOUNDARY - DELETED ONCE MAP FUNCTIONS WRITTEN
-        let mapBoundary = new Sprite(this.CANVAS_WIDTH/2, this.CANVAS_HEIGHT/2, this.CANVAS_WIDTH - 50, this.CANVAS_HEIGHT - 50, 'static');
-	    mapBoundary.shape = 'chain';
+        //generate map
+        displayMode('centered');
+        this.gameMap = new Grid();
+        this.gameMap.initGrid();
+        this.gameMap.drawMap();
         
         //create two tanks
         this.tankList = [];
@@ -46,11 +43,8 @@ class GameState{
     draw(){
         background(200, 200, 200);
         
-        //draw tiles
-        for(let tileCnt = 0; tileCnt < this.mapTiles.length; tileCnt++){
-            this.mapTiles[tileCnt].draw();
-        }
-        
+        //draw the map
+         
         //draw tanks
         for(let tankCnt = 0; tankCnt < this.tankList.length; tankCnt++){
             this.tankList[tankCnt].draw();
@@ -65,14 +59,10 @@ class GameState{
         for(let collCnt = 0; collCnt < this.collectibleList.length; collCnt++){
             this.collectibleList[collCnt].draw();
         }
+        
     }
     
     update(){
-        //update tiles
-        for(let tileCnt = 0; tileCnt < this.mapTiles.length; tileCnt++){
-            this.mapTiles[tileCnt].update();
-        }
-        
         //update tanks
         for(let tankCnt = 0; tankCnt < this.tankList.length; tankCnt++){
             this.tankList[tankCnt].update();
@@ -101,6 +91,7 @@ class GameState{
         //collision checks
         this.checkProjectileTankOverlaps();
         this.checkProjectileWallOverlaps();
+        
     }
     
     addProjectile(newProjectile){

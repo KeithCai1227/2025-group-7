@@ -1,10 +1,10 @@
 class Cell {
     constructor(i, j){
-        this.w = gameMap.w;
+        this.w = this.gameMap.w;
         this.wallWidth = 15;
-        this.grid = gameMap.grid;
-        this.cols = gameMap.cols;
-        this.rows = gameMap.rows;
+        this.grid = this.gameMap.grid;
+        this.cols = this.gameMap.cols;
+        this.rows = this.gameMap.rows;
         this.i = i;
         this.j = j;
         this.wallState = {"top": true, "right": true, "bottom": true, "left": true};
