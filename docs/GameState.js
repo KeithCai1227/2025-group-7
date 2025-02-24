@@ -5,6 +5,7 @@ class GameState{
     tankList;
     collectibleList;
     keyListener;
+    isGameOver;
     CANVAS_WIDTH = 960;
     CANVAS_HEIGHT = 480;
     gameMap;
@@ -15,7 +16,9 @@ class GameState{
     TANK1ROT = 90;
     TANK2ROT = 90;
     
-    constructor(){
+    constructor(){ 
+        this.isGameOver = false;
+
         //create canvas
         createCanvas(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         
@@ -45,9 +48,10 @@ class GameState{
         
         //draw the map
          this.gameMap.draw();
+         
         //draw tanks
-        for(let tankCnt = 0; tankCnt < this.tankList.length; tankCnt++){
-            this.tankList[tankCnt].draw();
+        for(let i = 0; i < this.tankList.length; i++){
+                this.tankList[i].draw();
         }
         
         //draw projectiles
@@ -93,11 +97,53 @@ class GameState{
         //collision checks
         this.checkProjectileTankOverlaps();
         this.checkProjectileWallOverlaps();
-        
+
+        //restart game if tank life is 0
+        for(let i = 0; i < this.tankList.length; i++){
+            if(this.tankList[i].getLife() === 0){
+                this.isGameOver = true;
+                this.restartGame();
+                for(let j = 0; j < this.tankList.length; j++){
+                    this.tankList[j].lifeRefresh();
+                }
+            }
+        }
+
     }
     
     addProjectile(newProjectile){
         this.projectileList.push(newProjectile);
+    }
+
+    getIsGameOver(){
+        return this.isGameOver;
+    }
+    
+    //restart game when tank dies
+    restartGame(){
+    // wait 2 seconds before restart
+        setTimeout (() => {
+            //only refresh map once
+            if(this.isGameOver){
+                walls.remove();
+                this.gameMap = new Grid();
+                this.gameMap.initGrid();
+                this.gameMap.initMap();
+            }
+            for(let i = 0; i < this.tankList.length; i++){
+                //complete destroy method in tank class
+                //change position refresh when tank spawn implemented
+                //for now back to original positions
+                this.tankList[i].positionRefresh();
+                this.tankList[i].numberOfRoundsRefresh();
+            }
+             //get rid of all current projectiles
+            for(let j = 0; j < this.projectileList.length; j++){
+                this.projectileList[j].bulletSprite.remove();
+            }
+            this.isGameOver = false;
+        }, 2000);
+      
     }
     
     checkProjectileTankOverlaps(){
@@ -107,7 +153,7 @@ class GameState{
                     this.tankList[i].hit();
                     this.projectileList[j].bulletSprite.remove();
                     this.projectileList.splice(j, 1);
-                    //implement tankLife initialisation and decrementer in Tank class
+                    this.tankList[i].lifeDecrement();
                     //this.tankList[j].hit();
                 } else j++;
             }

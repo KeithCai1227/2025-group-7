@@ -12,6 +12,7 @@ class Tank{
     static LEFT_DIRECTION = 2;
     static RIGHT_DIRECTION = 3;
     static NO_DIRECTION = 4;
+    static INITIALTANKLIFE = 3;
     
     //note the image, rotation and speed will be attributes of the sprite
 
@@ -23,10 +24,13 @@ class Tank{
         //this.initialDirection = initialDirection;
         this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
         this.hitPoints = 5;
+        this.tankLife = 3;
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Sprite();
         this.tankSprite.x = locX;
+        this.INITIALX = locX;
         this.tankSprite.y = locY;
+        this.INITIALY = locY;
         this.tankSprite.width = Tank.TANK_HEIGHT;
         this.tankSprite.height = Tank.TANK_WIDTH;
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
@@ -35,6 +39,7 @@ class Tank{
         this.tankSprite.rotationLock = true;
         this.tankSprite.speed = 0;
         this.tankSprite.rotation = initialDirection;
+        this.INITIALROTATION = initialDirection;
         this.tankSprite.color = color(150, 150, 150);
     }
     
@@ -63,6 +68,29 @@ class Tank{
 
     hit(){
         this.hitPoints--;
+    }
+
+    lifeDecrement(){
+        this.tankLife--;
+    }
+    // life refresh when game restarts
+    lifeRefresh(){
+        this.tankLife = Tank.INITIALTANKLIFE;
+    }
+
+    getLife(){
+        return this.tankLife;
+    }
+
+    numberOfRoundsRefresh(){
+        this.tankWeapon.numberOfRounds = 0;
+    }
+
+    //refresh positions when game restarts
+    positionRefresh(){
+        this.tankSprite.x = this.INITIALX;
+        this.tankSprite.y = this.INITIALY;
+        this.tankSprite.rotation = this.INITIALROTATION;
     }
 
     //animates tank destruction
