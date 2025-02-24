@@ -69,26 +69,27 @@ class GameState{
     update(){
         //update map
         this.gameMap.update();
+        
         //update tanks
-        for(let tankCnt = 0; tankCnt < this.tankList.length; tankCnt++){
-            this.tankList[tankCnt].update();
+        for(let i = 0; i < this.tankList.length; i++){
+            this.tankList[i].update();
         }
         
         //update projectiles
-        for(let projCnt = 0; projCnt < this.projectileList.length; ){
-            if (this.projectileList[projCnt].despawnTime < millis()) {
-                this.projectileList[projCnt].bulletSprite.remove();
-                this.projectileList.splice(projCnt, 1);
+        for(let i = 0; i < this.projectileList.length; ){
+            if (this.projectileList[i].despawnTime < millis()) {
+                this.projectileList[i].bulletSprite.remove();
+                this.projectileList.splice(i, 1);
             }
             else {
-                this.projectileList[projCnt].update();
-                projCnt++;
+                this.projectileList[i].update();
+                i++;
             }
         } 
         
         //update collectibles
-        for(let collCnt = 0; collCnt < this.collectibleList.length; collCnt++){
-            this.collectibleList[collCnt].update();
+        for(let i = 0; i < this.collectibleList.length; i++){
+            this.collectibleList[i].update();
         }
     
         //update tank movement based on user key presses
