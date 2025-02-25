@@ -6,8 +6,11 @@ class GameState{
     collectibleList;
     keyListener;
     isGameOver;
-    CANVAS_WIDTH = 960;
-    CANVAS_HEIGHT = 480;
+    CANVAS_WIDTH = 1024;
+    CANVAS_HEIGHT = 768;
+    GRID_WIDTH = 960;
+    GRID_HEIGHT = 480;
+    gridCanvasOffset;
     gameMap;
     TANK1X = 200;
     TANK1Y = 200;
@@ -21,6 +24,10 @@ class GameState{
 
         //create canvas
         createCanvas(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+
+        //calculate grid canvas offset
+        //offset applied in both x and y directions when drawing map
+        this.gridCanvasOffset = (this.CANVAS_WIDTH - this.GRID_WIDTH)/2;
         
         //create empty lists for projectiles and collectibles
         this.projectileList = [];
