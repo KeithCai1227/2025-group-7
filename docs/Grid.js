@@ -1,9 +1,9 @@
 let walls;
 class Grid {
 	current;
-    constructor() {
+    constructor(gridHeight) {
         this.w = 80;
-        this.cols = floor(height/this.w);
+        this.cols = floor(gridHeight/this.w);
         this.rows = floor(width/this.w);
         this.celltack = [];
         this.grid = [];

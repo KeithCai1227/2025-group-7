@@ -7,7 +7,9 @@ class GameState{
     keyListener;
     isGameOver;
     CANVAS_WIDTH = 960;
-    CANVAS_HEIGHT = 480;
+    GRID_HEIGHT = 480;
+    LOWER_PANEL_HT = 200
+    CANVAS_HEIGHT = this.GRID_HEIGHT + this.LOWER_PANEL_HT;
     gameMap;
     TANK1X = 200;
     TANK1Y = 200;
@@ -15,6 +17,8 @@ class GameState{
     TANK2Y = 300;
     TANK1ROT = 90;
     TANK2ROT = 90;
+    player1Score;
+    player2Score;
     
     constructor(){ 
         this.isGameOver = false;
@@ -28,7 +32,7 @@ class GameState{
         
         //generate map
         displayMode('centered');
-        this.gameMap = new Grid();
+        this.gameMap = new Grid(this.GRID_HEIGHT);
         this.gameMap.initGrid();
         this.gameMap.initMap();
         
@@ -38,6 +42,9 @@ class GameState{
         this.tankList.push(tank1);
         let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT);
         this.tankList.push(tank2);
+
+        //set scores to zero
+        this.player1Score = this.player2Score = 0;
         
         //create new KeyListener object
         this.keyListener = new KeyListener(this.tankList);
@@ -103,6 +110,10 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             if(this.tankList[i].getLife() === 0){
                 this.isGameOver = true;
+
+                //update the relevant score
+                i == 0 ? this.player2Score++ : this.player1Score++;
+
                 this.restartGame();
                 for(let j = 0; j < this.tankList.length; j++){
                     this.tankList[j].lifeRefresh();
@@ -127,7 +138,7 @@ class GameState{
             //only refresh map once
             if(this.isGameOver){
                 walls.remove();
-                this.gameMap = new Grid();
+                this.gameMap = new Grid(this.GRID_HEIGHT);
                 this.gameMap.initGrid();
                 this.gameMap.initMap();
             }
