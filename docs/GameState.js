@@ -8,7 +8,7 @@ class GameState{
     isGameOver;
     CANVAS_WIDTH = 960;
     GRID_HEIGHT = 480;
-    LOWER_PANEL_HT = 50;
+    LOWER_PANEL_HT = 200;
     CANVAS_HEIGHT = this.GRID_HEIGHT + this.LOWER_PANEL_HT;
     gameMap;
     RAND1X = floor(random(1, 6));
@@ -194,10 +194,10 @@ class GameState{
         let yMargin = 25;
         textFont('Courier New');
         textStyle(BOLD);
-        textSize(this.LOWER_PANEL_HT - yMargin);
-        textAlign(LEFT, TOP);
-        text(scoreString1, xMargin, this.GRID_HEIGHT + yMargin);
+        textSize(this.LOWER_PANEL_HT/4 - yMargin);
         textAlign(RIGHT, TOP);
-        text(scoreString2, this.CANVAS_WIDTH - xMargin, this.GRID_HEIGHT + yMargin);
+        text(scoreString1, this.CANVAS_WIDTH - xMargin, this.GRID_HEIGHT + yMargin);
+        textAlign(LEFT, TOP);
+        text(scoreString2, xMargin, this.GRID_HEIGHT + yMargin);
     }
 }
