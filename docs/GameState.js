@@ -18,6 +18,8 @@ class GameState{
     TANK2Y = 300;
     TANK1ROT = 90;
     TANK2ROT = 90;
+    tank1Score;
+    tank2Score;
     
     constructor(){ 
         this.isGameOver = false;
@@ -48,6 +50,10 @@ class GameState{
         
         //create new KeyListener object
         this.keyListener = new KeyListener(this.tankList);
+
+        //set scores to zero
+        this.tank1Score = 0;
+        this.tank2Score = 0;
     }
     
     draw(){
@@ -110,6 +116,10 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             if(this.tankList[i].getLife() === 0){
                 this.isGameOver = true;
+
+                //update the score of either tank1 or tank2
+                i == 0 ? this.tank2Score++ : this.tank1Score++;
+
                 this.restartGame();
                 for(let j = 0; j < this.tankList.length; j++){
                     this.tankList[j].lifeRefresh();
