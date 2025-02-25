@@ -3,7 +3,7 @@
 
 ## Your Game
 
-Link to your game [PLAY HERE](https://peteinfo.github.io/COMSM0166-project-template/)
+Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-7/TankTrouble.html)
 
 Link to game ideas: [HERE](https://github.com/UoB-COMSM0166/2025-group-7/blob/f06ff86a68514414d8ebfe9873cceb3a018d9c7c/Game-Ideas.txt)
 
@@ -13,15 +13,6 @@ Include a demo video of your game here (you don't have to wait until the end, yo
 
 [![Watch the video](https://img.youtube.com/vi/U0QKMWBccW0/0.jpg)](https://www.youtube.com/watch?v=U0QKMWBccW0)
 
-link to prototype made by Ajinkya: [HERE](https://xdyasser.github.io/ajinkya-ideas/)
-
-link to prototype made by Harry: [HERE](https://hjx92.github.io/uob_software_engineering/)
-
-link to prototype made by Nagat: [HERE](https://noeg18.github.io/tt-prototype/)
-
-link to prototype made by Guo: [HERE](https://editor.p5js.org/helpmeplease/full/NVtRbMY2p)
-
-link to prototype made by Yaseer: [HERE](https://xdyasser.github.io/Yaseer/)
 
 
 ## Your Group
