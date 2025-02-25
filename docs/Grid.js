@@ -1,10 +1,10 @@
 let walls;
 class Grid {
 	current;
-    constructor() {
+    constructor(gridWidth, gridHeight, canvasOffset) {
         this.w = 80;
-        this.cols = floor(height/this.w);
-        this.rows = floor(width/this.w);
+        this.cols = floor(gridHeight/this.w);
+        this.rows = floor(gridWidth/this.w);
         this.celltack = [];
         this.grid = [];
         walls = new Group();

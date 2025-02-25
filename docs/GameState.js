@@ -35,7 +35,7 @@ class GameState{
         
         //generate map
         displayMode('centered');
-        this.gameMap = new Grid();
+        this.gameMap = new Grid(this.GRID_WIDTH, this.GRID_HEIGHT, this.gridCanvasOffset);
         this.gameMap.initGrid();
         this.gameMap.initMap();
         
@@ -134,7 +134,7 @@ class GameState{
             //only refresh map once
             if(this.isGameOver){
                 walls.remove();
-                this.gameMap = new Grid();
+                this.gameMap = new Grid(this.GRID_WIDTH, this.GRID_HEIGHT, this.gridCanvasOffset);
                 this.gameMap.initGrid();
                 this.gameMap.initMap();
             }
