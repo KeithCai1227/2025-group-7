@@ -11,16 +11,18 @@ class GameState{
     LOWER_PANEL_HT = 200;
     CANVAS_HEIGHT = this.GRID_HEIGHT + this.LOWER_PANEL_HT;
     gameMap;
-    RAND1X = floor(random(7, 11)); 
-    RAND1Y = floor(random(4, 5)); 
-    RAND2X = floor(random(1, 6));
-    RAND2Y = floor(random(1, 3));
+    RAND1X = floor(random(9, 11)); 
+    RAND1Y = floor(random(1, 5)); 
+    RAND2X = floor(random(1, 4));
+    RAND2Y = floor(random(1, 5));
     TANK1X = this.RAND1X*80-40;
     TANK1Y = this.RAND1Y*80-40;
     TANK2X = this.RAND2X*80-40;
     TANK2Y = this.RAND2Y*80-40;
-    TANK1ROT = -135;
-    TANK2ROT = 45;
+    ANGLE1 = atan2(this.TANK2Y - this.TANK1Y, this.TANK2X - this.TANK1X);
+    ANGLE2 = atan2(this.TANK1Y - this.TANK2Y, this.TANK1X - this.TANK2X);
+    TANK1ROT = this.ANGLE1;
+    TANK2ROT = this.ANGLE2;
     player1Score;
     player2Score;
     
@@ -43,6 +45,7 @@ class GameState{
         //create two tanks
         this.tankList = [];
         let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT);
+        console.log(this.TANK1X, this.TANK1Y, this.TANK1ROT);
         this.tankList.push(tank1);
         let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT);
         this.tankList.push(tank2);

@@ -16,7 +16,7 @@ function draw() {
 }
 
 function keyPressed() {
-    if (keyCode === SHIFT && event.location !== 1 && tankGame.tankList[0].canFire() && !tankGame.getIsGameOver()){
+    if (keyCode === 96 && tankGame.tankList[0].canFire() && !tankGame.getIsGameOver()){
         tankGame.addProjectile(tankGame.tankList[0].fire());
     }
     if (keyCode === Q_CODE && tankGame.tankList[1].canFire() && !tankGame.getIsGameOver()) {
