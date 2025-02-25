@@ -19,8 +19,8 @@ class GameState{
     TANK1Y = this.RAND1Y*80-40;
     TANK2X = this.RAND2X*80-40;
     TANK2Y = this.RAND2Y*80-40;
-    TANK1ROT = 45;
-    TANK2ROT = -135;
+    TANK1ROT = -135;
+    TANK2ROT = 45;
     player1Score;
     player2Score;
     
