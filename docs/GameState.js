@@ -62,13 +62,13 @@ class GameState{
         }
         
         //draw projectiles
-        for(let projCnt = 0; projCnt < this.projectileList.length; projCnt++){
-            this.projectileList[projCnt].draw();
+        for(let i = 0; i < this.projectileList.length; i++){
+            this.projectileList[i].draw();
         } 
         
         //draw collectibles
-        for(let collCnt = 0; collCnt < this.collectibleList.length; collCnt++){
-            this.collectibleList[collCnt].draw();
+        for(let i = 0; i < this.collectibleList.length; i++){
+            this.collectibleList[i].draw();
         }
 
         //draw scores of players
