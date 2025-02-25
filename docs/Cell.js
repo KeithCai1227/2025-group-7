@@ -1,20 +1,19 @@
 class Cell {
 
-    constructor(i, j, grid, cols, rows, cellWidth, canvasOffset){
+    constructor(i, j,grid, cols, rows, cellWidth){
         this.w = cellWidth;
         this.wallWidth = 15;
         this.grid = grid;
         this.cols = cols;
         this.rows = rows;
-        this.canvasOffset = canvasOffset;
         this.i = i;
         this.j = j;
         this.wallState = {"top": true, "right": true, "bottom": true, "left": true};
         this.visited = 0;
     }
     show(){
-        let x = this.i*this.w + this.canvasOffset;
-        let y = this.j*this.w + this.canvasOffset;
+        let x = this.i*this.w;
+        let y = this.j*this.w;
         
         if(this.wallState["top"]){
             this.top = new walls.Sprite(x+this.w/2,y,this.w+this.wallWidth,this.wallWidth);

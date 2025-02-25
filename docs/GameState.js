@@ -6,11 +6,8 @@ class GameState{
     collectibleList;
     keyListener;
     isGameOver;
-    CANVAS_WIDTH = 1024;
-    CANVAS_HEIGHT = 768;
-    GRID_WIDTH = 960;
-    GRID_HEIGHT = 480;
-    gridCanvasOffset;
+    CANVAS_WIDTH = 960;
+    CANVAS_HEIGHT = 480;
     gameMap;
     TANK1X = 200;
     TANK1Y = 200;
@@ -18,18 +15,12 @@ class GameState{
     TANK2Y = 300;
     TANK1ROT = 90;
     TANK2ROT = 90;
-    tank1Score;
-    tank2Score;
     
     constructor(){ 
         this.isGameOver = false;
 
         //create canvas
         createCanvas(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
-
-        //calculate grid canvas offset
-        //offset applied in both x and y directions when drawing map
-        this.gridCanvasOffset = (this.CANVAS_WIDTH - this.GRID_WIDTH)/2;
         
         //create empty lists for projectiles and collectibles
         this.projectileList = [];
@@ -37,7 +28,7 @@ class GameState{
         
         //generate map
         displayMode('centered');
-        this.gameMap = new Grid(this.GRID_WIDTH, this.GRID_HEIGHT, this.gridCanvasOffset);
+        this.gameMap = new Grid();
         this.gameMap.initGrid();
         this.gameMap.initMap();
         
@@ -50,10 +41,6 @@ class GameState{
         
         //create new KeyListener object
         this.keyListener = new KeyListener(this.tankList);
-
-        //set scores to zero
-        this.tank1Score = 0;
-        this.tank2Score = 0;
     }
     
     draw(){
@@ -116,10 +103,6 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             if(this.tankList[i].getLife() === 0){
                 this.isGameOver = true;
-
-                //update the score of either tank1 or tank2
-                i == 0 ? this.tank2Score++ : this.tank1Score++;
-
                 this.restartGame();
                 for(let j = 0; j < this.tankList.length; j++){
                     this.tankList[j].lifeRefresh();
@@ -144,7 +127,7 @@ class GameState{
             //only refresh map once
             if(this.isGameOver){
                 walls.remove();
-                this.gameMap = new Grid(this.GRID_WIDTH, this.GRID_HEIGHT, this.gridCanvasOffset);
+                this.gameMap = new Grid();
                 this.gameMap.initGrid();
                 this.gameMap.initMap();
             }

@@ -1,11 +1,10 @@
 let walls;
 class Grid {
 	current;
-    constructor(gridWidth, gridHeight, canvasOffset) {
+    constructor() {
         this.w = 80;
-        this.cols = floor(gridHeight/this.w);
-        this.rows = floor(gridWidth/this.w);
-        this.canvasOffset = canvasOffset;
+        this.cols = floor(height/this.w);
+        this.rows = floor(width/this.w);
         this.celltack = [];
         this.grid = [];
         walls = new Group();
@@ -21,7 +20,7 @@ class Grid {
         for(let y = 0; y < this.rows; y++){
             let row = [];
             for(let x = 0; x < this.cols; x++){
-                row.push(new Cell(y, x, this.grid, this.cols, this.rows, this.w, this.canvasOffset));
+                row.push(new Cell(y, x, this.grid, this.cols, this.rows, this.w));
             }
             this.grid.push(row);
         }
