@@ -8,7 +8,7 @@ class GameState{
     isGameOver;
     CANVAS_WIDTH = 960;
     GRID_HEIGHT = 480;
-    LOWER_PANEL_HT = 200
+    LOWER_PANEL_HT = 50;
     CANVAS_HEIGHT = this.GRID_HEIGHT + this.LOWER_PANEL_HT;
     gameMap;
     TANK1X = 200;
@@ -70,7 +70,9 @@ class GameState{
         for(let collCnt = 0; collCnt < this.collectibleList.length; collCnt++){
             this.collectibleList[collCnt].draw();
         }
-        
+
+        //draw scores of players
+        this.drawScores();
     }
     
     update(){
@@ -176,4 +178,22 @@ class GameState{
     checkProjectileWallOverlaps(){
     }
 
+    drawScores(){
+        //obtain strings for scores
+        let scoreString1 = "Player 1 Score : ";
+        let scoreString2 = "Player 2 Score : ";
+        scoreString1 = scoreString1.concat(this.player1Score.toString());
+        scoreString2 = scoreString2.concat(this.player2Score.toString());
+
+        //display scores below the grid
+        let xMargin = 25;
+        let yMargin = 25;
+        textFont('Courier New');
+        textStyle(BOLD);
+        textSize(this.LOWER_PANEL_HT - yMargin);
+        textAlign(LEFT, TOP);
+        text(scoreString1, xMargin, this.GRID_HEIGHT + yMargin);
+        textAlign(RIGHT, TOP);
+        text(scoreString2, this.CANVAS_WIDTH - xMargin, this.GRID_HEIGHT + yMargin);
+    }
 }
