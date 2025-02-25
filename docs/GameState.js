@@ -11,10 +11,10 @@ class GameState{
     LOWER_PANEL_HT = 50;
     CANVAS_HEIGHT = this.GRID_HEIGHT + this.LOWER_PANEL_HT;
     gameMap;
-    TANK1X = 200;
-    TANK1Y = 200;
-    TANK2X = 300;
-    TANK2Y = 300;
+    TANK1X = random(10, width/2);
+    TANK1Y = random(10,height/2;
+    TANK2X = random(width/2, width-10);
+    TANK2Y = random(height/2,height-10);
     TANK1ROT = 90;
     TANK2ROT = 90;
     player1Score;
