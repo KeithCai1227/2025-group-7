@@ -20,8 +20,6 @@ class Tank{
     //initialDirection is the initial direction the tank is pointing in
     //initialDirection should be in degrees measured clockwise from x-axis
     constructor(locX, locY, initialDirection){
-        //AT THE MOMENT THE INITIAL DIRECTION IS VERTICAL
-        //this.initialDirection = initialDirection;
         this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
         this.hitPoints = 5;
         this.tankLife = 3;
