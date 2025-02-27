@@ -117,11 +117,14 @@ class GameState{
 
         //restart game if tank life is 0
         for(let i = 0; i < this.tankList.length; i++){
-            if(this.tankList[i].getLife() === 0){
-                this.isGameOver = true;
-
+            //to ensure the score is not updated during the restart "wait time"
+            if(!this.isGameOver){
                 //update the relevant score
                 i == 0 ? this.player2Score++ : this.player1Score++;
+            }
+            
+            if(this.tankList[i].getLife() === 0){
+                this.isGameOver = true;
 
                 this.restartGame();
                 for(let j = 0; j < this.tankList.length; j++){
