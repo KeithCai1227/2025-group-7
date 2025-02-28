@@ -1,53 +1,23 @@
 class Player {
+        
+    constructor (difficultyLevel, humanPlayer, keyListener) {
+        this.score = 0;
+        this.difficultyLevel = difficultyLevel;
+        this.humanPlayer = humanPlayer;
+        this.keyListener = keyListener;
+    }
 
+    incrementScore () {
+        score += 1;
+    }
 
-        constructor () {
-                let score = 0;
-        }
+    getScore () {
+        return score;
+    }
 
-        incrementScore () {
-               score += 1;
-        }
+    respondToPlayerInput () {
+        this.keyListener.listenForKeys();
 
-        getScore () {
-               return score;
-        }
-
-
-        keyListener {
-
-                if(keyIsDown(87){   // letter w
-                        // tank1.move(up)
-                }
-
-                if(keyIsDown(83){  // letter s
-                        // tank1.move(down)
-                }
-
-                if(keyIsDown(65)){  // letter a
-                        // tank1.move(anticlockwise)
-                }
-
-                if(keyIsDown(68)){  // letter d
-                        // tank1.move(clockwise)
-                }
-
-                if(keyIsDown(RIGHT_ARROW){
-                        // tank2.move(clockwise)
-                }
-
-                 if(keyIsDown(LEFT_ARROW){
-                        // tank2.move(anticlockwise)
-                }
-
-                if(keyIsDown(DOWN_ARROW){
-                        // tank2.move(down)
-                }
-
-                if(keyIsDown(UP_ARROW)){
-                        // tank2.move(up)
-                }
-
-
-        }
+    }
+}
 

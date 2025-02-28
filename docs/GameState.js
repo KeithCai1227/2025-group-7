@@ -1,5 +1,3 @@
-
-
 class GameState{
     projectileList;
     tankList;
