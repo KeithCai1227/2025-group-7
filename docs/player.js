@@ -9,7 +9,7 @@ class Player {
         this.keyListener = keyListener;
     }
 
-    incrementScore () {
+    incScore () {
         score += 1;
     }
 

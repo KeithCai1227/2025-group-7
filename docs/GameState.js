@@ -2,7 +2,6 @@ class GameState{
     projectileList;
     tankList;
     collectibleList;
-    keyListener;
     isGameOver;
     CANVAS_WIDTH = 960;
     GRID_HEIGHT = 480;
@@ -21,15 +20,13 @@ class GameState{
     ANGLE2 = atan2(this.TANK1Y - this.TANK2Y, this.TANK1X - this.TANK2X);
     TANK1ROT = this.ANGLE1;
     TANK2ROT = this.ANGLE2;
-    player1Score;
-    player2Score;
     static HARD = 1;
     static EASY = 2;
     
     //"player1Difficulty" should be one of the static variables above
     //likewise "player2Difficulty"
     //set "twoPlayerMode" to false for one player mode
-    constructor(){ 
+    constructor(player1Difficulty, player2Difficulty, twoPlayerMode){ 
         this.isGameOver = false;
 
         //create canvas
@@ -47,16 +44,24 @@ class GameState{
         
         //create two tanks
         this.tankList = [];
-        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT);
+        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, player1Difficulty);
         this.tankList.push(tank1);
-        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT);
+        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, player2Difficulty);
         this.tankList.push(tank2);
 
-        //set scores to zero
-        this.player1Score = this.player2Score = 0;
+        //create new KeyListener object for the first tank
+        keyListener1 = new KeyListener(this.tankList[0], true);
+
+        //create KeyListener for second tank if two player mode is true 
+        let keyListener2;
+        if(twoPlayerMode){
+            keyListener2 = new KeyListener(this.tankList[1], false);
+        }
         
-        //create new KeyListener object
-        this.keyListener = new KeyListener(this.tankList);
+        //create two Player objects
+        this.player1 = new Player(player1Difficulty, true, keyListener1);
+        this.player2 = new Player(player2Difficulty, twoPlayerMode, keyListener2);
+        
     }
     
     draw(){
@@ -110,8 +115,9 @@ class GameState{
             this.collectibleList[i].update();
         }
     
-        //update tank movement based on user key presses
-        this.keyListener.listenForKeys();
+        //update tank movements based on user key presses
+        this.player1.respondToPlayerInput();
+        this.player2.respondToPlayerInput();
         
         //collision checks
         this.checkProjectileTankOverlaps();
@@ -123,7 +129,7 @@ class GameState{
                 //to ensure the score is not updated during the restart "wait time"
                 if(!this.isGameOver){
                     //update the relevant score
-                    i == 0 ? this.player2Score++ : this.player1Score++;
+                    i == 0 ? this.player2.incScore() : this.player1.incScore();
                 }
 
                 this.isGameOver = true;
@@ -192,8 +198,8 @@ class GameState{
         //obtain strings for scores
         let scoreString1 = "Player 1 Score : ";
         let scoreString2 = "Player 2 Score : ";
-        scoreString1 = scoreString1.concat(this.player1Score.toString());
-        scoreString2 = scoreString2.concat(this.player2Score.toString());
+        scoreString1 = scoreString1.concat(this.player1.getScore().toString());
+        scoreString2 = scoreString2.concat(this.player2.getScore().toString());
 
         //display scores below the grid
         let xMargin = 25;
