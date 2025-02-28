@@ -4,7 +4,7 @@ let tankGame;
 let twoPlayerMode;
 
 //key codes for firing of tanks
-let ZERO_NUMPAD_CODE = 48;
+let ZERO_NUMPAD_CODE = 96;
 let Q_CODE = 81;
 
 function setup() {
