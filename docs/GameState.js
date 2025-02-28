@@ -45,7 +45,6 @@ class GameState{
         //create two tanks
         this.tankList = [];
         let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT);
-        console.log(this.TANK1X, this.TANK1Y, this.TANK1ROT);
         this.tankList.push(tank1);
         let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT);
         this.tankList.push(tank2);
@@ -174,11 +173,9 @@ class GameState{
         for (let i = 0; i < this.tankList.length; i++) {
             for (let j = 0; j < this.projectileList.length; ) {
                 if (this.projectileList[j].bulletSprite.collides(this.tankList[i].tankSprite)) {
-                    this.tankList[i].hit();
                     this.projectileList[j].bulletSprite.remove();
                     this.projectileList.splice(j, 1);
                     this.tankList[i].lifeDecrement();
-                    //this.tankList[j].hit();
                 } else j++;
             }
         }

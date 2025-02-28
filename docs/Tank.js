@@ -21,7 +21,6 @@ class Tank{
     //initialDirection should be in degrees measured clockwise from x-axis
     constructor(locX, locY, initialDirection){
         this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
-        this.hitPoints = 5;
         this.tankLife = 3;
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Sprite();
@@ -62,10 +61,6 @@ class Tank{
             this.tankWeapon.numberOfRounds++;
             return new Laser(projX, projY, this.tankSprite.rotation);
         }
-    }
-
-    hit(){
-        this.hitPoints--;
     }
 
     lifeDecrement(){
