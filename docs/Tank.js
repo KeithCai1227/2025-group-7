@@ -12,16 +12,13 @@ class Tank{
     static LEFT_DIRECTION = 2;
     static RIGHT_DIRECTION = 3;
     static NO_DIRECTION = 4;
-    static INITIALTANKLIFE = 3;
     
-    //note the image, rotation and speed will be attributes of the sprite
-
     //locX and locY are the initial co-ordinates
     //initialDirection is the initial direction the tank is pointing in
     //initialDirection should be in degrees measured clockwise from x-axis
-    constructor(locX, locY, initialDirection){
+    constructor(locX, locY, initialDirection, difficultyLevel){
         this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
-        this.tankLife = 3;
+
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Sprite();
         this.tankSprite.x = locX;
@@ -38,6 +35,16 @@ class Tank{
         this.tankSprite.rotation = initialDirection;
         this.INITIALROTATION = initialDirection;
         this.tankSprite.color = color(150, 150, 150);
+
+        //set the tank's speed and life based on the difficulty level
+        if(difficultyLevel == GameState.EASY){
+            this.tankLife = 3;
+            this.spdFactor = 4;
+        } else if(difficultyLevel == GameState.HARD){
+            this.tankLife = 1;
+            this.spdFactor = 2;
+        }
+        this.initialLife = this.tankLife;
     }
     
     draw(){
@@ -66,9 +73,10 @@ class Tank{
     lifeDecrement(){
         this.tankLife--;
     }
+
     // life refresh when game restarts
     lifeRefresh(){
-        this.tankLife = Tank.INITIALTANKLIFE;
+        this.tankLife = this.initialLife;
     }
 
     getLife(){
@@ -100,20 +108,20 @@ class Tank{
     //directionOfMove corresponds to either UP, DOWN, LEFT or RIGHT
     move(directionOfMove){
         if(directionOfMove == Tank.RIGHT_DIRECTION){
-            if (this.tankSprite.speed === 0) this.tankSprite.rotation += 1;
-            else this.tankSprite.rotation +=2;
+            if (this.tankSprite.speed === 0) this.tankSprite.rotation += 1*this.spdFactor;
+            else this.tankSprite.rotation += 2*this.spdFactor;
         }
         if(directionOfMove == Tank.LEFT_DIRECTION){
-            if (this.tankSprite.speed === 0) this.tankSprite.rotation -= 1;
-            else this.tankSprite.rotation -=2;
+            if (this.tankSprite.speed === 0) this.tankSprite.rotation -= 1*this.spdFactor;
+            else this.tankSprite.rotation -= 2*this.spdFactor;
         }
         if(directionOfMove == Tank.UP_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
-            this.tankSprite.speed = 1;
+            this.tankSprite.speed = 1*this.spdFactor;
         }
         else if(directionOfMove == Tank.DOWN_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
-            this.tankSprite.speed = -0.5;
+            this.tankSprite.speed = -0.5*this.spdFactor;
         }
         else {
             this.tankSprite.speed = 0;

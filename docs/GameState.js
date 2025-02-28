@@ -23,7 +23,12 @@ class GameState{
     TANK2ROT = this.ANGLE2;
     player1Score;
     player2Score;
+    static HARD = 1;
+    static EASY = 2;
     
+    //"player1Difficulty" should be one of the static variables above
+    //likewise "player2Difficulty"
+    //set "twoPlayerMode" to false for one player mode
     constructor(){ 
         this.isGameOver = false;
 
@@ -158,7 +163,7 @@ class GameState{
                 this.tankList[i].positionRefresh();
                 this.tankList[i].numberOfRoundsRefresh();
             }
-             //get rid of all current projectiles
+            //get rid of all current projectiles
             for(let j = 0; j < this.projectileList.length; j++){
                 this.projectileList[j].bulletSprite.remove();
             }
