@@ -10,11 +10,11 @@ class Player {
     }
 
     incScore () {
-        score += 1;
+        this.score += 1;
     }
 
     getScore () {
-        return score;
+        return this.score;
     }
 
     respondToPlayerInput () {

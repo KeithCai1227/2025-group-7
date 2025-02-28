@@ -6,7 +6,7 @@ let ZERO_NUMPAD_CODE = 96;
 let Q_CODE = 81;
 
 function setup() {
-    tankGame = new GameState();   
+    tankGame = new GameState(GameState.EASY, GameState.HARD, true);   
 }
 
 function draw() {

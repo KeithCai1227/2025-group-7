@@ -50,10 +50,10 @@ class GameState{
         this.tankList.push(tank2);
 
         //create new KeyListener object for the first tank
+        let keyListener1, keyListener2;
         keyListener1 = new KeyListener(this.tankList[0], true);
 
         //create KeyListener for second tank if two player mode is true 
-        let keyListener2;
         if(twoPlayerMode){
             keyListener2 = new KeyListener(this.tankList[1], false);
         }
