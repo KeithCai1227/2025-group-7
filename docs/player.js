@@ -18,7 +18,9 @@ class Player {
     }
 
     respondToPlayerInput () {
-        this.keyListener.listenForKeys();
+        if(this.humanPlayer){
+            this.keyListener.listenForKeys();
+        }
     }
 }
 
