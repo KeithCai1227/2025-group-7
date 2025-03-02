@@ -13,37 +13,11 @@ class GameSetup{
     player2difficulty;
 
     constructor(){
-
         //initial game settings
         this.twoPlayerMode = true;
         this.player1difficulty = GameState.EASY;
         this.player1difficulty = GameState.EASY;
 
-        //create the buttons for player mode
-        this.button1Player = createButton('1 Player');
-        this.button2Player = createButton('2 Players');
-
-        //create buttons for difficulty levels
-        this.buttonPl1Easy = createButton('Easy');
-        this.buttonPl2Easy = createButton('Easy');
-        this.buttonPl1Hard = createButton('Hard');
-        this.buttonPl2Hard = createButton('Hard');
-
-        //button sizes
-        this.button1Player.size(150, 50);
-        this.button2Player.size(150, 50);
-        this.buttonPl1Easy.size(100, 50);
-        this.buttonPl2Easy.size(100, 50);
-        this.buttonPl1Hard.size(100, 50);
-        this.buttonPl2Hard.size(100, 50);
-
-        //button positions
-        this.button1Player.position(25, 25);
-        this.button2Player.position(25, 200);
-        this.buttonPl1Easy.position(25, 450);
-        this.buttonPl2Easy.position(200, 450);
-        this.buttonPl1Hard.position(500, 450);
-        this.buttonPl2Hard.position(675, 450);
     }
 
     draw(){
@@ -51,16 +25,78 @@ class GameSetup{
 
         //display the game title
         textFont('Courier New');
+        fill('black');
         textStyle(BOLD);
         textSize(this.HEADING_SIZE);
         textAlign(CENTER, TOP);
         text('Tank Trouble', this.CANVAS_WIDTH/2, 25);
 
+        //put in user selection box
+        rectMode(CENTER);
+        fill('black');
+        rect(this.CANVAS_WIDTH/2 + 175, 225 + this.REGULAR_TEXT_SIZE/2, 500, 100);
+        fill(200, 200, 200);
+        strokeWeight(0);
+        rect(this.CANVAS_WIDTH/2 + 175, 225 + this.REGULAR_TEXT_SIZE/2, 490, 90);
+        rect(this.CANVAS_WIDTH/2 + 175, 225 + this.REGULAR_TEXT_SIZE/2, 500, 50);
+        rect(this.CANVAS_WIDTH/2 + 175, 225 + this.REGULAR_TEXT_SIZE/2, 400, 100);
+
         //put in mode selection
+        fill('black');
         textSize(this.REGULAR_TEXT_SIZE);
-        text('Select player mode:', this.CANVAS_WIDTH/2, 175);
+        textAlign(RIGHT, TOP);
+        text('NUMBER OF PLAYERS:', this.CANVAS_WIDTH/2 - 100, 225);
 
         //put in difficulty selection
-        text('Select difficulty levels:', this.CANVAS_WIDTH/2, 425);
+        text('PLAYER 1 DIFFICULTY:', this.CANVAS_WIDTH/2 - 100, 350);
+        text('PLAYER 2 DIFFICULTY:', this.CANVAS_WIDTH/2 - 100, 475);
+
+        //put in player mode boxes
+        textAlign(CENTER, TOP);
+        //rect(this.CANVAS_WIDTH/2 - 50, 225, 200, this.REGULAR_TEXT_SIZE);
+        text('ONE PLAYER', this.CANVAS_WIDTH/2 + 50, 225);
+        text('TWO PLAYER', this.CANVAS_WIDTH/2 + 300, 225);
+
+        //put in difficulty boxes
+        text('EASY', this.CANVAS_WIDTH/2 + 50, 350);
+        text('EASY', this.CANVAS_WIDTH/2 + 50, 475);
+        text('HARD', this.CANVAS_WIDTH/2 + 300, 350);
+        text('HARD', this.CANVAS_WIDTH/2 + 300, 475);
+
+        //highlight player mode selection
+        fill('black');
+        if(this.twoPlayerMode){
+            rect(this.CANVAS_WIDTH/2 + 50, 225 + this.REGULAR_TEXT_SIZE/2, 200, this.REGULAR_TEXT_SIZE + 25);
+            fill('white');
+            text('ONE PLAYER', this.CANVAS_WIDTH/2 + 50, 225);
+        }else{
+            rect(this.CANVAS_WIDTH/2 + 300, 225 + this.REGULAR_TEXT_SIZE/2, 200, this.REGULAR_TEXT_SIZE + 25);
+            fill('white');
+            text('TWO PLAYER', this.CANVAS_WIDTH/2 + 300, 225);
+        }
+
+        //highlight difficulty selection for player 1
+        fill('black');
+        if(this.player1difficulty == GameState.EASY){
+            rect(this.CANVAS_WIDTH/2 + 50, 350 + this.REGULAR_TEXT_SIZE/2, 100, this.REGULAR_TEXT_SIZE + 25);
+            fill('white');
+            text('EASY', this.CANVAS_WIDTH/2 + 50, 350);
+        }else{
+            rect(this.CANVAS_WIDTH/2 + 300, 350 + this.REGULAR_TEXT_SIZE/2, 100, this.REGULAR_TEXT_SIZE + 25);
+            fill('white');
+            text('HARD', this.CANVAS_WIDTH/2 + 300, 350);
+        }
+
+        //highlight difficulty selection for player 2
+        fill('black');
+        if(!this.player1difficulty == GameState.EASY){
+            rect(this.CANVAS_WIDTH/2 + 50, 475 + this.REGULAR_TEXT_SIZE/2, 100, this.REGULAR_TEXT_SIZE + 25);
+            fill('white');
+            text('EASY', this.CANVAS_WIDTH/2 + 50, 475);
+        }else{
+            rect(this.CANVAS_WIDTH/2 + 300, 475 + this.REGULAR_TEXT_SIZE/2, 100, this.REGULAR_TEXT_SIZE + 25);
+            fill('white');
+            text('HARD', this.CANVAS_WIDTH/2 + 300, 475);
+        }
     }
 }
