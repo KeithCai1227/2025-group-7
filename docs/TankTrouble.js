@@ -1,6 +1,6 @@
 //global declaration of GameState object
 let tankGame;
-
+let startingScreen;
 let twoPlayerMode;
 
 //key codes for firing of tanks
@@ -9,12 +9,14 @@ let Q_CODE = 81;
 
 function setup() {
     twoPlayerMode = false;
-    tankGame = new GameState(GameState.EASY, GameState.HARD, twoPlayerMode);   
+    tankGame = new GameState(GameState.EASY, GameState.HARD, twoPlayerMode);
+    startingScreen = new GameSetup();
 }
 
 function draw() {
-    tankGame.draw();
+    //tankGame.draw();
     tankGame.update();
+    startingScreen.draw();
 }
 
 function keyPressed() {
