@@ -63,6 +63,9 @@ class GameSetup{
         text('HARD', this.CANVAS_WIDTH/2 + 300, 350);
         text('HARD', this.CANVAS_WIDTH/2 + 300, 475);
 
+        //put in "start game"
+        text('START GAME', this.CANVAS_WIDTH/2 + 175, 600);
+
         //highlight player mode selection
         fill('black');
         if(this.twoPlayerMode){
