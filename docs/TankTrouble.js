@@ -32,7 +32,6 @@ function keyPressed() {
             setupStage = false;
             //startingScreen can be garbage collected
             startingScreen = null;
-            console.log("here");
         //otherwise run the usual key listening method
         }else{
             startingScreen.keyListening();

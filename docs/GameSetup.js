@@ -107,6 +107,7 @@ class GameSetup{
             text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 2*this.VERT_SP);
         }
 
+        //leave this back to default since it's used in drawing the tank sprites
         strokeWeight(1);
     }
 

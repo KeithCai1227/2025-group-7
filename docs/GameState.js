@@ -30,16 +30,12 @@ class GameState{
     
     constructor(){ 
         this.isGameOver = false;
-
-        //create canvas
-        //createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
         
         //create empty lists for projectiles and collectibles
         this.projectileList = [];
         this.collectibleList = [];
         
         //generate map
-        //displayMode('centered');
         this.gameMap = new Grid(GameState.GRID_HEIGHT);
         this.gameMap.initGrid();
         this.gameMap.initMap();
