@@ -3,10 +3,10 @@ class GameState{
     tankList;
     collectibleList;
     isGameOver;
-    CANVAS_WIDTH = 960;
-    GRID_HEIGHT = 480;
-    LOWER_PANEL_HT = 200;
-    CANVAS_HEIGHT = this.GRID_HEIGHT + this.LOWER_PANEL_HT;
+    static CANVAS_WIDTH = 960;
+    static GRID_HEIGHT = 480;
+    static LOWER_PANEL_HT = 200;
+    static CANVAS_HEIGHT = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT;
     gameMap;
     RAND1X = floor(random(9, 11)); 
     RAND1Y = floor(random(1, 5)); 
@@ -22,15 +22,17 @@ class GameState{
     TANK2ROT = this.ANGLE2;
     static HARD = 0;
     static EASY = 1;
+
+    //initial values for the game settings
+    static player1Difficulty = GameState.EASY;
+    static player2Difficulty = GameState.EASY;
+    static twoPlayerMode = true;
     
-    //"player1Difficulty" should be one of the static variables above
-    //likewise "player2Difficulty"
-    //set "twoPlayerMode" to false for one player mode
-    constructor(player1Difficulty, player2Difficulty, twoPlayerMode){ 
+    constructor(){ 
         this.isGameOver = false;
 
         //create canvas
-        createCanvas(this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+        createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
         
         //create empty lists for projectiles and collectibles
         this.projectileList = [];
@@ -38,15 +40,15 @@ class GameState{
         
         //generate map
         displayMode('centered');
-        this.gameMap = new Grid(this.GRID_HEIGHT);
+        this.gameMap = new Grid(GameState.GRID_HEIGHT);
         this.gameMap.initGrid();
         this.gameMap.initMap();
         
         //create two tanks
         this.tankList = [];
-        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, player1Difficulty);
+        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, GameState.player1Difficulty);
         this.tankList.push(tank1);
-        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, player2Difficulty);
+        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, GameState.player2Difficulty);
         this.tankList.push(tank2);
 
         //create new KeyListener object for the first tank
@@ -54,13 +56,13 @@ class GameState{
         keyListener1 = new KeyListener(this.tankList[0], true);
 
         //create KeyListener for second tank if two player mode is true 
-        if(twoPlayerMode){
+        if(GameState.twoPlayerMode){
             keyListener2 = new KeyListener(this.tankList[1], false);
         }
         
         //create two Player objects
-        this.player1 = new Player(player1Difficulty, true, keyListener1);
-        this.player2 = new Player(player2Difficulty, twoPlayerMode, keyListener2);
+        this.player1 = new Player(GameState.player1Difficulty, true, keyListener1);
+        this.player2 = new Player(GameState.player2Difficulty, GameState.twoPlayerMode, keyListener2);
         
     }
     
@@ -158,7 +160,7 @@ class GameState{
             //only refresh map once
             if(this.isGameOver){
                 walls.remove();
-                this.gameMap = new Grid(this.GRID_HEIGHT);
+                this.gameMap = new Grid(GameState.GRID_HEIGHT);
                 this.gameMap.initGrid();
                 this.gameMap.initMap();
             }
@@ -206,10 +208,10 @@ class GameState{
         let yMargin = 25;
         textFont('Courier New');
         textStyle(BOLD);
-        textSize(this.LOWER_PANEL_HT/4 - yMargin);
+        textSize(GameState.LOWER_PANEL_HT/4 - yMargin);
         textAlign(RIGHT, TOP);
-        text(scoreString1, this.CANVAS_WIDTH - xMargin, this.GRID_HEIGHT + yMargin);
+        text(scoreString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin);
         textAlign(LEFT, TOP);
-        text(scoreString2, xMargin, this.GRID_HEIGHT + yMargin);
+        text(scoreString2, xMargin, GameState.GRID_HEIGHT + yMargin);
     }
 }

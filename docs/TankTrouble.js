@@ -9,7 +9,7 @@ let Q_CODE = 81;
 
 function setup() {
     twoPlayerMode = false;
-    tankGame = new GameState(GameState.EASY, GameState.HARD, twoPlayerMode);
+    tankGame = new GameState();
     startingScreen = new GameSetup();
 }
 

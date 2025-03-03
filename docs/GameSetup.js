@@ -1,10 +1,4 @@
 class GameSetup{
-    
-    //the canvas parameters duplicates of those from GameState
-    //ideally single source of truth
-    CANVAS_WIDTH = 960;
-    CANVAS_HEIGHT = 680;
-
     HEAD_TEXT = 75;
     REG_TEXT = 25;
     VERT_SP = 125;
@@ -37,77 +31,77 @@ class GameSetup{
         textStyle(BOLD);
         textSize(this.HEAD_TEXT);
         textAlign(CENTER, TOP);
-        text('Tank Trouble', this.CANVAS_WIDTH/2, 25);
+        text('Tank Trouble', GameState.CANVAS_WIDTH/2, 25);
 
         //put in user selection box
         rectMode(CENTER);
         fill('black');
-        rect(this.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 100);
+        rect(GameState.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 100);
         fill(200, 200, 200);
         strokeWeight(0);
-        rect(this.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 490, 90);
-        rect(this.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 50);
-        rect(this.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 400, 100);
+        rect(GameState.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 490, 90);
+        rect(GameState.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 50);
+        rect(GameState.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 400, 100);
 
         //put in mode selection
         fill('black');
         textSize(this.REG_TEXT);
         textAlign(RIGHT, TOP);
-        text('NUMBER OF PLAYERS:', this.CANVAS_WIDTH/2 - 100, this.BELOW_TITLE);
+        text('NUMBER OF PLAYERS:', GameState.CANVAS_WIDTH/2 - 100, this.BELOW_TITLE);
 
         //put in difficulty selection
-        text('PLAYER 1 DIFFICULTY:', this.CANVAS_WIDTH/2 - 100, this.BELOW_TITLE + this.VERT_SP);
-        text('PLAYER 2 DIFFICULTY:', this.CANVAS_WIDTH/2 - 100, this.BELOW_TITLE + 2*this.VERT_SP);
+        text('PLAYER 1 DIFFICULTY:', GameState.CANVAS_WIDTH/2 - 100, this.BELOW_TITLE + this.VERT_SP);
+        text('PLAYER 2 DIFFICULTY:', GameState.CANVAS_WIDTH/2 - 100, this.BELOW_TITLE + 2*this.VERT_SP);
 
         //put in player mode boxes
         textAlign(CENTER, TOP);
         //rect(this.CANVAS_WIDTH/2 - 50, 225, 200, this.REG_TEXT);
-        text('ONE PLAYER', this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE);
-        text('TWO PLAYER', this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE);
+        text('ONE PLAYER', GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE);
+        text('TWO PLAYER', GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE);
 
         //put in difficulty boxes
-        text('EASY', this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + this.VERT_SP);
-        text('EASY', this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + 2*this.VERT_SP);
-        text('HARD', this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + this.VERT_SP);
-        text('HARD', this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + 2*this.VERT_SP);
+        text('EASY', GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + this.VERT_SP);
+        text('EASY', GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + 2*this.VERT_SP);
+        text('HARD', GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + this.VERT_SP);
+        text('HARD', GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + 2*this.VERT_SP);
 
         //put in "start game"
-        text('START GAME', this.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + 3*this.VERT_SP);
+        text('START GAME', GameState.CANVAS_WIDTH/2 + 175, this.BELOW_TITLE + 3*this.VERT_SP);
 
         //highlight player mode selection
         fill('black');
         if(this.twoPlayerMode){
-            rect(this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
+            rect(GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
             fill('white');
-            text('ONE PLAYER', this.CANVAS_WIDTH/2 + 50, 225);
+            text('ONE PLAYER', GameState.CANVAS_WIDTH/2 + 50, 225);
         }else{
-            rect(this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
+            rect(GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
             fill('white');
-            text('TWO PLAYER', this.CANVAS_WIDTH/2 + 300, 225);
+            text('TWO PLAYER', GameState.CANVAS_WIDTH/2 + 300, 225);
         }
 
         //highlight difficulty selection for player 1
         fill('black');
         if(this.player1difficulty === GameState.EASY){
-            rect(this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
+            rect(GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
             fill('white');
-            text('EASY', this.CANVAS_WIDTH/2 + 50, 350);
+            text('EASY', GameState.CANVAS_WIDTH/2 + 50, 350);
         }else{
-            rect(this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
+            rect(GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
             fill('white');
-            text('HARD', this.CANVAS_WIDTH/2 + 300, 350);
+            text('HARD', GameState.CANVAS_WIDTH/2 + 300, 350);
         }
 
         //highlight difficulty selection for player 2
         fill('black');
         if(this.player2difficulty === GameState.EASY){
-            rect(this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + 2*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
+            rect(GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + 2*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
             fill('white');
-            text('EASY', this.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + 2*this.VERT_SP);
+            text('EASY', GameState.CANVAS_WIDTH/2 + 50, this.BELOW_TITLE + 2*this.VERT_SP);
         }else{
-            rect(this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + 2*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
+            rect(GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + 2*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
             fill('white');
-            text('HARD', this.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + 2*this.VERT_SP);
+            text('HARD', GameState.CANVAS_WIDTH/2 + 300, this.BELOW_TITLE + 2*this.VERT_SP);
         }
     }
 
