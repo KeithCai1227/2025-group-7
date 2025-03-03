@@ -31,4 +31,6 @@ function keyPressed() {
             tankGame.addProjectile(tankGame.tankList[1].fire());
         }
     }
+
+    startingScreen.keyListening();
 }

@@ -20,8 +20,8 @@ class GameState{
     ANGLE2 = atan2(this.TANK1Y - this.TANK2Y, this.TANK1X - this.TANK2X);
     TANK1ROT = this.ANGLE1;
     TANK2ROT = this.ANGLE2;
-    static HARD = 1;
-    static EASY = 2;
+    static HARD = 0;
+    static EASY = 1;
     
     //"player1Difficulty" should be one of the static variables above
     //likewise "player2Difficulty"
