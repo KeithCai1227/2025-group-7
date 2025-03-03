@@ -74,7 +74,13 @@ On engineering, we were warned that a two player game operated from a single key
 
 - 15% ~750 words
 
-- One qualitative evaluation (your choice) 
+- One qualitative evaluation (your choice)
+  
+We conducted a Heuristic evaluation for the (25th February version) prototype of our game. Due to the game lacking in much of the UI elements we plan to implement, much of the feedback was concerning the tasks we have not yet completed. However, the evaluation was useful in gaining insight on what users value most, and therefore, helped us understand which of our remaining tasks we should prioritise.
+System status was the Heuristic that was most frequently mentioned during our evaluation. The issues include, remaining lives, remaining bullets and the effect of damage taken, all not being visible to users. These were also the issues rated with the highest severity by users.
+A user experienced initial difficulty in moving the tanks because they rotate left and right rather than move laterally. This is not an uncommon feature in games in which players play as vehicles, and it is a feature we have not changed from the original Tank Trouble game. We have discovered that we may receive feedback that highlights issues that are anticipated in a game similar to ours, and we must carefully consider how much weight we give such feedback.
+This evaluation also affirmed that we need to include some form of tutorial that explains the controls of the game, especially as it is developed and more elements are introduced.
+Users appreciated the minimalist aesthetic of our game and expressed that it was enjoyable to play. 
 
 - One quantitative evaluation (of your choice) 
 
