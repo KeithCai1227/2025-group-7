@@ -19,12 +19,17 @@ class GameSetup{
     constructor(){
         //start off on the one-vs-two player mode setting
         this.selector = this.ON_MODE;
+
+        //create canvas
+        createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
+        displayMode('centered');
     }
 
     draw(){
         background(200, 200, 200);
 
         //display the game title
+        strokeWeight(0);
         textFont('Courier New');
         fill('black');
         textStyle(BOLD);
@@ -37,7 +42,6 @@ class GameSetup{
         fill('black');
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 100);
         fill(200, 200, 200);
-        strokeWeight(0);
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 490, 90);
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 50);
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 400, 100);
@@ -69,7 +73,7 @@ class GameSetup{
 
         //highlight player mode selection
         fill('black');
-        if(GameState.twoPlayerMode){
+        if(!GameState.twoPlayerMode){
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
             fill('white');
             text('ONE PLAYER', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE);
@@ -102,6 +106,8 @@ class GameSetup{
             fill('white');
             text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 2*this.VERT_SP);
         }
+
+        strokeWeight(1);
     }
 
     keyListening(){

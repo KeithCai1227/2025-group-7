@@ -32,14 +32,14 @@ class GameState{
         this.isGameOver = false;
 
         //create canvas
-        createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
+        //createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
         
         //create empty lists for projectiles and collectibles
         this.projectileList = [];
         this.collectibleList = [];
         
         //generate map
-        displayMode('centered');
+        //displayMode('centered');
         this.gameMap = new Grid(GameState.GRID_HEIGHT);
         this.gameMap.initGrid();
         this.gameMap.initMap();
@@ -207,6 +207,7 @@ class GameState{
         let xMargin = 25;
         let yMargin = 25;
         textFont('Courier New');
+        fill('black');
         textStyle(BOLD);
         textSize(GameState.LOWER_PANEL_HT/4 - yMargin);
         textAlign(RIGHT, TOP);
