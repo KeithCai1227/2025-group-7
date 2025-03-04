@@ -3,7 +3,7 @@
 
 ## Your Game
 
-Link to your game [PLAY HERE](https://uob-comsm0166.github.io/2025-group-7/TankTrouble.html)
+Link to your game [PLAY HERE](http://127.0.0.1:5500/TankTrouble.html)
 
 Link to game ideas: [HERE](https://github.com/UoB-COMSM0166/2025-group-7/blob/f06ff86a68514414d8ebfe9873cceb3a018d9c7c/Game-Ideas.txt)
 
