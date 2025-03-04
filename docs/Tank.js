@@ -83,6 +83,10 @@ class Tank{
         return this.tankLife;
     }
 
+    getAmmo(){
+        return this.tankWeapon.getAmmo();
+    }
+
     numberOfRoundsRefresh(){
         this.tankWeapon.numberOfRounds = 0;
     }

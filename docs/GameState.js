@@ -84,7 +84,7 @@ class GameState{
         }
 
         //draw scores of players
-        this.drawScores();
+        this.drawHUD();
     }
     
     update(){
@@ -192,12 +192,18 @@ class GameState{
     checkProjectileWallOverlaps(){
     }
 
-    drawScores(){
+    drawHUD(){
         //obtain strings for scores
         let scoreString1 = "Player 1 Score : ";
         let scoreString2 = "Player 2 Score : ";
+        let hitPointString = "Remaining health : ";
+        let ammoString = "Remaining bullets : ";
         scoreString1 = scoreString1.concat(this.player1.getScore().toString());
         scoreString2 = scoreString2.concat(this.player2.getScore().toString());
+        let hitPointString1 = hitPointString.concat(this.tankList[0].getLife().toString());
+        let hitPointString2 = hitPointString.concat(this.tankList[1].getLife().toString());
+        let ammoString1 = ammoString.concat(this.tankList[0].getAmmo().toString());
+        let ammoString2 = ammoString.concat(this.tankList[1].getAmmo().toString());
 
         //display scores below the grid
         let xMargin = 25;
@@ -208,7 +214,11 @@ class GameState{
         textSize(GameState.LOWER_PANEL_HT/4 - yMargin);
         textAlign(RIGHT, TOP);
         text(scoreString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin);
+        text(hitPointString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 1.3));
+        text(ammoString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 2.6));
         textAlign(LEFT, TOP);
         text(scoreString2, xMargin, GameState.GRID_HEIGHT + yMargin);
+        text(hitPointString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 1.3));
+        text(ammoString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 2.6));
     }
 }

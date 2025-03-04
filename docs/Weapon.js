@@ -19,5 +19,9 @@ class Weapon{
             this.numberOfRounds = 0;
         }
     }
+
+    getAmmo() {
+        return this.capacity - this.numberOfRounds;
+    }
     
 }
