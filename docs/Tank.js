@@ -40,9 +40,11 @@ class Tank{
         if(difficultyLevel == GameState.EASY){
             this.tankLife = 3;
             this.spdFactor = 4;
+            this.tankWeapon.capacity = 10;
         } else if(difficultyLevel == GameState.HARD){
             this.tankLife = 1;
             this.spdFactor = 2;
+            this.tankWeapon.capacity = 5;
         }
         this.initialLife = this.tankLife;
     }
