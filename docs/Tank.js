@@ -16,7 +16,7 @@ class Tank{
     //locX and locY are the initial co-ordinates
     //initialDirection is the initial direction the tank is pointing in
     //initialDirection should be in degrees measured clockwise from x-axis
-    constructor(locX, locY, initialDirection, difficultyLevel){
+    constructor(locX, locY, initialDirection, difficultyLevel, index){
         this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
 
         //create a sprite in P5 Play for the tank
@@ -34,7 +34,9 @@ class Tank{
         this.tankSprite.speed = 0;
         this.tankSprite.rotation = initialDirection;
         this.INITIALROTATION = initialDirection;
-        this.tankSprite.color = color(150, 150, 150);
+        if(index === 1){
+            this.tankSprite.color = color(240, 0, 0);
+        } else this.tankSprite.color = color(0, 240, 0);
 
         //set the tank's speed and life based on the difficulty level
         if(difficultyLevel == GameState.EASY){

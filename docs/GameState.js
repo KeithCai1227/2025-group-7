@@ -46,9 +46,9 @@ class GameState{
         
         //create two tanks
         this.tankList = [];
-        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, GameState.player1Difficulty);
+        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, GameState.player1Difficulty, 1);
         this.tankList.push(tank1);
-        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, GameState.player2Difficulty);
+        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, GameState.player2Difficulty, 2);
         this.tankList.push(tank2);
 
         //create new KeyListener object for the first tank
@@ -135,6 +135,10 @@ class GameState{
                 }
 
                 this.isGameOver = true;
+                //get rid of all current projectiles
+                for(let j = 0; j < this.projectileList.length; j++){
+                    this.projectileList[j].bulletSprite.remove();
+                }
 
                 this.restartGame();
                 for(let j = 0; j < this.tankList.length; j++){
@@ -188,10 +192,6 @@ class GameState{
                 this.tankList[i].positionRefresh();
                 this.tankList[i].numberOfRoundsRefresh();
             }
-            //get rid of all current projectiles
-            for(let j = 0; j < this.projectileList.length; j++){
-                this.projectileList[j].bulletSprite.remove();
-            }
              //increment every time a game is won 
              this.gameOverCnt++;
              this.isGameOver = false;
@@ -217,10 +217,11 @@ class GameState{
 
     drawHUD(){
         //obtain strings for scores
-        let scoreString1 = "Player 1 Score : ";
-        let scoreString2 = "Player 2 Score : ";
-        let hitPointString = "Remaining health : ";
-        let ammoString = "Remaining bullets : ";
+        let scoreString1 = "Score : ";
+        let scoreString2 = "Score : ";
+        if(!GameState.twoPlayerMode) scoreString2 = "CPU Score : ";
+        let hitPointString = "Health : ";
+        let ammoString = "Ammo : ";
         scoreString1 = scoreString1.concat(this.player1.getScore().toString());
         scoreString2 = scoreString2.concat(this.player2.getScore().toString());
         let hitPointString1 = hitPointString.concat(this.tankList[0].getLife().toString());
