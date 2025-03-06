@@ -3,6 +3,7 @@ class GameState{
     tankList;
     collectibleList;
     isGameOver;
+    gameOverCnt;
     static CANVAS_WIDTH = 960;
     static GRID_HEIGHT = 480;
     static LOWER_PANEL_HT = 200;
@@ -23,13 +24,16 @@ class GameState{
     static HARD = 0;
     static EASY = 1;
 
+
     //initial values for the game settings
     static player1Difficulty = GameState.EASY;
     static player2Difficulty = GameState.EASY;
     static twoPlayerMode = true;
+    static currentWinner;
     
     constructor(){ 
         this.isGameOver = false;
+        this.gameOverCnt = 0;
         
         //create empty lists for projectiles and collectibles
         this.projectileList = [];
@@ -136,8 +140,11 @@ class GameState{
                 for(let j = 0; j < this.tankList.length; j++){
                     this.tankList[j].lifeRefresh();
                 }
+
             }
         }
+
+        this.setCurrentWinner();
 
     }
     
@@ -148,7 +155,21 @@ class GameState{
     getIsGameOver(){
         return this.isGameOver;
     }
-    
+
+    getGameOverCnt(){
+        return this.gameOverCnt;
+    }
+
+    setCurrentWinner(){
+        if(this.player1.getScore() > this.player2.getScore()) GameState.currentWinner = "Player 1";
+        else if(this.player1.getScore() < this.player2.getScore()){
+            GameState.currentWinner = "Player 2";
+        }
+        else{
+            GameState.currentWinner = "Draw";
+        }
+    }
+
     //restart game when tank dies
     restartGame(){
     // wait 2 seconds before restart
@@ -171,7 +192,9 @@ class GameState{
             for(let j = 0; j < this.projectileList.length; j++){
                 this.projectileList[j].bulletSprite.remove();
             }
-            this.isGameOver = false;
+             //increment every time a game is won 
+             this.gameOverCnt++;
+             this.isGameOver = false;
         }, 2000);
       
     }

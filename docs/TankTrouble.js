@@ -3,10 +3,13 @@ let tankGame;
 let startingScreen;
 let twoPlayerMode;
 let setupStage;
+let endOfGame;
 
 //key codes for firing of tanks
 let ZERO_CODE = 48;
 let Q_CODE = 81;
+
+let maxGames = 5;
 
 function setup() {
     setupStage = true;
@@ -16,7 +19,15 @@ function setup() {
 function draw() {
     if(setupStage){
         startingScreen.draw();
-    }else{
+    }
+    else if(tankGame.getGameOverCnt() >= maxGames){
+        endOfGame = true;
+        gameEndScreen = new GameFinish();
+        if(endOfGame){    
+            gameEndScreen.draw();
+        }
+    }
+    else{
         tankGame.draw();
         tankGame.update();
     }
@@ -38,7 +49,16 @@ function keyPressed() {
         }
 
     //in-game control handling
-    }else{
+    }
+    else if(endOfGame){
+        if(keyCode === ENTER){
+            allSprites.remove();
+            endOfGame = false;
+            this.setup();
+            gameEndScreen = null;
+        }
+    }
+    else{
         //detect if tank 1 (human player) has fired
         if (keyCode === ZERO_CODE && tankGame.tankList[0].canFire() && !tankGame.getIsGameOver()){
             tankGame.addProjectile(tankGame.tankList[0].fire());
