@@ -8,8 +8,9 @@ class Grid {
         this.celltack = [];
         this.grid = [];
         walls = new Group();
-        walls.color = 'black';
+        walls.color = 'RGB(211, 111, 76)';
         walls.stroke = 'black';
+        walls.strokeWeight = '3';
         walls.overlaps(walls);
         walls.collider = ('static');
         walls.autoDraw = false;

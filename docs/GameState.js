@@ -213,6 +213,15 @@ class GameState{
     
     //for now - empty
     checkProjectileWallOverlaps(){
+        for(let wall of walls){
+            if(!wall.outerWall){
+                for(let projectile of this.projectileList){
+                    if(wall.collides(projectile.bulletSprite)){
+                        wall.remove();
+                    }
+                }
+            }
+        }
     }
 
     drawHUD(){

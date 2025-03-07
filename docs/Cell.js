@@ -14,10 +14,13 @@ class Cell {
     show(){
         let x = this.i*this.w;
         let y = this.j*this.w;
-        
+                
         if(this.wallState["top"]){
             this.top = new walls.Sprite(x+this.w/2,y,this.w+this.wallWidth,this.wallWidth);
             this.top.rotation = 0;
+            if(y === 0){
+                this.top.outerWall = true;
+            }
         } 
         if(!this.wallState["top"] && this.top){
             this.top.remove();
@@ -25,6 +28,10 @@ class Cell {
         if(this.wallState["right"]){
             this.right = new walls.Sprite(x,y+this.w/2,this.w+this.wallWidth,this.wallWidth);
             this.right.rotation = 90;
+            if(x === 0){
+                this.right.outerWall = true;
+            }
+            
         }
         if(!this.wallState["right"] && this.right){
             this.right.remove();
@@ -32,13 +39,20 @@ class Cell {
         if(this.wallState["bottom"]){
             this.bottom = new walls.Sprite(x+this.w/2,y+this.w,this.w+this.wallWidth,this.wallWidth);
             this.bottom.rotation = 0;
+            if(this.j === this.cols-1){
+                this.bottom.outerWall = true;
+            }
         }
         if(!this.wallState["bottom"] && this.bottom){
             this.bottom.remove();
-        }
+        } 
         if(this.wallState["left"]){
             this.left = new walls.Sprite(x+this.w,y+this.w/2,this.w+this.wallWidth,this.wallWidth);
             this.left.rotation = 90;
+            if(this.i === this.rows-1){
+                this.left.outerWall = true;
+            }
+            
         }
         if(!this.wallState["left"] && this.left){
             this.left.remove();
