@@ -1,0 +1,109 @@
+******SOCIAL******:
+
+Community:
+-->Increases social interaction (inherently multiplayer game)
+-->Creation of social forums e.g. Discord
+-->Increased sense of competetiveness
+
+Trust:
+-->Not responding to feedback and bugs causes loss of players
+-->Possible inconsistent behaviour of games reduces trust in software
+
+Inclusiveness and Diversity:
+-->Cause perception of others on common ground from otherwise different social groups
+-->Possible increase in violent inclinations
+
+Equity:
+-->Perceived lack of ability if player chooses easy vs. other choosing hard
+
+Parcticipation and Communication:
+-->Creation of community where players can discuss game features and tactics
+
+******INDIVIDUAL******:
+
+Health:
+-->Loss of confidence when losing
+-->Repetitive strain injury and/or eye strain
+
+Lifelong Learning:
+-->Improves spatial/temporal reasoning
+-->Improved strategic thinking
+
+Privacy:
+-->No player data currently gathered in-game
+
+Safety:
+-->Risk of inter-personal violence in two player game
+-->Reduced awareness of surroundings (possible distraction from hazards)
+
+Agency:
+-->Distraction from priorities and important duties
+-->No mechanisms to express concerns regarding agency
+
+ENVIRONMENTAL:
+
+Materials and Resources:
+-->Electricity consumption
+-->Low graphical requirements does not create induction effects
+
+Waste and Pollution:
+-->Associated pollution from electricity consumption
+
+Biodiversity:
+-->N/A
+
+Energy:
+-->Runs on existing hardware and infastructure
+-->Cloud service allows choosing energy efficient servers
+
+Logistics:
+-->Playing two player games locally requires physical movement of players to same location
+
+ECONOMIC:
+
+Value:
+-->As a free game, could devalue paid games
+-->Potential advertising for revenue
+
+Customer Relationship Management:
+-->Requires internet connection which is economic
+
+Supply Chain:
+-->N/A
+
+Governance:
+-->N/A
+
+Innovation:
+-->N/A
+
+TECHNICAL:
+
+Maintainability:
+-->Version changes of JavaScript without backwards compatibility
+-->Using online P5 library which might change in future
+
+Usability:
+-->Requirement of dexterity
+-->Knowledge of features and upgrades
+
+Adaptability:
+-->As an online game there is limited scope for adaptability
+-->Adaptible for single player and two player environments
+
+Security:
+-->Relatively few security issues since no personal data gathered
+-->Reliance on P5 library (possible exposure of security risk)
+-->For example stopping updating of P5 library
+
+Scalability:
+-->Limited by two player game
+-->As a local game does not scale
+
+GREEN SOFTWARE PATTERNS:
+-->Minifiy web assets (e.g. P5 play library)
+-->Avoid excessive DOM size
+-->Avoid tracking unnecessary data (e.g. new GameState for each round - old GameState garbage collected)
+
+***NEED TO GENERATE USER STORIES AND SUSTAINABILITY DIAGRAM***
+
