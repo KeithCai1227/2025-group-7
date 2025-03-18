@@ -1,0 +1,12 @@
+-->Setup screen, would be nice to be able to press "Enter" to start game
+   regardless of which setting you currently were on
+-->Motion does not feel "tank like", feels too fast. Perhaps tank should have
+   momentum which prevents them immediately stopping?
+-->10 second timer for bullets - consider making this clearer e.g. bullets get 
+   smaller over time
+-->Add music/sounds
+-->Consider adding scenarios e.g. capture the flag, spend time in zone
+-->Visually show map generation somehow - perhaps allow player to choose map
+   along with the "scenario"
+-->Need to also show AI enemy somehow - could be with added testing e.g. getting
+   users to play against it and performing a study
