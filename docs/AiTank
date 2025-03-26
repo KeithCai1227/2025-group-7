@@ -1,0 +1,99 @@
+// AiTank.js
+
+class AiTank extends Tank {
+  /**
+   * @param {number} locX - 初始 x 位置
+   * @param {number} locY - 初始 y 位置
+   * @param {number} initialDirection - 初始朝向（角度，或者弧度，视 Tank.js 而定）
+   * @param {number} difficultyLevel - 难度（与原有 Tank 配置一致）
+   * @param {number} index - 坦克编号
+   * @param {Tank} playerTank - 引用玩家坦克，用于侦测玩家位置
+   */
+  constructor(locX, locY, initialDirection, difficultyLevel, index, playerTank) {
+    // 调用父类 Tank 的构造函数
+    super(locX, locY, initialDirection, difficultyLevel, index);
+    
+    // 额外的 AI 属性
+    this.playerTank = playerTank;   // 侦测、射击目标
+    this.detectionRange = 250;      // AI 发现玩家的距离阈值
+    this.randomMoveCooldown = 0;    // 随机移动的计时器
+    this.randomMoveDuration = 60;   // 随机移动时间段（帧数）
+    this.randomMoveDir = 0;         // 当前随机移动的方向
+  }
+
+  /**
+   * 在游戏循环中，每帧都会调用 update()
+   * 我们在这里添加 AI 行为（检测玩家 / 随机漫游 / 开火等）
+   */
+  update() {
+    // 保留父类的更新逻辑（移动、碰撞检测等）
+    super.update();
+
+    // 若 AI 坦克已死亡，不执行后续
+    if (this.getLife() <= 0) return;
+
+    // 计算与玩家的距离
+    let dx = this.playerTank.tankSprite.x - this.tankSprite.x;
+    let dy = this.playerTank.tankSprite.y - this.tankSprite.y;
+    let distToPlayer = Math.sqrt(dx * dx + dy * dy);
+
+    // 如果玩家在侦测范围内
+    if (distToPlayer <= this.detectionRange) {
+      // 停止随机漫游，朝玩家方向射击
+      this.engagePlayer(dx, dy);
+    } else {
+      // 玩家不在范围 -> 随机巡逻
+      this.randomPatrol();
+    }
+  }
+
+  /**
+   * AI 若侦测到玩家，就执行该函数
+   * - 对准玩家方向
+   * - 可选择停止或进行微调移动
+   * - 尝试开火
+   */
+  engagePlayer(dx, dy) {
+    // 计算朝玩家的角度
+    let angleToPlayer = Math.atan2(dy, dx);
+
+    // 将坦克转向此角度
+    // 注意 Tank 中 rotation 若是弧度，这里可直接赋值
+    this.tankSprite.rotation = angleToPlayer;
+
+    // AI 可选择暂时停止移动或保持一定速度
+    this.tankSprite.speed = 0;
+
+    // 开火判断
+    if (this.canFire()) {
+      let bullet = this.fire();  // 父类 Tank 中已有 fire() 方法
+      // 将子弹加到全局或 GameState 的 projectileList
+      // 如在 GameState 中： tankGame.addProjectile(bullet);
+      // 或 this.gameState.addProjectile(...)，视你的全局命名而定
+      if (typeof tankGame !== 'undefined') {
+        tankGame.addProjectile(bullet);
+      }
+    }
+  }
+
+  /**
+   * 若未侦测到玩家，则随机巡逻
+   * - 每 randomMoveDuration 帧 / 周期 随机生成一个漫游方向
+   * - 沿此方向移动
+   */
+  randomPatrol() {
+    this.randomMoveCooldown--;
+
+    // 若计时器结束，重新选一个方向
+    if (this.randomMoveCooldown <= 0) {
+      this.randomMoveCooldown = this.randomMoveDuration;
+      // 随机方向 [0..2PI]
+      this.randomMoveDir = Math.random() * Math.PI * 2;
+    }
+
+    // 在此方向上前进
+    this.tankSprite.rotation = this.randomMoveDir;
+    // Tank 里有 spdFactor 表示速度系数
+    this.tankSprite.speed = 1 * this.spdFactor;
+  }
+}
