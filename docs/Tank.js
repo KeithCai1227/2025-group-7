@@ -66,7 +66,7 @@ class Tank{
         let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation); 
         if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
             this.tankWeapon.numberOfRounds++;
-            return new Bullet(projX, projY, this.tankSprite.rotation, 10);
+            return new Bullet(projX, projY, this.tankSprite.rotation);
         }
         else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
             this.tankWeapon.numberOfRounds++;
