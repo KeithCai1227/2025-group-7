@@ -12,6 +12,9 @@ let Q_CODE = 81;
 let maxGames = 5;
 
 function setup() {
+    //standardise frame rate to ensure animations and speed consistent
+    //accross different machines
+    frameRate(30);
     setupStage = true;
     startingScreen = new GameSetup();
 }
