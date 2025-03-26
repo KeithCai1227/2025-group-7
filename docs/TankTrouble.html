@@ -1,38 +1,38 @@
 <!DOCTYPE html>
-<html lang="">
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tank Trouble Prototype</title>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-      background-color: #1b1b1b;
-    }
-  </style>
+
+  <!-- 核心库 -->
   <script src="p5.js"></script>
-  <!-- <script src="../addons/p5.sound.js"></script> -->
+  <script src="p5.sound.min.js"></script>
   <script src="planck.min.js"></script>
   <script src="p5play.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- 项目脚本 -->
   <script src="Projectile.js"></script>
   <script src="Bullet.js"></script>
   <script src="Weapon.js"></script>
   <script src="Tank.js"></script>
+  <!-- 引入 AiTank.js (必须在 Tank.js 后) -->
+  <script src="AiTank.js"></script>
   <script src="KeyListener.js"></script>
   <script src="Player.js"></script>
-  <script src="GameState.js"></script>
   <script src="Grid.js"></script>
   <script src="Cell.js"></script>
+  <script src="BreakableWall.js"></script>
   <script src="GameFinish.js"></script>
   <script src="GameSetup.js"></script>
+
+  <!-- 修改后的 GameState.js -->
+  <script src="GameState.js"></script>
+
+  <!-- 你的 main 入口 -->
   <script src="TankTrouble.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
+  <main></main>
 </body>
-
 </html>
