@@ -38,7 +38,7 @@ function keyPressed() {
     //setup-stage control handling
     if(setupStage){
         //check whether user is ready to begin game
-        if(keyCode === ENTER && startingScreen.selector === startingScreen.ON_START){
+        if(keyCode === ENTER){
             tankGame = new GameState();
             setupStage = false;
             //startingScreen can be garbage collected
