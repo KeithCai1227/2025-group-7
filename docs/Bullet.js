@@ -1,14 +1,11 @@
-class Bullet extends Projectile {
-
-    //lifespan of bullet in seconds
-    static LIFESPAN = 10;
+class Bullet extends Projectile{
 
     constructor(x, y, angle) {
-        super(x, y, angle, Bullet.LIFESPAN);
+        super(x, y, angle, Weapon.BULLET_TIME);
         this.sprite = new Sprite();
         this.sprite.x = x;
         this.sprite.y = y;
-        this.sprite.duration = Bullet.LIFESPAN;
+        this.sprite.duration = Weapon.BULLET_TIME;
         this.sprite.diameter = 10;
         this.sprite.color = color(0, 0, 0);
         this.sprite.direction = angle;
@@ -27,7 +24,7 @@ class Bullet extends Projectile {
         this.sprite.update();
 
         //after half the life of bullet, shrink the bullet
-        if(this.despawnTime - millis() < 0.5*1000*Bullet.LIFESPAN){
+        if(this.despawnTime - millis() < 0.5*1000*Weapon.BULLET_TIME){
             this.sprite.diameter -= 0.025;
         }
     }
