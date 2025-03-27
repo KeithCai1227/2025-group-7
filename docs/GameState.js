@@ -1,5 +1,5 @@
 class GameState{
-    projectileList;
+    static projectileList;
     tankList;
     pickupList;
     isGameOver;
@@ -37,7 +37,7 @@ class GameState{
         this.gameOverCnt = 0;
         
         //create empty lists for projectiles and pickups
-        this.projectileList = [];
+        GameState.projectileList = [];
         this.pickupList = [];
         
         //generate map
@@ -87,8 +87,8 @@ class GameState{
         }
 
         //draw projectiles
-        for(let i = 0; i < this.projectileList.length; i++){
-            this.projectileList[i].draw();
+        for(let i = 0; i < GameState.projectileList.length; i++){
+            GameState.projectileList[i].draw();
         } 
 
         //draw scores of players
@@ -105,13 +105,13 @@ class GameState{
         }
         
         //update projectiles
-        for(let i = 0; i < this.projectileList.length; ){
-            if (this.projectileList[i].despawnTime < millis()) {
-                this.projectileList[i].bulletSprite.remove();
-                this.projectileList.splice(i, 1);
+        for(let i = 0; i < GameState.projectileList.length; ){
+            if (GameState.projectileList[i].despawnTime < millis()) {
+                GameState.projectileList[i].bulletSprite.remove();
+                GameState.projectileList.splice(i, 1);
             }
             else {
-                this.projectileList[i].update();
+                GameState.projectileList[i].update();
                 i++;
             }
         } 
@@ -145,9 +145,9 @@ class GameState{
 
                 this.isGameOver = true;
                 //get rid of all current projectiles and pickups
-                while (this.projectileList.length > 0){
-                    this.projectileList[0].bulletSprite.remove();
-                    this.projectileList.splice(0);
+                while (GameState.projectileList.length > 0){
+                    GameState.projectileList[0].bulletSprite.remove();
+                    GameState.projectileList.splice(0);
                 } 
                 while (this.pickupList.length > 0){
                     this.pickupList[0].sprite.remove();
@@ -168,7 +168,7 @@ class GameState{
     }
     
     addProjectile(newProjectile){
-        this.projectileList.push(newProjectile);
+        GameState.projectileList.push(newProjectile);
     }
 
     getIsGameOver(){
@@ -221,10 +221,10 @@ class GameState{
     
     checkProjectileTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
-            for (let j = 0; j < this.projectileList.length; ) {
-                if (this.projectileList[j].bulletSprite.collides(this.tankList[i].tankSprite)) {
-                    this.projectileList[j].bulletSprite.remove();
-                    this.projectileList.splice(j, 1);
+            for (let j = 0; j < GameState.projectileList.length; ) {
+                if (GameState.projectileList[j].bulletSprite.collides(this.tankList[i].tankSprite)) {
+                    GameState.projectileList[j].bulletSprite.remove();
+                    GameState.projectileList.splice(j, 1);
                     this.tankList[i].lifeDecrement();
                 } else j++;
             }
@@ -252,7 +252,7 @@ class GameState{
     checkProjectileWallOverlaps(){
         for(let wall of walls){
             if(!wall.outerWall){
-                for(let projectile of this.projectileList){
+                for(let projectile of GameState.projectileList){
                     if(wall.collides(projectile.bulletSprite)){
                         wall.remove();
                     }
