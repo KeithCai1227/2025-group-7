@@ -63,7 +63,8 @@ class Tank{
         //Create new projectile according to appropriate weapon type
         let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST;
         let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
-        let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation); 
+        let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation);
+
         if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
             this.tankWeapon.numberOfRounds++;
             return new Bullet(projX, projY, this.tankSprite.rotation);
@@ -71,6 +72,10 @@ class Tank{
         else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
             this.tankWeapon.numberOfRounds++;
             return new Laser(projX, projY, this.tankSprite.rotation);
+        }
+        else if(this.tankWeapon.weaponType == Weapon.BOMB_TYPE){
+            this.tankWeapon.numberOfRounds++;
+            return new SplinterBomb(projX, projY, this.tankSprite.rotation);
         }
     }
 
