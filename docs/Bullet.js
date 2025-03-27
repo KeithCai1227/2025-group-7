@@ -5,34 +5,34 @@ class Bullet extends Projectile {
 
     constructor(x, y, angle) {
         super(x, y, angle, Bullet.LIFESPAN);
-        this.bulletSprite = new Sprite();
-        this.bulletSprite.x = x;
-        this.bulletSprite.y = y;
-        this.bulletSprite.duration = Bullet.LIFESPAN;
-        this.bulletSprite.diameter = 10;
-        this.bulletSprite.color = color(0, 0, 0);
-        this.bulletSprite.direction = angle;
-        this.bulletSprite.speed = 4;
-        this.bulletSprite.bounciness = 1;
-        this.bulletSprite.friction = 0;
-        this.bulletSprite.autoUpdate = false;
-        this.bulletSprite.autoDraw = false;
+        this.sprite = new Sprite();
+        this.sprite.x = x;
+        this.sprite.y = y;
+        this.sprite.duration = Bullet.LIFESPAN;
+        this.sprite.diameter = 10;
+        this.sprite.color = color(0, 0, 0);
+        this.sprite.direction = angle;
+        this.sprite.speed = 4;
+        this.sprite.bounciness = 1;
+        this.sprite.friction = 0;
+        this.sprite.autoUpdate = false;
+        this.sprite.autoDraw = false;
     }
     
     draw(){
-        this.bulletSprite.draw();
+        this.sprite.draw();
     }
   
     update(){
-        this.bulletSprite.update();
+        this.sprite.update();
 
         //after half the life of bullet, shrink the bullet
         if(this.despawnTime - millis() < 0.5*1000*Bullet.LIFESPAN){
-            this.bulletSprite.diameter -= 0.025;
+            this.sprite.diameter -= 0.025;
         }
     }
 
     remove(){
-        this.bulletSprite.remove();
+        this.sprite.remove();
     }
 }

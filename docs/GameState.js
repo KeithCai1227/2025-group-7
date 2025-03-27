@@ -146,7 +146,7 @@ class GameState{
                 this.isGameOver = true;
                 //get rid of all current projectiles and pickups
                 while (GameState.projectileList.length > 0){
-                    GameState.projectileList[0].bulletSprite.remove();
+                    GameState.projectileList[0].sprite.remove();
                     GameState.projectileList.splice(0);
                 } 
                 while (this.pickupList.length > 0){
@@ -222,8 +222,8 @@ class GameState{
     checkProjectileTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
             for (let j = 0; j < GameState.projectileList.length; ) {
-                if (GameState.projectileList[j].bulletSprite.collides(this.tankList[i].tankSprite)) {
-                    GameState.projectileList[j].bulletSprite.remove();
+                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite)) {
+                    GameState.projectileList[j].sprite.remove();
                     GameState.projectileList.splice(j, 1);
                     this.tankList[i].lifeDecrement();
                 } else j++;
@@ -253,7 +253,7 @@ class GameState{
         for(let wall of walls){
             if(!wall.outerWall){
                 for(let projectile of GameState.projectileList){
-                    if(wall.collides(projectile.bulletSprite)){
+                    if(wall.collides(projectile.sprite)){
                         wall.remove();
                     }
                 }
