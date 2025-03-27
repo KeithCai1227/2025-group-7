@@ -107,7 +107,7 @@ class GameState{
         //update projectiles
         for(let i = 0; i < GameState.projectileList.length; ){
             if (GameState.projectileList[i].despawnTime < millis()) {
-                GameState.projectileList[i].bulletSprite.remove();
+                GameState.projectileList[i].remove();
                 GameState.projectileList.splice(i, 1);
             }
             else {

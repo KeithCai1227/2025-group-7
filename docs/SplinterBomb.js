@@ -4,65 +4,34 @@ class SplinterBomb extends Projectile{
 
     constructor(x, y, angle){
         super(x, y, angle, Weapon.SPLINTER_DURATION);
-        this.bombSprite = new Sprite(x, y, SplinterBomb.BOMB_SIZE, 'octagon');
-        this.bombSprite.duration = Weapon.SPLINTER_DURATION;
-        this.bombSprite.x = x;
-        this.bombSprite.y = y;
-        this.bombSprite.color = color(0, 0, 0);
-        this.bombSprite.direction = angle;
-        this.bombSprite.speed = 4;
-        this.bombSprite.bounciness = 1;
-        this.bombSprite.friction = 0;
-        this.bombSprite.autoUpdate = false;
-        this.bombSprite.autoDraw = false;
-
-        //create an empty list for the splinters
-        this.splinters = [];
-
-        //boolean to determine whether splinter has happened
-        this.splitered = false;
-
-        this.isSplinter = true;
+        this.sprite = new Sprite(x, y, SplinterBomb.BOMB_SIZE, 'octagon');
+        this.sprite.duration = Weapon.SPLINTER_DURATION;
+        this.sprite.color = color(0, 0, 0);
+        this.sprite.direction = angle;
+        this.sprite.speed = 4;
+        this.sprite.bounciness = 1;
+        this.sprite.friction = 0;
+        this.sprite.autoUpdate = false;
+        this.sprite.autoDraw = false;
     }
 
     draw(){
-        if(!this.splitered){
-            this.bombSprite.draw();
-        }
-        else{
-            for(let splinter of this.splinters){
-                splinter.draw();
-            }
-        }
+        this.sprite.draw();
     }
   
     update(){
-        if(!this.splitered){
-            this.bombSprite.update();
-        }
-        else{
-            for(let splinter of this.splinters){
-                splinter.update();
-            }
-        }
-
-        //after half the life of splinter, explode the bomb
-        if(this.despawnTime - millis() < 0.5*1000*Weapon.SPLINTER_DURATION){
-            this.splinter();
-        }
+        this.sprite.update();
     }
 
-    //removes all splinter sprites
     remove(){
-        for(let i = this.splinters.length; i >= 0; i--){
-            this.splinters[i].remove();
-        }
+        this.sprite.remove();
+        this.splinter();
     }
 
     splinter(){
-        let direction, velocity, size;
-        let x = this.bombSprite.x;
-        let y = this.bombSprite.y;
+        let splinters = [];
+        let x = this.sprite.x;
+        let y = this.sprite.y;
         for(let i = 0; i < SplinterBomb.NU_SPLINTERS; i++){
             let splinter = new Sprite(x, y);
             splinter.color = color(0, 0, 0);
@@ -73,13 +42,10 @@ class SplinterBomb extends Projectile{
             splinter.friction = 0;
             splinter.autoUpdate = false;
             splinter.autoDraw = false;
-            this.splinters[i] = splinter;
+            splinters[i] = splinter;
         }
-
-        //signify splintering has occurred
-        this.splitered = true;
-
-        //remove the old bomb sprite
-        this.bombSprite.remove();
+        
+        //add splinters to projectile list from GameState
+        GameState.projectileList = GameState.projectileList.concat(splinters);
     }
 }

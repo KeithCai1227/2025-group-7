@@ -23,12 +23,16 @@ class Bullet extends Projectile {
         this.bulletSprite.draw();
     }
   
-    update() {
+    update(){
         this.bulletSprite.update();
 
         //after half the life of bullet, shrink the bullet
         if(this.despawnTime - millis() < 0.5*1000*Bullet.LIFESPAN){
             this.bulletSprite.diameter -= 0.025;
         }
+    }
+
+    remove(){
+        this.bulletSprite.remove();
     }
 }
