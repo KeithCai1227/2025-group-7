@@ -78,6 +78,11 @@ class Tank{
         this.tankLife--;
     }
 
+    lifeIncrement(){
+        // this currently increments regardless of current health - ie there is no "maximum". Something to discuss?
+        this.tankLife++;
+    }
+
     // life refresh when game restarts
     lifeRefresh(){
         this.tankLife = this.initialLife;

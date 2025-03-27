@@ -23,5 +23,9 @@ class Weapon{
     getAmmo() {
         return this.capacity - this.numberOfRounds;
     }
+
+    resetAmmo() {
+        this.numberOfRounds = 0;
+    }
     
 }

@@ -1,9 +1,10 @@
 class GameState{
     projectileList;
     tankList;
-    collectibleList;
+    pickupList;
     isGameOver;
     gameOverCnt;
+    nextPickupSpawn;
     static CANVAS_WIDTH = 960;
     static GRID_HEIGHT = 480;
     static LOWER_PANEL_HT = 200;
@@ -35,9 +36,9 @@ class GameState{
         this.isGameOver = false;
         this.gameOverCnt = 0;
         
-        //create empty lists for projectiles and collectibles
+        //create empty lists for projectiles and pickups
         this.projectileList = [];
-        this.collectibleList = [];
+        this.pickupList = [];
         
         //generate map
         this.gameMap = new Grid(GameState.GRID_HEIGHT);
@@ -63,6 +64,9 @@ class GameState{
         //create two Player objects
         this.player1 = new Player(GameState.player1Difficulty, true, keyListener1);
         this.player2 = new Player(GameState.player2Difficulty, GameState.twoPlayerMode, keyListener2);
+
+        //establishes initial time for first Pickup to spawn
+        this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
         
     }
     
@@ -77,15 +81,15 @@ class GameState{
                 this.tankList[i].draw();
         }
         
+        //draw pickups
+        for(let i = 0; i < this.pickupList.length; i++){
+            this.pickupList[i].draw();
+        }
+
         //draw projectiles
         for(let i = 0; i < this.projectileList.length; i++){
             this.projectileList[i].draw();
         } 
-        
-        //draw collectibles
-        for(let i = 0; i < this.collectibleList.length; i++){
-            this.collectibleList[i].draw();
-        }
 
         //draw scores of players
         this.drawHUD();
@@ -112,9 +116,13 @@ class GameState{
             }
         } 
         
-        //update collectibles
-        for(let i = 0; i < this.collectibleList.length; i++){
-            this.collectibleList[i].update();
+        //update pickups
+        if(millis() > this.nextPickupSpawn && this.pickupList.length < 5){
+            this.pickupList.push(new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT));
+            this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
+        }         
+        for(let i = 0; i < this.pickupList.length; i++){
+            this.pickupList[i].update();
         }
     
         //update tank movements based on user key presses
@@ -123,6 +131,7 @@ class GameState{
         
         //collision checks
         this.checkProjectileTankOverlaps();
+        this.checkPickupTankOverlaps();
         this.checkProjectileWallOverlaps();
 
         //restart game if tank life is 0
@@ -135,11 +144,17 @@ class GameState{
                 }
 
                 this.isGameOver = true;
-                //get rid of all current projectiles
-                for(let j = 0; j < this.projectileList.length; j++){
-                    this.projectileList[j].bulletSprite.remove();
+                //get rid of all current projectiles and pickups
+                while (this.projectileList.length > 0){
+                    this.projectileList[0].bulletSprite.remove();
+                    this.projectileList.splice(0);
+                } 
+                while (this.pickupList.length > 0){
+                    this.pickupList[0].sprite.remove();
+                    this.pickupList.splice(0);
                 }
 
+                this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
                 this.restartGame();
                 for(let j = 0; j < this.tankList.length; j++){
                     this.tankList[j].lifeRefresh();
@@ -174,6 +189,11 @@ class GameState{
         }
     }
 
+    pickupSpawnInterval(){
+        //ten seconds - ie 10,000 milliseconds - plus a random number of milliseconds up to another 5s
+        return 10000 + Math.floor(Math.random() * 5000);
+    }
+
     //restart game when tank dies
     restartGame(){
     // wait 2 seconds before restart
@@ -206,6 +226,23 @@ class GameState{
                     this.projectileList[j].bulletSprite.remove();
                     this.projectileList.splice(j, 1);
                     this.tankList[i].lifeDecrement();
+                } else j++;
+            }
+        }
+    }
+
+    checkPickupTankOverlaps(){
+        for (let i = 0; i < this.tankList.length; i++) {
+            for (let j = 0; j < this.pickupList.length; ) {
+                if (this.pickupList[j].sprite.overlapping(this.tankList[i].tankSprite)) {
+                    this.pickupList[j].sprite.remove();
+                    if (this.pickupList[j].type == "HEALTH") {
+                        this.tankList[i].lifeIncrement();
+                    } else {
+                        // currently just resets ammo
+                        // once weapons are fleshed out, should instead change tankList[i].tankWeapon for new Weapon object of correct type
+                        this.tankList[i].tankWeapon.resetAmmo();
+                    }
                 } else j++;
             }
         }
