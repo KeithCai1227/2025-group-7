@@ -17,7 +17,7 @@ class Tank{
     //initialDirection is the initial direction the tank is pointing in
     //initialDirection should be in degrees measured clockwise from x-axis
     constructor(locX, locY, initialDirection, difficultyLevel, index){
-        this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
+        this.tankWeapon = new Weapon(Weapon.BOMB_TYPE);
 
         //create a sprite in P5 Play for the tank
         this.tankSprite = new Sprite();

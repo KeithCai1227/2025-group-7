@@ -164,7 +164,6 @@ class GameState{
         }
 
         this.setCurrentWinner();
-
     }
     
     addProjectile(newProjectile){

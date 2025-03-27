@@ -24,20 +24,17 @@ class SplinterBomb extends Projectile{
     }
 
     remove(){
-        this.sprite.remove();
         this.splinter();
+        this.sprite.remove();
     }
 
     splinter(){
         let splinters = [];
         let x = this.sprite.x;
         let y = this.sprite.y;
-        for(let i = 0; i < SplinterBomb.NU_SPLINTERS; i++){
-            let splinter = new Splinter(x, y, 0);
-            splinters[i] = splinter;
-        }
         
-        //add splinters to projectile list from GameState
-        GameState.projectileList = GameState.projectileList.concat(splinters);
+        for(let i = 0; i < SplinterBomb.NU_SPLINTERS; i++){
+            GameState.projectileList.push(new Splinter(x, y, 0));
+        }
     }
 }
