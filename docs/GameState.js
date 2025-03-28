@@ -243,10 +243,12 @@ class GameState{
                     this.pickupList[j].sprite.remove();
                     if (this.pickupList[j].type == "HEALTH") {
                         this.tankList[i].lifeIncrement();
-                    } else {
+                    } else if (this.pickupList[j].type == "AMMO"){
                         // currently just resets ammo
-                        // once weapons are fleshed out, should instead change tankList[i].tankWeapon for new Weapon object of correct type
                         this.tankList[i].tankWeapon.resetAmmo();
+                    } else if (this.pickupList[j].type == "BOMB"){
+                        // give tank the "bomb" weapon
+                        this.tankList[i].tankWeapon = new Weapon(Weapon.BOMB_TYPE);
                     }
                 } else j++;
             }

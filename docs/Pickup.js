@@ -13,14 +13,21 @@ class Pickup {
         this.sprite.collider = "static";
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
-        // constructs either a health or weapon pick-up by using millis as a pseudo-random number
-        if(Math.floor(Math.random() * 100) % 2 == 0) {
+        
+        // selects pick-up by using millis as a pseudo-random number
+        let randomiser = Math.floor(Math.random() * 100) % 3;
+
+        if(randomiser == 0){
             this.type = "HEALTH";
             this.sprite.color = color(200, 0, 0);
-        } else {
-            // once we have more weapons ready to deploy, this can be split out to a sub-function that randomises for weapon
-            this.type = "BULLET";
+        }else if(randomiser == 1){
+            // refresh ammo
+            this.type = "AMMO";
             this.sprite.color = color(0, 0, 200);
+        }else{
+            // bomb weapon pickup
+            this.type = "BOMB";
+            this.sprite.color = color(0, 0, 0);
         }
     }
 
