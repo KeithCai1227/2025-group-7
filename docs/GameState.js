@@ -141,18 +141,18 @@ class GameState{
                 if(!this.isGameOver){
                     //update the relevant score
                     i == 0 ? this.player2.incScore() : this.player1.incScore();
+
+                    this.isGameOver = true;
+
+                    //get rid of all current pickups
+                    while (this.pickupList.length > 0){
+                        this.pickupList[0].sprite.remove();
+                        this.pickupList.splice(0);
+                    }
+    
+                    this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
+                    this.restartGame();
                 }
-
-                this.isGameOver = true;
-
-                //get rid of all current pickups
-                while (this.pickupList.length > 0){
-                    this.pickupList[0].sprite.remove();
-                    this.pickupList.splice(0);
-                }
-
-                this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
-                this.restartGame();
             }
         }
 
