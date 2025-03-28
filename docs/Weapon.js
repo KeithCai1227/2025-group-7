@@ -16,7 +16,7 @@ class Weapon{
     //time before weapon expires
     static BULLET_TIME = 10;
     static BOMB_TIME = 5;
-    static SPLINTER_TIME = 1;
+    static SPLINTER_TIME = 2;
     
     constructor(weaponType){
         if(weaponType == Weapon.BULLET_TYPE){

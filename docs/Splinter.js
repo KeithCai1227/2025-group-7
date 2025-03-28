@@ -1,6 +1,6 @@
 class Splinter extends Projectile{
     static SIZE = 3;
-    static SPEED = 2;
+    static SPEED = 4;
 
     constructor(x, y, angle){
         super(x, y, angle, Weapon.SPLINTER_TIME);

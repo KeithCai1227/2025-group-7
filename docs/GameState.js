@@ -134,9 +134,9 @@ class GameState{
         this.checkPickupTankOverlaps();
         this.checkProjectileWallOverlaps();
 
-        //restart game if tank life is 0
+        //restart game if tank life is less than or equal to 0
         for(let i = 0; i < this.tankList.length; i++){
-            if(this.tankList[i].getLife() === 0){
+            if(this.tankList[i].getLife() <= 0){
                 //to ensure the score is not updated during the restart "wait time"
                 if(!this.isGameOver){
                     //update the relevant score
@@ -146,7 +146,7 @@ class GameState{
                 this.isGameOver = true;
                 //get rid of all current projectiles and pickups
                 while (GameState.projectileList.length > 0){
-                    GameState.projectileList[0].sprite.remove();
+                    GameState.projectileList[0].remove();
                     GameState.projectileList.splice(0);
                 } 
                 while (this.pickupList.length > 0){
@@ -156,10 +156,6 @@ class GameState{
 
                 this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
                 this.restartGame();
-                for(let j = 0; j < this.tankList.length; j++){
-                    this.tankList[j].lifeRefresh();
-                }
-
             }
         }
 
@@ -210,6 +206,7 @@ class GameState{
                 //for now back to original positions
                 this.tankList[i].positionRefresh();
                 this.tankList[i].numberOfRoundsRefresh();
+                this.tankList[i].lifeRefresh();
             }
              //increment every time a game is won 
              this.gameOverCnt++;
