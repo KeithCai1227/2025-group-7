@@ -1,4 +1,7 @@
 class Splinter extends Projectile{
+    static SIZE = 3;
+    static SPEED = 2;
+
     constructor(x, y, angle){
         super(x, y, angle, Weapon.SPLINTER_TIME);
         this.sprite = new Sprite();
@@ -6,8 +9,9 @@ class Splinter extends Projectile{
         this.sprite.y = y;
         this.sprite.color = color(0, 0, 0);
         this.sprite.direction = Math.random()*360;
-        this.sprite.speed = Math.random()*5;
-        this.sprite.diameter = Math.random()*4 + 1;
+        this.sprite.speed = Splinter.SPEED;
+        let splinterSize = Splinter.SIZE;
+        this.sprite.diameter = splinterSize;
         this.sprite.duration = Weapon.SPLINTER_TIME;
         this.sprite.bounciness = 1;
         this.sprite.friction = 0;
