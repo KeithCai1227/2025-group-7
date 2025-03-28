@@ -14,6 +14,9 @@ class SplinterBomb extends Projectile{
         this.sprite.friction = 0;
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
+
+        //bomb has no damage - but its splinters do
+        this.damage = 0;
     }
 
     draw(){

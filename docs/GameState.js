@@ -226,8 +226,11 @@ class GameState{
                     GameState.projectileList.splice(j, 1);
 
                     //only reduce tank lives if game still in play
-                    if(!this.isGameOver)
-                        this.tankList[i].lifeDecrement();
+                    if(!this.isGameOver){
+                        //each projectile has a "damage"
+                        let damage = GameState.projectileList[i].damage;
+                        this.tankList[i].lifeDecrease(damage);
+                    }
                 }else j++;
             }
         }
@@ -272,8 +275,8 @@ class GameState{
         let ammoString = "Ammo : ";
         scoreString1 = scoreString1.concat(this.player1.getScore().toString());
         scoreString2 = scoreString2.concat(this.player2.getScore().toString());
-        let hitPointString1 = hitPointString.concat(this.tankList[0].getLife().toString());
-        let hitPointString2 = hitPointString.concat(this.tankList[1].getLife().toString());
+        let hitPointString1 = hitPointString.concat(this.tankList[0].getLife().toFixed(2));
+        let hitPointString2 = hitPointString.concat(this.tankList[1].getLife().toFixed(2));
         let ammoString1 = ammoString.concat(this.tankList[0].getAmmo().toString());
         let ammoString2 = ammoString.concat(this.tankList[1].getAmmo().toString());
 

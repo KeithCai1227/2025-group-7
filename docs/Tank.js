@@ -84,6 +84,14 @@ class Tank{
             this.tankLife--;
     }
 
+    lifeDecrease(damage){
+        if(this.tankLife - damage > 0){
+            this.tankLife -= damage;
+        }else{
+            this.tankLife = 0;
+        }
+    }
+
     lifeIncrement(){
         // this currently increments regardless of current health - ie there is no "maximum". Something to discuss?
         this.tankLife++;
