@@ -221,16 +221,19 @@ class GameState{
     checkProjectileTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
             for (let j = 0; j < GameState.projectileList.length; ) {
-                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite)) {
-                    GameState.projectileList[j].remove();
-                    GameState.projectileList.splice(j, 1);
+                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite)){
 
+                    //first account for damage from projectile to tank
                     //only reduce tank lives if game still in play
                     if(!this.isGameOver){
                         //each projectile has a "damage"
                         let damage = GameState.projectileList[i].damage;
                         this.tankList[i].lifeDecrease(damage);
                     }
+
+                    //next remove the projectile
+                    GameState.projectileList[j].remove();
+                    GameState.projectileList.splice(j, 1);
                 }else j++;
             }
         }
