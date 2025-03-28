@@ -144,11 +144,8 @@ class GameState{
                 }
 
                 this.isGameOver = true;
-                //get rid of all current projectiles and pickups
-                while (GameState.projectileList.length > 0){
-                    GameState.projectileList[0].remove();
-                    GameState.projectileList.splice(0);
-                } 
+
+                //get rid of all current pickups
                 while (this.pickupList.length > 0){
                     this.pickupList[0].sprite.remove();
                     this.pickupList.splice(0);
@@ -193,6 +190,12 @@ class GameState{
     restartGame(){
     // wait 2 seconds before restart
         setTimeout (() => {
+            //get rid of all current projectiles
+            while(GameState.projectileList.length > 0){
+                GameState.projectileList[0].remove();
+                GameState.projectileList.splice(0);
+            }
+
             //only refresh map once
             if(this.isGameOver){
                 walls.remove();
@@ -208,9 +211,9 @@ class GameState{
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
             }
-             //increment every time a game is won 
-             this.gameOverCnt++;
-             this.isGameOver = false;
+            //increment every time a game is won 
+            this.gameOverCnt++;
+            this.isGameOver = false;
         }, 2000);
       
     }
@@ -221,8 +224,11 @@ class GameState{
                 if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite)) {
                     GameState.projectileList[j].remove();
                     GameState.projectileList.splice(j, 1);
-                    this.tankList[i].lifeDecrement();
-                } else j++;
+
+                    //only reduce tank lives if game still in play
+                    if(!this.isGameOver)
+                        this.tankList[i].lifeDecrement();
+                }else j++;
             }
         }
     }
