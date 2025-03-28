@@ -69,11 +69,21 @@ class Tank{
         }
         else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
             this.tankWeapon.numberOfRounds++;
+            this.checkWeaponReset();
             return new Laser(projX, projY, this.tankSprite.rotation);
         }
         else if(this.tankWeapon.weaponType == Weapon.BOMB_TYPE){
             this.tankWeapon.numberOfRounds++;
+            this.checkWeaponReset();
             return new SplinterBomb(projX, projY, this.tankSprite.rotation);
+        }
+    }
+
+    checkWeaponReset(){
+        //if you have used up all of a special weapon, reset to bullet with half capacity
+        if(!this.canFire() && !(this.tankWeapon.weaponType == Weapon.BULLET_TYPE)){
+            this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
+            this.tankWeapon.capacity = Math.round(0.5*Weapon.BULLET_CAPACITY);
         }
     }
 
