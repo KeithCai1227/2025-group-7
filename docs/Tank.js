@@ -80,7 +80,8 @@ class Tank{
     }
 
     lifeDecrement(){
-        this.tankLife--;
+        if(this.tankLife > 0)
+            this.tankLife--;
     }
 
     lifeIncrement(){
