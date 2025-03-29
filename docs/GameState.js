@@ -72,9 +72,6 @@ class GameState{
     
     draw(){
         background(200, 200, 200);
-
-        fill('black); // Different color for the window
-        rect(0, 0, 960, 480); // Position & size
         
         //draw the map
          this.gameMap.draw();
