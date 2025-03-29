@@ -63,14 +63,28 @@ function keyPressed() {
     }
     else{
         //detect if tank 1 (human player) has fired
-        if (keyCode === ZERO_CODE && tankGame.tankList[0].canFire() && !tankGame.getIsGameOver()){
-            tankGame.addProjectile(tankGame.tankList[0].fire());
+        if (keyCode === ZERO_CODE && !tankGame.getIsGameOver()){
+            if(tankGame.tankList[0].tankWeapon.weaponType == Weapon.SAW_TYPE){
+                tankGame.tankList[0].saw.strike();
+            }
+            else{
+                if(tankGame.tankList[0].canFire){
+                    tankGame.addProjectile(tankGame.tankList[0].fire());
+                }
+            }
         }
 
         //if the game in two player mode, detect if tank 2 fired
         if(GameState.twoPlayerMode){
-            if (keyCode === Q_CODE && tankGame.tankList[1].canFire() && !tankGame.getIsGameOver()) {
-                tankGame.addProjectile(tankGame.tankList[1].fire());
+            if (keyCode === Q_CODE && !tankGame.getIsGameOver()) {
+                if(tankGame.tankList[1].tankWeapon.weaponType == Weapon.SAW_TYPE){
+                    tankGame.tankList[1].saw.strike();
+                }
+                else{
+                    if(tankGame.tankList[1].canFire){    
+                        tankGame.addProjectile(tankGame.tankList[1].fire());
+                    }
+                }
             }
         }
     }

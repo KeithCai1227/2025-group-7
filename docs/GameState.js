@@ -132,7 +132,12 @@ class GameState{
         //collision checks
         this.checkProjectileTankOverlaps();
         this.checkPickupTankOverlaps();
-        this.checkProjectileWallOverlaps();
+
+        for(let i = 0; i < this.tankList.length; i++){
+            if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
+                this.checkSawTankOverlaps(this.tankList[i]);
+            }
+        }    
 
         //restart game if tank life is less than or equal to 0
         for(let i = 0; i < this.tankList.length; i++){
@@ -149,6 +154,8 @@ class GameState{
                         this.pickupList[0].sprite.remove();
                         this.pickupList.splice(0);
                     }
+
+                    
     
                     this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
                     this.restartGame();
@@ -195,6 +202,15 @@ class GameState{
                 GameState.projectileList[0].remove();
                 GameState.projectileList.splice(0);
             }
+            //remove all saw sprites
+            for(let i = 0; i < this.tankList.length; i++){
+                if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
+                    this.tankList[i].saw.glueJoint1.remove();
+                    this.tankList[i].saw.glueJoint2.remove();
+                    this.tankList[i].saw.sawSprite.remove();
+                    this.tankList[i].saw.collisionSprite.remove();
+                }
+            }
 
             //only refresh map once
             if(this.isGameOver){
@@ -211,6 +227,14 @@ class GameState{
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
             }
+
+            //create new saw if tank had a saw before restart
+            for(let i = 0; i < this.tankList.length; i++){
+                if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
+                    this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
+                }
+            }
+            
             //increment every time a game is won 
             this.gameOverCnt++;
             this.isGameOver = false;
@@ -227,7 +251,7 @@ class GameState{
                     //only reduce tank lives if game still in play
                     if(!this.isGameOver){
                         //each projectile has a "damage"
-                        let damage = GameState.projectileList[i].damage;
+                        let damage = GameState.projectileList[j].damage;
                         this.tankList[i].lifeDecrease(damage);
                     }
 
@@ -235,6 +259,14 @@ class GameState{
                     GameState.projectileList[j].remove();
                     GameState.projectileList.splice(j, 1);
                 }else j++;
+            }
+        }
+    }
+
+    checkSawTankOverlaps(sawTank){
+        for(let i = 0; i < this.tankList.length; i++){
+            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) && sawTank.saw.isStriking){
+                this.tankList[i].lifeDecrease(sawTank.saw.damage);
             }
         }
     }
@@ -252,6 +284,11 @@ class GameState{
                     } else if (this.pickupList[j].type == "BOMB"){
                         // give tank the "bomb" weapon
                         this.tankList[i].tankWeapon = new Weapon(Weapon.BOMB_TYPE);
+                    } else if (this.pickupList[j].type == "SAW"){
+                        if(this.tankList[i].tankWeapon.weaponType != Weapon.SAW_TYPE){
+                        this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
+                        }
+                        this.tankList[i].tankWeapon = new Weapon(Weapon.SAW_TYPE);
                     }
                 } else j++;
             }
@@ -270,6 +307,8 @@ class GameState{
             }
         }
     }
+
+
 
     drawHUD(){
         //obtain strings for scores

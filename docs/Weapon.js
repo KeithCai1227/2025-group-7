@@ -34,6 +34,11 @@ class Weapon{
             this.capacity = Weapon.BOMB_CAPACITY;
             this.numberOfRounds = 0;
         }
+        else if(weaponType == Weapon.SAW_TYPE){
+            this.weaponType = weaponType;
+            this.capacity = null;
+            this.numberOfRounds = null;
+        }
     }
 
     getAmmo() {

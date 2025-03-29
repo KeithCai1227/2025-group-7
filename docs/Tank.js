@@ -2,6 +2,7 @@ class Tank{
 
     tankWeapon; //which particular type of weapon the tank has
     tankSprite; //sprite created with P5 Play
+    saw;
     static TANK_HEIGHT = 30;
     static TANK_WIDTH = 20;
     static GUN_HEIGHT = 6;
@@ -38,6 +39,8 @@ class Tank{
             this.tankSprite.color = color(240, 0, 0);
         } else this.tankSprite.color = color(0, 240, 0);
 
+      
+
         //set the tank's speed and life based on the difficulty level
         if(difficultyLevel == GameState.EASY){
             this.tankLife = 3;
@@ -52,6 +55,9 @@ class Tank{
     draw(){
         //call the draw method of the underlying sprite
         this.tankSprite.draw();
+        if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
+            this.saw.draw();
+        }
     }
     canFire(){
         return (this.tankWeapon.numberOfRounds < this.tankWeapon.capacity);
@@ -137,6 +143,9 @@ class Tank{
     update(){
         //call the update method of the underlying sprite
         this.tankSprite.update();
+        if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
+            this.saw.update();
+        }
     }
     
     //updates the rotation and speed attributes of the tank sprite
