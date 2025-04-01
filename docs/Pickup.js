@@ -26,10 +26,8 @@ class Pickup {
             this.sprite.color = color(0, 0, 200);  
         }else if(randomiser == 2){
             //saw weapon pickup
-            //this.type = "SAW"
-            //this.sprite.color = color(0, 200, 0);
-            this.type = "AMMO";
-            this.sprite.color = color(0, 0, 200);  
+            this.type = "SAW"
+            this.sprite.color = color(0, 200, 0);
         }
         else{
             // bomb weapon pickup
