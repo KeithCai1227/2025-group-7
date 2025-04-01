@@ -68,7 +68,7 @@ function keyPressed() {
                 tankGame.tankList[0].saw.strike();
             }
             else{
-                if(tankGame.tankList[0].canFire){
+                if(tankGame.tankList[0].canFire()){
                     tankGame.addProjectile(tankGame.tankList[0].fire());
                 }
             }
@@ -81,7 +81,7 @@ function keyPressed() {
                     tankGame.tankList[1].saw.strike();
                 }
                 else{
-                    if(tankGame.tankList[1].canFire){    
+                    if(tankGame.tankList[1].canFire()){    
                         tankGame.addProjectile(tankGame.tankList[1].fire());
                     }
                 }
