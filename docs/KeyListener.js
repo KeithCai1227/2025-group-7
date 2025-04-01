@@ -35,19 +35,19 @@ class KeyListener {
               this.tank.move(Tank.NO_DIRECTION);
             }
         } else{
-            if(keyIsDown(D_CODE)){ 
+            if(keyIsDown(S_CODE)){ 
                 this.tank.move(Tank.RIGHT_DIRECTION);
             }
 
-            if(keyIsDown(A_CODE)){  
+            if(keyIsDown(W_CODE)){  
                 this.tank.move(Tank.LEFT_DIRECTION);
             }
 
-            if(keyIsDown(S_CODE)){  
+            if(keyIsDown(A_CODE)){  
                 this.tank.move(Tank.DOWN_DIRECTION);
             }
 
-            else if(keyIsDown(W_CODE)){  
+            else if(keyIsDown(D_CODE)){  
                 this.tank.move(Tank.UP_DIRECTION);
             }
 
