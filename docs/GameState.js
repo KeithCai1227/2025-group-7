@@ -224,17 +224,11 @@ class GameState{
                 //change position refresh when tank spawn implemented
                 //for now back to original positions
                 this.tankList[i].positionRefresh();
+                this.tankList[i].tankWeapon = new Weapon(Weapon.BULLET_TYPE);
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
             }
 
-            //create new saw if tank had a saw before restart
-            for(let i = 0; i < this.tankList.length; i++){
-                if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
-                    this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
-                }
-            }
-            
             //increment every time a game is won 
             this.gameOverCnt++;
             this.isGameOver = false;
