@@ -44,11 +44,10 @@ class Tank{
         //set the tank's speed and life based on the difficulty level
         if(difficultyLevel == GameState.EASY){
             this.tankLife = 3;
-            this.spdFactor = 4;
         } else if(difficultyLevel == GameState.HARD){
             this.tankLife = 1;
-            this.spdFactor = 2;
         }
+        this.spdFactor = 3;
         this.initialLife = this.tankLife;
     }
     
