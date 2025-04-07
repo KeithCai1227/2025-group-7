@@ -13,13 +13,13 @@ class Saw {
         this.tankSprite = tankSprite;
         this.sawSprite = new Sprite();
         //load in image of saw
-        this.sawSprite.img ="./Xx0mUwN_d.webp" ;
+        this.sawSprite.img = "./Xx0mUwN_d.png";
         this.sawSprite.img.scale = 0.03;
-        this.sawSprite.img.height = this.sawSprite.img.height * 0.5;
-        this.sawSprite.rotationLock = true;
+        this.sawSprite.img.height = this.sawSprite.img.height * 0.03;
+        this.sawSprite.img.width = this.sawSprite.img.width * 0.03;
+        //this.sawSprite.rotationLock = true;
 
         //set initial location
-        this.setSpriteLocation(this.sawSprite, this.sawOffset);
 
         //create sprite that acts as collider
         this.collisionSprite = new Sprite();
@@ -30,13 +30,15 @@ class Saw {
 
         //attach sprites to tank
         this.glueJoint1 = new GlueJoint(this.collisionSprite, this.tankSprite);
-        this.sawSprite.overlaps(allSprites);
+        this.sawSprite.overlaps(allSprites); 
 
+       
+        this.setSpriteLocation(this.sawSprite, this.sawOffset);
         this.glueJoint2 = new GlueJoint(this.sawSprite, this.tankSprite);
-
         this.sawSprite.mass = 0;
         this.tankSprite.mass = 0;
         this.collisionSprite.mass = 0;
+    
     }
 
     setSpriteLocation(sprite, offset){
@@ -66,18 +68,26 @@ class Saw {
     strike(){
         //increase saw size to show impact
         this.isStriking = true
-        this.sawSprite.img.scale = 0.15;
-
+        this.sawSprite.img.scale = 0.04;
         //wait before reverting
         setTimeout(() => {
-        this.sawSprite.img.scale = 0.1;
+        this.sawSprite.img.scale = 0.03;
         this.isStriking = false;
         }, 50);
     }
 
     draw(){
+    
+        
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = 'white';
+        
         this.sawSprite.draw();
         this.collisionSprite.draw();
+        drawingContext.shadowBlur = 0;
+        drawingContext.shadowColor = 'transparent';
+
+        
     }
     
 
@@ -86,8 +96,8 @@ class Saw {
         this.sawSprite.velocity.x = this.tankSprite.velocity.x;
         this.sawSprite.velocity.y = this.tankSprite.velocity.y;
         this.collisionSprite.velocity.x = this.tankSprite.velocity.x;
-        this.collisionSprite.velocity.y = this.tankSprite.velocity.y;
-        
+        this.collisionSprite.velocity.y = this.collisionSprite.velocity.y;
+       
     }
 
 

@@ -37,7 +37,7 @@ class Pickup {
         else{
             // bomb weapon pickup
             this.type = "BOMB";
-            this.sprite.color = color(0, 0, 0);
+            this.sprite.color = color(255, 255, 255);
         }
             
     }

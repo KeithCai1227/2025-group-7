@@ -157,8 +157,6 @@ class GameState{
                         this.pickupList[0].sprite.remove();
                         this.pickupList.splice(0);
                     }
-
-                    
     
                     this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
                     this.restartGame();
@@ -212,6 +210,7 @@ class GameState{
                     this.tankList[i].saw.glueJoint2.remove();
                     this.tankList[i].saw.sawSprite.remove();
                     this.tankList[i].saw.collisionSprite.remove();
+                    console.log("removed");
                 }
             }
 
@@ -229,13 +228,7 @@ class GameState{
                 this.tankList[i].positionRefresh();
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
-            }
-
-            //create new saw if tank had a saw before restart
-            for(let i = 0; i < this.tankList.length; i++){
-                if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
-                    this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
-                }
+                this.tankList[i].tankWeapon = new Weapon(Weapon.BULLET_TYPE);
             }
             
             //increment every time a game is won 
