@@ -58,6 +58,9 @@ On engineering, we were warned that a two player game operated from a single key
 
 - User Stories
 
+Fig. X shows our onion model. Directly outside the core video game lie direct stakeholders. These are people responsible for core aspects of game development including developers, UI/UX developers, project managers and the product owner. Developers expect the game to be written according to best practices and accepted standards for improved collaborative efficiency. While project managers expect timely and cost-effective delivery of the game, the product owner (as voice of the customer) expects the game to satisfy end users and will therefore interface closely with user testers. These direct stakeholders rely upon indirect stakeholders (testers, maintainers, future developers) for feedback guiding the sprint process and long-term success of the game. All those involved in development rely upon external stakeholders (including target users, the hosting platform and our lecturers) to validate the game and drive developments post-launch. Finally, the wider environment (ethical bodies, data privacy bodies, library providers, bad agents) is concerned with other aspects which might influence external stakeholders to play (or not play) the game, as well as issues which the product owner must bear in mind at all times.
+
+![Onion Model](./diagrams/onion-diagram.png)
 
 ### Design
 
