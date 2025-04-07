@@ -13,8 +13,8 @@ class Saw {
         this.tankSprite = tankSprite;
         this.sawSprite = new Sprite();
         //load in image of saw
-        this.sawSprite.img = "https://i.imgur.com/Xx0mUwN.png";
-        this.sawSprite.img.scale = 0.1;
+        this.sawSprite.img ="./Xx0mUwN_d.webp" ;
+        this.sawSprite.img.scale = 0.03;
         this.sawSprite.img.height = this.sawSprite.img.height * 0.5;
         this.sawSprite.rotationLock = true;
 
