@@ -45,7 +45,13 @@ class Pickup {
     draw(){
 
         drawingContext.shadowBlur = 15;
+        if(this.sprite.color != color(0, 0, 0)){
         drawingContext.shadowColor = this.sprite.color;
+        } else{
+            drawingContext.shadowColor = color(255, 255, 255);
+        }
+        
+            
         
         this.sprite.draw();
         drawingContext.shadowBlur = 0;
