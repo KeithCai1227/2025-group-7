@@ -2,15 +2,15 @@ let walls;
 class Grid {
 	current;
     constructor(gridHeight) {
-        this.w = 80;
+        this.w = 120;
         this.cols = floor(gridHeight/this.w);
-        this.rows = floor(width/this.w);
+        this.rows = floor(width/this.w+2);
         this.celltack = [];
         this.grid = [];
         walls = new Group();
-        walls.color = 'RGB(211, 111, 76)';
-        walls.stroke = 'black';
-        walls.strokeWeight = '3';
+        walls.color = 'red';
+        walls.stroke = 'red';
+        walls.strokeWeight = '0';
         walls.overlaps(walls);
         walls.collider = ('static');
         walls.autoDraw = false;
@@ -46,19 +46,28 @@ class Grid {
     //}while(this.celltack != 0);
     }
     initMap(){
+        
         do {
             this.generateMap();
         }while(this.celltack != 0);
 
         for(let i = 0; i < this.grid[0].length; i++){
             for(let j = 0; j < this.grid.length; j++){
+            // remove overlapping walls
+            this.grid[j][i].removeOverlappingWalls();
             this.grid[j][i].show();
             }
         }
     }
 
     draw() {
+
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(255, 150, 150);
+        
         walls.draw();
+        drawingContext.shadowBlur = 0;
+        drawingContext.shadowColor = 'transparent';
     }
 
     update() {

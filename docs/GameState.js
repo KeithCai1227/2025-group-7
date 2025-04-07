@@ -10,10 +10,10 @@ class GameState{
     static LOWER_PANEL_HT = 200;
     static CANVAS_HEIGHT = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT;
     gameMap;
-    RAND1X = floor(random(9, 11)); 
-    RAND1Y = floor(random(1, 5)); 
-    RAND2X = floor(random(1, 4));
-    RAND2Y = floor(random(1, 5));
+    RAND1X = floor(random(8, 10)); 
+    RAND1Y = floor(random(1, 4)); 
+    RAND2X = floor(random(1, 3));
+    RAND2Y = floor(random(1, 4));
     TANK1X = this.RAND1X*80-40;
     TANK1Y = this.RAND1Y*80-40;
     TANK2X = this.RAND2X*80-40;
@@ -72,6 +72,9 @@ class GameState{
     
     draw(){
         background(200, 200, 200);
+        
+        fill('black'); // Different color for the window
+        rect(480, 240, 960, 480); // Position & size
         
         //draw the map
          this.gameMap.draw();

@@ -2,110 +2,163 @@ class Cell {
 
     constructor(i, j,grid, cols, rows, cellWidth){
         this.w = cellWidth;
-        this.wallWidth = 15;
+        this.wallLength = this.w/2+2.3;
+        this.wallWidth = 3;
+        this.radius = sqrt(3)/2 * this.wallLength - this.wallWidth/2;
         this.grid = grid;
         this.cols = cols;
         this.rows = rows;
         this.i = i;
         this.j = j;
-        this.wallState = {"top": true, "right": true, "bottom": true, "left": true};
+        this.centerX = this.i * 3/2 * this.wallLength + this.wallLength;
+        this.centerY = this.j * sqrt(3) * this.wallLength + sqrt(3)/2 * this.wallLength + (i%2 === 0? 0 : sqrt(3)/2 * this.wallLength - 2);
+        // Hexagon with 6 sides in wallState
+        this.wallState = {"top": true, "topRight": true, "bottomRight": true, "bottom": true, "bottomLeft": true, "topLeft": true};
         this.visited = 0;
     }
-    show(){
-        let x = this.i*this.w;
-        let y = this.j*this.w;
-                
-        if(this.wallState["top"]){
-            this.top = new walls.Sprite(x+this.w/2,y,this.w+this.wallWidth,this.wallWidth);
-            this.top.rotation = 0;
-            if(y === 0){
-                this.top.outerWall = true;
-            }
-        } 
-        if(!this.wallState["top"] && this.top){
-            this.top.remove();
-        }
-        if(this.wallState["right"]){
-            this.right = new walls.Sprite(x,y+this.w/2,this.w+this.wallWidth,this.wallWidth);
-            this.right.rotation = 90;
-            if(x === 0){
-                this.right.outerWall = true;
-            }
-            
-        }
-        if(!this.wallState["right"] && this.right){
-            this.right.remove();
-        }
-        if(this.wallState["bottom"]){
-            this.bottom = new walls.Sprite(x+this.w/2,y+this.w,this.w+this.wallWidth,this.wallWidth);
-            this.bottom.rotation = 0;
-            if(this.j === this.cols-1){
-                this.bottom.outerWall = true;
-            }
-        }
-        if(!this.wallState["bottom"] && this.bottom){
-            this.bottom.remove();
-        } 
-        if(this.wallState["left"]){
-            this.left = new walls.Sprite(x+this.w,y+this.w/2,this.w+this.wallWidth,this.wallWidth);
-            this.left.rotation = 90;
-            if(this.i === this.rows-1){
-                this.left.outerWall = true;
-            }
-            
-        }
-        if(!this.wallState["left"] && this.left){
-            this.left.remove();
-        }
+    show() {
+        // Calculate center position
 
-    }
-    checkNeighbours(){
-        this.neighbours = []
-        let top = this.i > 0 ? this.grid[this.i - 1][this.j] : undefined;
-        let right = this.j < this.cols - 1 ? this.grid[this.i][this.j + 1] : undefined;
-        let bottom = this.i < this.rows - 1 ? this.grid[this.i + 1][this.j] : undefined;
-        let left = this.j > 0 ? this.grid[this.i][this.j - 1] : undefined;
+        // Adjuust for neighboring cells to have overlapping walls
+        this.centerX -= this.wallWidth * this.i;
+        this.centerY -= this.wallWidth * this.j;
+
         
-        if(top && top.visited < (random() < 0.09? 4 : 2)){ //check top
-       this.neighbours.push(top);
-        }
-        if(right && right.visited < (random() < 0.09? 4 : 2)){ //check right
-       this.neighbours.push(right);
-        }
-        if(bottom && bottom.visited < (random() < 0.09? 4 : 2)){ //check bottom
-       this.neighbours.push(bottom);
-        }
-        if(left && left.visited < (random() < 0.09? 4 : 2)){ //check left
-       this.neighbours.push(left);
+    
+        // List all cell walls with their angles and outer conditions
+        const cellWalls = [
+            { name: "top", angle: 0, outer: this.j === 0 },
+            { name: "topRight", angle: 60, outer: this.i === this.rows-1 || this.j === (this.i % 2 ? this.cols-1 : 0) },
+            { name: "bottomRight", angle: 120, outer: this.i === this.rows-1 || this.j === (this.i % 2 ? this.cols-1 : 0) },
+            { name: "bottom", angle: 180, outer: this.j === this.cols-1 },
+            { name: "bottomLeft", angle: 240, outer: this.i === 0 || this.j === (this.i % 2 ? this.cols-1 : 0) },
+            { name: "topLeft", angle: 300, outer: this.i === 0 || this.j === (this.i % 2 ? this.cols-1 : 0) }
+        ];
+    
+        // Handle each wall
+        cellWalls.forEach(wall => {
+            // Remove wall if it exists but shouldn't
+            if (!this.wallState[wall.name] && this[wall.name]) {
+                this[wall.name].remove();
+                return;
+            }
+    
+            // Create wall if needed
+            if (this.wallState[wall.name]) {
+                const x = this.centerX + this.radius * sin(wall.angle);
+                const y = this.centerY - this.radius * cos(wall.angle);
+                
+                this[wall.name] = new walls.Sprite(x, y, this.wallLength, this.wallWidth);
+                this[wall.name].rotation = wall.angle;
+                
+                if (wall.outer) {
+                    this[wall.name].outerWall = true;
+                }
+            }
+        });
+    }
+
+    checkNeighbours() {
+        this.neighbours = [];
+        
+        // Hexagonal grid neighbors (6 directions)
+        const directions = [
+            { dx: 0, dy: -1, name: "top" },        // above
+            { dx: 1, dy: this.i % 2 ? 0 : -1, name: "topRight" },  // top-right
+            { dx: 1, dy: this.i % 2 ? 1 : 0, name: "bottomRight" }, // bottom-right
+            { dx: 0, dy: 1, name: "bottom" },       // below
+            { dx: -1, dy: this.i % 2 ? 1 : 0, name: "bottomLeft" }, // bottom-left
+            { dx: -1, dy: this.i % 2 ? 0 : -1, name: "topLeft" }    // top-left
+        ];
+        
+        for (let dir of directions) {
+            const ni = this.i + dir.dx;
+            const nj = this.j + dir.dy;
+            
+            if (ni >= 0 && ni < this.rows && nj >= 0 && nj < this.cols) {
+                const neighbor = this.grid[ni][nj];
+                if (neighbor.visited < (random() < 0.09 ? 4 : 2)) {
+                    this.neighbours.push(neighbor);
+                }
+            }
         }
 
         if (this.neighbours.length > 0) {
-            let next = floor(random(0, this.neighbours.length));
-            return this.neighbours[next];
-        } 
-        else {
-            return undefined;
+            return random(this.neighbours);
         }
-    }  
-    removeWall(c) {
-        let x = this.i - c.i;
-        if(x === 1) {
-            this.wallState["right"] = false;
-            c.wallState["left"] = false;
-        }
-        else if(x === -1) {
-            this.wallState["left"] = false;
-            c.wallState["right"] = false;
-        }
-        let y = this.j - c.j;
-        if(y === 1){
-            this.wallState["top"] = false;
-            c.wallState["bottom"] = false;
-        }
-        else if(y === -1){
-            this.wallState["bottom"] = false;
-            c.wallState["top"] = false;
+        return undefined;
+    }
 
+    removeWall(neighbour) {
+        // Calculate relative position
+        const dx = neighbour.i - this.i;
+        const dy = neighbour.j - this.j;
+        
+        // Hexagonal grid wall removal
+        if (dx === 0 && dy === -1) { // above (top)
+            this.wallState.top = false;
+            neighbour.wallState.bottom = false;
+        } else if (dx === 0 && dy === 1) { // below (bottom)
+            this.wallState.bottom = false;
+            neighbour.wallState.top = false;
+        } else if (dx === 1) {
+            if (this.i % 2) {
+                if (dy === 0) { // top-right
+                    this.wallState.topRight = false;
+                    neighbour.wallState.bottomLeft = false;
+                } else if (dy === 1) { // bottom-right
+                    this.wallState.bottomRight = false;
+                    neighbour.wallState.topLeft = false;
+                }
+            } else {
+                if (dy === -1) { // top-right
+                    this.wallState.topRight = false;
+                    neighbour.wallState.bottomLeft = false;
+                } else if (dy === 0) { // bottom-right
+                    this.wallState.bottomRight = false;
+                    neighbour.wallState.topLeft = false;
+                }
+            }
+        } else if (dx === -1) {
+            if (this.i % 2) {
+                if (dy === 0) { // top-left
+                    this.wallState.topLeft = false;
+                    neighbour.wallState.bottomRight = false;
+                } else if (dy === 1) { // bottom-left
+                    this.wallState.bottomLeft = false;
+                    neighbour.wallState.topRight = false;
+                }
+            } else {
+                if (dy === -1) { // top-left
+                    this.wallState.topLeft = false;
+                    neighbour.wallState.bottomRight = false;
+                } else if (dy === 0) { // bottom-left
+                    this.wallState.bottomLeft = false;
+                    neighbour.wallState.topRight = false;
+                }
+            }
+        }
+    }
+    removeOverlappingWalls() {
+        // Remove overlapping walls with neighboring cells
+        const directions = [
+            { dx: 0, dy: -1, name: "top", oposite: "bottom" },
+            { dx: 1, dy: this.i % 2 ? 0 : -1, name: "topRight", oposite: "bottomLeft" },
+            { dx: 1, dy: this.i % 2 ? 1 : 0, name: "bottomRight", oposite: "topLeft" },
+            { dx: 0, dy: 1, name: "bottom", oposite: "top" },
+            { dx: -1, dy: this.i % 2 ? 1 : 0, name: "bottomLeft", oposite: "topRight" },
+            { dx: -1, dy: this.i % 2 ? 0 : -1, name: "topLeft", oposite: "bottomRight" }
+        ];
+        for (let dir of directions) {
+            const ni = this.i + dir.dx;
+            const nj = this.j + dir.dy;
+            
+            if (ni >= 0 && ni < this.rows && nj >= 0 && nj < this.cols) {
+                const neighbour = this.grid[ni][nj];
+                if (this.wallState[dir.name]) {
+                    neighbour.wallState[dir.oposite] = false;    
+                }
+            }
         }
     }
 }

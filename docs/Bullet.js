@@ -7,7 +7,7 @@ class Bullet extends Projectile{
         this.sprite.y = y;
         this.sprite.duration = Weapon.BULLET_TIME;
         this.sprite.diameter = 10;
-        this.sprite.color = color(0, 0, 0);
+        this.sprite.color = color(255, 255, 255);
         this.sprite.direction = angle;
         this.sprite.speed = 4;
         this.sprite.bounciness = 1;
