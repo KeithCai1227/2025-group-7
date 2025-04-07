@@ -15,6 +15,8 @@ class Saw {
         //load in image of saw
         this.sawSprite.img = "https://i.imgur.com/Xx0mUwN.png";
         this.sawSprite.img.scale = 0.1;
+        this.sawSprite.img.height = this.sawSprite.img.height * 0.5;
+        this.sawSprite.rotationLock = true;
 
         //set initial location
         this.setSpriteLocation(this.sawSprite, this.sawOffset);
