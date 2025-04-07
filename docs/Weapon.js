@@ -15,6 +15,7 @@ class Weapon{
 
     //time before weapon expires
     static BULLET_TIME = 10;
+    static LASER_TIME = 8; 
     static BOMB_TIME = 5;
     static SPLINTER_TIME = 2;
     
