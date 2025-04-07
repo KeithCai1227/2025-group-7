@@ -15,7 +15,7 @@ class Pickup {
         this.sprite.autoDraw = false;
         
         // selects pick-up by using millis as a pseudo-random number
-        let randomiser = Math.floor(Math.random() * 100) % 4;
+        let randomiser = Math.floor(Math.random() * 100) % 5;
             
         if(randomiser == 0){
             this.type = "HEALTH";
