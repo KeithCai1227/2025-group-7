@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>354</x>
+      <y>54</y>
+      <w>300</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>GameState
+--
+Attributes:
+ProjectileList [list of all instantiated projectiles]
+TankList [list of instantiated tanks]
+Map
+CollectibleList
+--
+Methods:
+Draw() [draws all map entities by calling their draw()'s]
+Update() [calls updates of all map entities]
+AddProjectile() [adds projectile to ProjectileList]
+CheckBulletTankOvelaps() [inflicts damage to tank]
+CheckBulletWallOverlaps() [if wall damages, inflicts damage]
+--
+Responsibilities
+Class which performs instantiating, drawing and updating of all map elements.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>444</x>
+      <y>600</y>
+      <w>108</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>/Projectile/
+--
+- xlocation
+- ylocation
+- duration
+--
+/+ draw()/
+/+ update()/
+/+ remove()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>228</x>
+      <y>738</y>
+      <w>96</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Bullet
+--
+- bulletSprite
+--
++ draw()
++ update()
++ remove()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1032</x>
+      <y>702</y>
+      <w>120</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>Weapon
+--
+- lifespan
+- numberOfRounds
+- weaponType
+_- bulletCapacity_
+_- bulletDuration_
+_- bombCapacity_
+_- bombDuration_
+_- laserCapacity_
+_- laserDuration_
+...
+--
+Methods:
++ resetAmmo()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>726</x>
+      <y>30</y>
+      <w>210</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>KeyListener
+--
+Attributes:
+OneOrTwoPlayer [Boolean]
+--
+Methods:
+Scan() [updates Tank speed and rotation]
+--
+Responsibilities:
+Scan for keys (WASD, arrows) and take action
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1032</x>
+      <y>546</y>
+      <w>120</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>Tank
+--
+- weapon
+- life
+- tankSprite
+--
++ draw()
++ update()
++ destroy()
++ move()
++ fire()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>36</y>
+      <w>210</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>IntroScreen
+--
+Attributes:
+--
+Methods:
+--
+Responsibilities:
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>738</y>
+      <w>96</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Missile
+--
+- missileSprite
+--
++ draw()
++ update()
++ remove()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>564</x>
+      <y>738</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Laser
+--
+- laserSprite
+--
++ draw()
++ update()
++ remove()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>738</y>
+      <w>96</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Bomb
+--
+- bombSprite
+--
++ draw()
++ update()
++ remove()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>342</x>
+      <y>738</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Saw
+--
+- sawSprite
+--
++ draw()
++ update()
++ remove()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>492</x>
+      <y>678</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>696</y>
+      <w>486</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;790.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>696</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>696</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>492</x>
+      <y>696</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>696</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>696</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>732</y>
+      <w>108</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>KeyListener
+--
+- arrKeyControls: Boolean
+--
++ listenForKeys()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>822</x>
+      <y>606</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+- score
+- difficultyLevel
+- humanPlayer: Boolean
+- keyListener
+--
++ respondToPlayerInput()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>876</x>
+      <y>678</y>
+      <w>30</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>204</x>
+      <y>258</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+teaches to &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1086</x>
+      <y>648</y>
+      <w>30</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
