@@ -29,6 +29,11 @@ class Pickup {
             this.type = "SAW"
             this.sprite.color = color(0, 200, 0);
         }
+        else if(randomiser == 3){
+            // laser weapon pickup
+            this.type = "LASER";
+            this.sprite.color = color(255, 255, 0);
+        }
         else{
             // bomb weapon pickup
             this.type = "BOMB";
