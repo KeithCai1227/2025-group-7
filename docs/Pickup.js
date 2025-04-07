@@ -43,7 +43,15 @@ class Pickup {
     }
 
     draw(){
+
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = this.sprite.color;
+        
         this.sprite.draw();
+        drawingContext.shadowBlur = 0;
+        drawingContext.shadowColor = 'transparent';
+
+        
     }
 
     update(){
