@@ -210,7 +210,6 @@ class GameState{
                     this.tankList[i].saw.glueJoint2.remove();
                     this.tankList[i].saw.sawSprite.remove();
                     this.tankList[i].saw.collisionSprite.remove();
-                    console.log("removed");
                 }
             }
 
