@@ -210,7 +210,6 @@ class GameState{
                     this.tankList[i].saw.glueJoint2.remove();
                     this.tankList[i].saw.sawSprite.remove();
                     this.tankList[i].saw.collisionSprite.remove();
-                    console.log("removed");
                 }
             }
 
@@ -228,7 +227,6 @@ class GameState{
                 this.tankList[i].positionRefresh();
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
-                this.tankList[i].tankWeapon = new Weapon(Weapon.BULLET_TYPE);
             }
             
             //increment every time a game is won 

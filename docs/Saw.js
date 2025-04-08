@@ -77,8 +77,7 @@ class Saw {
     }
 
     draw(){
-    
-        
+
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = 'white';
         
