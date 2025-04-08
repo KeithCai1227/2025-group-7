@@ -4,35 +4,37 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>354</x>
-      <y>54</y>
-      <w>300</w>
-      <h>156</h>
+      <x>642</x>
+      <y>240</y>
+      <w>180</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>GameState
 --
-Attributes:
-ProjectileList [list of all instantiated projectiles]
-TankList [list of instantiated tanks]
-Map
-CollectibleList
+- gameMap: Grid
+- projectileList: Projectile [0..*]
+- tankList: Tank [2]
+- pickupList: Pickup [0..*]
+- player1: Player
+- player2: Player
+- isGameOver: Boolean
+_+ player1Difficulty_
+_+ player2Difficulty_
+_+ twoPlayerMode_
 --
-Methods:
-Draw() [draws all map entities by calling their draw()'s]
-Update() [calls updates of all map entities]
-AddProjectile() [adds projectile to ProjectileList]
-CheckBulletTankOvelaps() [inflicts damage to tank]
-CheckBulletWallOverlaps() [if wall damages, inflicts damage]
---
-Responsibilities
-Class which performs instantiating, drawing and updating of all map elements.</panel_attributes>
++ draw()
++ update()
++ addProjectile(projectile: Projectile)
++ checkProjectileTankOvelaps()
++ checkProjectileWallOverlaps()
+bg=ORANGE</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>444</x>
-      <y>600</y>
+      <x>216</x>
+      <y>582</y>
       <w>108</w>
       <h>84</h>
     </coordinates>
@@ -44,14 +46,15 @@ Class which performs instantiating, drawing and updating of all map elements.</p
 --
 /+ draw()/
 /+ update()/
-/+ remove()/</panel_attributes>
+/+ remove()/
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>228</x>
-      <y>738</y>
+      <x>0</x>
+      <y>720</y>
       <w>96</w>
       <h>60</h>
     </coordinates>
@@ -63,16 +66,17 @@ Class which performs instantiating, drawing and updating of all map elements.</p
 + update()
 + remove()
 
-</panel_attributes>
+
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1032</x>
-      <y>702</y>
+      <x>882</x>
+      <y>684</y>
       <w>120</w>
-      <h>138</h>
+      <h>132</h>
     </coordinates>
     <panel_attributes>Weapon
 --
@@ -87,38 +91,17 @@ _- laserCapacity_
 _- laserDuration_
 ...
 --
-Methods:
 + resetAmmo()
 
-</panel_attributes>
+
+bg=PINK</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>726</x>
-      <y>30</y>
-      <w>210</w>
-      <h>114</h>
-    </coordinates>
-    <panel_attributes>KeyListener
---
-Attributes:
-OneOrTwoPlayer [Boolean]
---
-Methods:
-Scan() [updates Tank speed and rotation]
---
-Responsibilities:
-Scan for keys (WASD, arrows) and take action
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1032</x>
-      <y>546</y>
+      <x>882</x>
+      <y>528</y>
       <w>120</w>
       <h>108</h>
     </coordinates>
@@ -132,32 +115,32 @@ Scan for keys (WASD, arrows) and take action
 + update()
 + destroy()
 + move()
-+ fire()</panel_attributes>
++ fire()
+bg=PINK</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>36</y>
-      <w>210</w>
-      <h>114</h>
+      <x>474</x>
+      <y>240</y>
+      <w>114</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>IntroScreen
+    <panel_attributes>GameSetup
 --
-Attributes:
+- selector
 --
-Methods:
---
-Responsibilities:
++ draw()
++ keyListening()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>738</y>
+      <x>222</x>
+      <y>720</y>
       <w>96</w>
       <h>60</h>
     </coordinates>
@@ -168,14 +151,15 @@ Responsibilities:
 + draw()
 + update()
 + remove()
-</panel_attributes>
+
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>564</x>
-      <y>738</y>
+      <x>336</x>
+      <y>720</y>
       <w>90</w>
       <h>60</h>
     </coordinates>
@@ -186,14 +170,15 @@ Responsibilities:
 + draw()
 + update()
 + remove()
-</panel_attributes>
+
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
-      <y>738</y>
+      <x>444</x>
+      <y>720</y>
       <w>96</w>
       <h>60</h>
     </coordinates>
@@ -204,14 +189,15 @@ Responsibilities:
 + draw()
 + update()
 + remove()
-</panel_attributes>
+
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>342</x>
-      <y>738</y>
+      <x>114</x>
+      <y>720</y>
       <w>90</w>
       <h>60</h>
     </coordinates>
@@ -222,14 +208,15 @@ Responsibilities:
 + draw()
 + update()
 + remove()
-</panel_attributes>
+
+bg=YELLOW</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>492</x>
-      <y>678</y>
+      <x>264</x>
+      <y>660</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -239,19 +226,19 @@ Responsibilities:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>252</x>
-      <y>696</y>
-      <w>486</w>
+      <x>24</x>
+      <y>678</y>
+      <w>594</w>
       <h>18</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;790.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;970.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>252</x>
-      <y>696</y>
+      <x>24</x>
+      <y>678</y>
       <w>18</w>
       <h>54</h>
     </coordinates>
@@ -261,8 +248,30 @@ Responsibilities:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>696</y>
+      <x>150</x>
+      <y>678</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>678</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>372</x>
+      <y>678</y>
       <w>18</w>
       <h>54</h>
     </coordinates>
@@ -273,29 +282,7 @@ Responsibilities:
     <id>Relation</id>
     <coordinates>
       <x>492</x>
-      <y>696</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>600</x>
-      <y>696</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>720</x>
-      <y>696</y>
+      <y>678</y>
       <w>18</w>
       <h>54</h>
     </coordinates>
@@ -305,8 +292,8 @@ Responsibilities:
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>828</x>
-      <y>732</y>
+      <x>678</x>
+      <y>714</y>
       <w>108</w>
       <h>48</h>
     </coordinates>
@@ -320,8 +307,8 @@ Responsibilities:
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>822</x>
-      <y>606</y>
+      <x>672</x>
+      <y>588</y>
       <w>126</w>
       <h>78</h>
     </coordinates>
@@ -338,41 +325,275 @@ Responsibilities:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>876</x>
+      <x>726</x>
+      <y>660</y>
+      <w>30</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>630</y>
+      <w>24</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+bg=GRAY</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1068</x>
+      <y>684</y>
+      <w>132</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Cell
+--
+--
++ show()
++ checkNeighbours()
++ removeWall(neighbour: Cell)
++ removeOverlappingWalls()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1062</x>
+      <y>534</y>
+      <w>132</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Grid
+--
++ walls
+- rows
+- cols
+--
++ initGrid()
++ generateMap()
++ initMap()
++ draw()
++ update()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>630</y>
+      <w>30</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..*
+bg=GRAY</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>474</y>
+      <w>876</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;1440.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>474</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>474</y>
+      <w>24</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>474</y>
+      <w>24</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>474</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>402</y>
+      <w>24</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>558</x>
+      <y>720</y>
+      <w>96</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Splinter
+--
+- splinterSprite
+--
++ draw()
++ update()
++ remove()
+
+bg=YELLOW</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
       <y>678</y>
-      <w>30</w>
-      <h>66</h>
+      <w>18</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=1
-m2=0..1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>888</x>
+      <y>240</y>
+      <w>90</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>GameFinish
+--
+--
++ draw()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>66</y>
+      <w>174</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>GameController
+--
+- tankGame: GameState
+- startingScreen: GameSetup
+- gameEndScreen: GameFinish
+--
++ draw()
++ setup()
++ keyPressed()
+</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>204</x>
-      <y>258</y>
-      <w>114</w>
-      <h>30</h>
+      <x>522</x>
+      <y>180</y>
+      <w>420</w>
+      <h>18</h>
     </coordinates>
-    <panel_attributes>lt=-
-m1=0..n
-m2=0..1
-teaches to &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;680.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1086</x>
-      <y>648</y>
-      <w>30</w>
-      <h>66</h>
+      <x>522</x>
+      <y>180</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=1
-m2=0..1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <panel_attributes>lt=-&gt;
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>180</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>924</x>
+      <y>180</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>150</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
 </diagram>
