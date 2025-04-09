@@ -10,8 +10,8 @@ class Cell {
         this.rows = rows;
         this.i = i;
         this.j = j;
-        this.centerX = this.i * 3/2 * this.wallLength + this.wallLength;
-        this.centerY = this.j * sqrt(3) * this.wallLength + sqrt(3)/2 * this.wallLength + (i%2 === 0? 0 : sqrt(3)/2 * this.wallLength - 2);
+        this.centerX = round(this.i * (3/2 * this.wallLength - this.wallWidth) + this.wallLength);
+        this.centerY = round(this.j * (sqrt(3) * this.wallLength - this.wallWidth) + sqrt(3) / 2 * this.wallLength + (this.i % 2 === 0 ? 0 : sqrt(3) / 2 * this.wallLength - 2));
         // Hexagon with 6 sides in wallState
         this.wallState = {"top": true, "topRight": true, "bottomRight": true, "bottom": true, "bottomLeft": true, "topLeft": true};
         this.visited = 0;
@@ -19,12 +19,7 @@ class Cell {
     show() {
         // Calculate center position
 
-        // Adjuust for neighboring cells to have overlapping walls
-        this.centerX -= this.wallWidth * this.i;
-        this.centerY -= this.wallWidth * this.j;
 
-        
-    
         // List all cell walls with their angles and outer conditions
         const cellWalls = [
             { name: "top", angle: 0, outer: this.j === 0 },

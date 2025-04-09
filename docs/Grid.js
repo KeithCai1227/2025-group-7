@@ -3,8 +3,8 @@ class Grid {
 	current;
     constructor(gridHeight) {
         this.w = 120;
-        this.cols = floor(gridHeight/this.w);
-        this.rows = floor(width/this.w+2);
+        this.cols = floor(gridHeight/this.w); // 4
+        this.rows = floor(width/this.w+2); // 10
         this.celltack = [];
         this.grid = [];
         walls = new Group();
