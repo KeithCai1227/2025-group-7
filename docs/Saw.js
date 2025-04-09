@@ -1,5 +1,7 @@
 
 let offset;
+let sawWidth = 760;
+let sawHeight = 378;
 
 class Saw {
 
@@ -17,9 +19,7 @@ class Saw {
         this.sawSprite.img.scale = 0.03;
         this.sawSprite.img.height = this.sawSprite.img.height * 0.03;
         this.sawSprite.img.width = this.sawSprite.img.width * 0.03;
-        //this.sawSprite.rotationLock = true;
 
-        //set initial location
 
         //create sprite that acts as collider
         this.collisionSprite = new Sprite();
@@ -77,7 +77,6 @@ class Saw {
     }
 
     draw(){
-
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = 'white';
         
@@ -85,7 +84,6 @@ class Saw {
         this.collisionSprite.draw();
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
-
         
     }
     
@@ -96,7 +94,17 @@ class Saw {
         this.sawSprite.velocity.y = this.tankSprite.velocity.y;
         this.collisionSprite.velocity.x = this.tankSprite.velocity.x;
         this.collisionSprite.velocity.y = this.collisionSprite.velocity.y;
+
+        this.sawSprite.img.width = sawWidth;
+        this.sawSprite.img.height = sawHeight;
        
+    }
+
+    remove(){
+        this.glueJoint1.remove();
+        this.collisionSprite.remove();
+        this.glueJoint2.remove();
+        this.sawSprite.remove();
     }
 
 
