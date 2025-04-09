@@ -250,11 +250,11 @@ current = next</panel_attributes>
     <coordinates>
       <x>680</x>
       <y>800</y>
-      <w>176</w>
+      <w>240</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-cellstack.pop()</panel_attributes>
+current = cellstack.pop()</panel_attributes>
     <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
