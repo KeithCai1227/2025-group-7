@@ -7,6 +7,7 @@ class Weapon{
     static BULLET_TYPE = 0;
     static LASER_TYPE = 1;
     static BOMB_TYPE = 2;
+    static SAW_TYPE = 3;
 
     //capacity of weapon types
     static BULLET_CAPACITY = 10;

@@ -13,10 +13,10 @@ class Pickup {
         this.sprite.collider = "static";
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
-        
+        this.sprite.overlaps(allSprites);
         // selects pick-up by using millis as a pseudo-random number
         let randomiser = Math.floor(Math.random() * 100) % 5;
-            
+        
         if(randomiser == 0){
             this.type = "HEALTH";
             this.sprite.color = color(200, 0, 0);
@@ -39,6 +39,7 @@ class Pickup {
             this.type = "BOMB";
             this.sprite.color = color(255, 255, 255);
         }
+            
             
     }
 

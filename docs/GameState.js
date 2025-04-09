@@ -206,10 +206,7 @@ class GameState{
             //remove all saw sprites
             for(let i = 0; i < this.tankList.length; i++){
                 if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
-                    this.tankList[i].saw.glueJoint1.remove();
-                    this.tankList[i].saw.glueJoint2.remove();
-                    this.tankList[i].saw.sawSprite.remove();
-                    this.tankList[i].saw.collisionSprite.remove();
+                    this.tankList[i].saw.remove();
                 }
             }
 
@@ -227,6 +224,7 @@ class GameState{
                 this.tankList[i].positionRefresh();
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
+                this.tankList[i].tankWeapon = new Weapon(Weapon.BULLET_TYPE);
             }
             
             //increment every time a game is won 
@@ -277,6 +275,7 @@ class GameState{
                         this.tankList[i].tankWeapon.resetAmmo();
                     } else if (this.pickupList[j].type == "BOMB"){
                         // give tank the "bomb" weapon
+                        this.removeSawIfNeeded(this.tankList[i]);
                         this.tankList[i].tankWeapon = new Weapon(Weapon.BOMB_TYPE);
                     } else if (this.pickupList[j].type == "SAW"){
                         if(this.tankList[i].tankWeapon.weaponType != Weapon.SAW_TYPE){
@@ -288,6 +287,13 @@ class GameState{
             }
         }
     }
+
+    removeSawIfNeeded(tank){
+        if(tank.tankWeapon.weaponType == Weapon.SAW_TYPE){
+            tank.saw.remove();
+        }
+    }
+    
     
     //for now - empty
     checkProjectileWallOverlaps(){
