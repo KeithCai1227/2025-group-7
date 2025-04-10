@@ -120,8 +120,10 @@ class GameState{
         } 
         
         //update pickups
-        if(millis() > this.nextPickupSpawn && this.pickupList.length < 5){
-            this.pickupList.push(new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT));
+        if(millis() > this.nextPickupSpawn){
+            if (this.pickupList.length < 5){
+                this.pickupList.push(new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT));
+            }
             this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
         }         
         for(let i = 0; i < this.pickupList.length; i++){
@@ -190,8 +192,8 @@ class GameState{
     }
 
     pickupSpawnInterval(){
-        //ten seconds - ie 10,000 milliseconds - plus a random number of milliseconds up to another 5s
-        return 10000 + Math.floor(Math.random() * 5000);
+        //ten seconds - ie 5,000 milliseconds - plus a random number of milliseconds up to another 5s
+        return 5000 + Math.floor(Math.random() * 5000);
     }
 
     //restart game when tank dies
@@ -282,7 +284,8 @@ class GameState{
                         this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
                         }
                         this.tankList[i].tankWeapon = new Weapon(Weapon.SAW_TYPE);
-                    }
+                    } 
+                    this.pickupList.splice(j, 1);
                 } else j++;
             }
         }

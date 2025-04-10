@@ -1,13 +1,14 @@
 class Pickup {
 
     constructor(gridWidth, gridHeight){
+        let cellX = floor(random(0, 9));
+        let cellY = floor(random(0, 3));
+
         // currently draws 10 x 10 box with a block colour, but this can be
         // replaced with a bespoke image once we have weapons system fleshed out
         this.sprite = new Sprite();
-        let columns = 960/80;
-        let rows = 480/80;
-        this.sprite.x = floor(random(1, columns)) * 80 - 40;
-        this.sprite.y = floor(random(1, rows)) * 80 - 40;
+        this.sprite.x = cellX * 90.5 + 62;
+        this.sprite.y = cellY * 105 + 54 + (cellX % 2 == 0 ? 0 : 52.5);
         this.sprite.width = 10;
         this.sprite.height = 10;
         this.sprite.collider = "static";
