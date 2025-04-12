@@ -18,6 +18,12 @@ class Grid {
         this.mapStartedGenerating = false;
         this.mapStartedCreating = false;
         let centerSp;
+        this.visitTracker = new Group();
+        this.visitTracker.color = 'white';
+        this.visitTracker.opacity = 0.05;
+        this.visitTracker.shape = 'hexagon';
+        this.visitTracker.w = 58;
+        this.visitTracker.overlaps(allSprites);
     }
 
     initGrid() {
@@ -30,7 +36,7 @@ class Grid {
         }
         this.current = this.grid[0][0];
         if(GameState.showMapGeneration){
-            this.centerSp = new Sprite(this.current.centerX, this.current.centerY, 58, 'hexagon');
+            this.centerSp = new Sprite(this.current.centerX, this.current.centerY, this.visitTracker.w, 'hexagon');
             this.centerSp.overlaps(allSprites);
             this.centerSp.color = 'white';
         }
@@ -61,7 +67,8 @@ class Grid {
     }
     initMap(){
         if(this.cellstack != 0 || !this.mapStartedGenerating){
-            frameRate(10);
+            frameRate(7);
+            new this.visitTracker.Sprite(this.current.centerX, this.current.centerY, 58, 'hexagon');
             this.centerSp.x = this.current.centerX;
             this.centerSp.y = this.current.centerY;
 
@@ -73,6 +80,7 @@ class Grid {
             GameState.doneMapGeneration = true;
             GameState.showMapGeneration = false;
             if(this.centerSp){
+                this.visitTracker.remove();
                 this.centerSp.remove();
             }
         }
