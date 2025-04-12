@@ -238,7 +238,9 @@ class GameState{
                 walls.remove();
                 this.gameMap = new Grid(GameState.GRID_HEIGHT);
                 this.gameMap.initGrid();
-                this.gameMap.initMap();
+                do{
+                    this.gameMap.generateMap();
+                }while(this.gameMap.cellstack.length != 0);
             }
             for(let i = 0; i < this.tankList.length; i++){
                 //complete destroy method in tank class
