@@ -13,6 +13,7 @@ class Cell {
         this.centerX = round(this.i * (3/2 * this.wallLength - this.wallWidth) + this.wallLength);
         this.centerY = round(this.j * (sqrt(3) * this.wallLength - this.wallWidth) + sqrt(3) / 2 * this.wallLength + (this.i % 2 === 0 ? 0 : sqrt(3) / 2 * this.wallLength - 2));
         // Hexagon with 6 sides in wallState
+        this.wallNames = ["top", "topRight", "bottomRight", "bottom", "bottomLeft", "topLeft"];
         this.wallState = {"top": true, "topRight": true, "bottomRight": true, "bottom": true, "bottomLeft": true, "topLeft": true};
         this.visited = 0;
     }
@@ -93,25 +94,67 @@ class Cell {
         if (dx === 0 && dy === -1) { // above (top)
             this.wallState.top = false;
             neighbour.wallState.bottom = false;
+            // remove wall if exists
+            if (this.top) {
+                this.top.remove();
+            }
+            if (neighbour.bottom) {
+                neighbour.bottom.remove();
+            }
         } else if (dx === 0 && dy === 1) { // below (bottom)
             this.wallState.bottom = false;
             neighbour.wallState.top = false;
+            // remove wall if exists
+            if (this.bottom) {
+                this.bottom.remove();
+            }
+            if (neighbour.top) {
+                neighbour.top.remove();
+            }
         } else if (dx === 1) {
             if (this.i % 2) {
                 if (dy === 0) { // top-right
                     this.wallState.topRight = false;
                     neighbour.wallState.bottomLeft = false;
+                    // remove wall if exists
+                    if (this.topRight) {
+                        this.topRight.remove();
+                    }
+                    if (neighbour.bottomLeft) {
+                        neighbour.bottomLeft.remove();
+                    }
                 } else if (dy === 1) { // bottom-right
                     this.wallState.bottomRight = false;
                     neighbour.wallState.topLeft = false;
+                    // remove wall if exists
+                    if (this.bottomRight) {
+                        this.bottomRight.remove();
+                    }
+                    if (neighbour.topLeft) {
+                        neighbour.topLeft.remove();
+                    }
                 }
             } else {
                 if (dy === -1) { // top-right
                     this.wallState.topRight = false;
                     neighbour.wallState.bottomLeft = false;
+                    // remove wall if exists
+                    if (this.topRight) {
+                        this.topRight.remove();
+                    }
+                    if (neighbour.bottomLeft) {
+                        neighbour.bottomLeft.remove();
+                    }
                 } else if (dy === 0) { // bottom-right
                     this.wallState.bottomRight = false;
                     neighbour.wallState.topLeft = false;
+                    // remove wall if exists
+                    if (this.bottomRight) {
+                        this.bottomRight.remove();
+                    }
+                    if (neighbour.topLeft) {
+                        neighbour.topLeft.remove();
+                    }
                 }
             }
         } else if (dx === -1) {
@@ -119,17 +162,45 @@ class Cell {
                 if (dy === 0) { // top-left
                     this.wallState.topLeft = false;
                     neighbour.wallState.bottomRight = false;
+                    // remove wall if exists
+                    if (this.topLeft) {
+                        this.topLeft.remove();
+                    }
+                    if (neighbour.bottomRight) {
+                        neighbour.bottomRight.remove();
+                    }
                 } else if (dy === 1) { // bottom-left
                     this.wallState.bottomLeft = false;
                     neighbour.wallState.topRight = false;
+                    // remove wall if exists
+                    if (this.bottomLeft) {
+                        this.bottomLeft.remove();
+                    }
+                    if (neighbour.topRight) {
+                        neighbour.topRight.remove();
+                    }
                 }
             } else {
                 if (dy === -1) { // top-left
                     this.wallState.topLeft = false;
                     neighbour.wallState.bottomRight = false;
+                    // remove wall if exists
+                    if (this.topLeft) {
+                        this.topLeft.remove();
+                    }
+                    if (neighbour.bottomRight) {
+                        neighbour.bottomRight.remove();
+                    }
                 } else if (dy === 0) { // bottom-left
                     this.wallState.bottomLeft = false;
                     neighbour.wallState.topRight = false;
+                    // remove wall if exists
+                    if (this.bottomLeft) {
+                        this.bottomLeft.remove();
+                    }
+                    if (neighbour.topRight) {
+                        neighbour.topRight.remove();
+                    }
                 }
             }
         }

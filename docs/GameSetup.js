@@ -3,8 +3,8 @@ class GameSetup{
     //various params for layout of screen
     HEAD_TEXT = 75;
     REG_TEXT = 25;
-    VERT_SP = 125;
-    BELOW_TITLE = 225;
+    VERT_SP = 110;
+    BELOW_TITLE = 170;
     HORZ1 = -100;
     HORZ2 = 50;
     HORZ3 = 300;
@@ -14,7 +14,8 @@ class GameSetup{
     ON_MODE = 0;
     ON_P1DIFF = 1;
     ON_P2DIFF = 2;
-    ON_START = 3;
+    ON_MAPGEN = 3;
+    ON_START = 4;
 
     constructor(){
         //start off on the one-vs-two player mode setting
@@ -56,6 +57,9 @@ class GameSetup{
         text('PLAYER 1 DIFFICULTY:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE + this.VERT_SP);
         text('PLAYER 2 DIFFICULTY:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE + 2*this.VERT_SP);
 
+        //put in Map Generation selection
+        text('MAP GENERATION:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE + 3*this.VERT_SP);
+
         //put in player mode boxes
         textAlign(CENTER, TOP);
         //rect(this.CANVAS_WIDTH/2 - 50, 225, 200, this.REG_TEXT);
@@ -68,8 +72,12 @@ class GameSetup{
         text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + this.VERT_SP);
         text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 2*this.VERT_SP);
 
+        //put in map generation on/off
+        text('ON', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 3*this.VERT_SP);
+        text('OFF', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 3*this.VERT_SP);
+
         //put in "start game"
-        text('START GAME', GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + 3*this.VERT_SP);
+        text('START GAME', GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + 4*this.VERT_SP);
 
         //highlight player mode selection
         fill('black');
@@ -106,6 +114,18 @@ class GameSetup{
             fill('white');
             text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 2*this.VERT_SP);
         }
+        //highlight map generation selection
+        fill('black');
+        if(GameState.showMapGeneration){
+            rect(GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 3*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
+            fill('white');
+            text('ON', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 3*this.VERT_SP);
+        }
+        else{
+            rect(GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 3*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
+            fill('white');
+            text('OFF', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 3*this.VERT_SP);
+        }
 
         //leave this back to default since it's used in drawing the tank sprites
         strokeWeight(1);
@@ -125,6 +145,8 @@ class GameSetup{
                 GameState.player1Difficulty = 1 - GameState.player1Difficulty;
             }else if(this.selector === this.ON_P2DIFF){
                 GameState.player2Difficulty = 1 - GameState.player2Difficulty;
+            }else if(this.selector === this.ON_MAPGEN){
+                GameState.showMapGeneration = !GameState.showMapGeneration;
             }
         }
     }

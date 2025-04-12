@@ -31,6 +31,9 @@ class GameState{
     static player2Difficulty = GameState.EASY;
     static twoPlayerMode = true;
     static currentWinner;
+
+    static showMapGeneration = false;
+    static doneMapGeneration = false;
     
     constructor(){ 
         this.isGameOver = false;
@@ -43,7 +46,13 @@ class GameState{
         //generate map
         this.gameMap = new Grid(GameState.GRID_HEIGHT);
         this.gameMap.initGrid();
-        this.gameMap.initMap();
+        if(!GameState.showMapGeneration){
+            do{
+                this.gameMap.generateMap();
+            }while(this.gameMap.cellstack.length != 0);
+            GameState.doneMapGeneration = true;
+        }
+        
         
         //create two tanks
         this.tankList = [];
@@ -77,8 +86,16 @@ class GameState{
         rect(480, 240, 960, 480); // Position & size
         
         //draw the map
-         this.gameMap.draw();
-         
+        if(GameState.showMapGeneration){
+            this.gameMap.initMap();
+        }
+        this.gameMap.draw();
+        if(GameState.showMapGeneration){
+            return;
+        }
+        
+        
+    
         //draw tanks
         for(let i = 0; i < this.tankList.length; i++){
                 this.tankList[i].draw();
@@ -96,11 +113,15 @@ class GameState{
 
         //draw scores of players
         this.drawHUD();
+    
     }
     
     update(){
         //update map
         this.gameMap.update();
+        if(GameState.showMapGeneration){
+            return;
+        }
         
         //update tanks
         for(let i = 0; i < this.tankList.length; i++){

@@ -5,7 +5,7 @@ class Grid {
         this.w = 120;
         this.cols = floor(gridHeight/this.w);
         this.rows = floor(width/this.w+2);
-        this.celltack = [];
+        this.cellstack = [];
         this.grid = [];
         walls = new Group();
         walls.color = 'red';
@@ -13,13 +13,14 @@ class Grid {
         walls.strokeWeight = '0';
         walls.overlaps(walls);
         walls.collider = ('static');
-        walls.autoDraw = false;
-        walls.autoUpdate = false;
+        //walls.autoDraw = false;
+        //walls.autoUpdate = false;
+        this.mapStartedGenerating = false;
+        this.mapStartedCreating = false;
+        let centerSp;
     }
 
     initGrid() {
-        let coords = this.generateHexagonGrid(5, this.cols);
-        console.log(coords);
         for(let y = 0; y < this.rows; y++){
             let row = [];
             for(let x = 0; x < this.cols; x++){
@@ -28,30 +29,11 @@ class Grid {
             this.grid.push(row);
         }
         this.current = this.grid[0][0];
-    }
-    generateMap(){
-        //do{
-        this.current.visited++;
-        
-        let next = this.current.checkNeighbours();
-        if(next){
-            next.visited++;
-            this.celltack.push(this.current);
-
-            this.current.removeWall(next);
-
-            this.current = next;
+        if(GameState.showMapGeneration){
+            this.centerSp = new Sprite(this.current.centerX, this.current.centerY, 58, 'hexagon');
+            this.centerSp.overlaps(allSprites);
+            this.centerSp.color = 'white';
         }
-        else if (this.celltack.length > 0){
-            this.current = this.celltack.pop();
-        }
-    //}while(this.celltack != 0);
-    }
-    initMap(){
-        
-        do {
-            this.generateMap();
-        }while(this.celltack != 0);
 
         for(let i = 0; i < this.grid[0].length; i++){
             for(let j = 0; j < this.grid.length; j++){
@@ -60,6 +42,41 @@ class Grid {
             this.grid[j][i].show();
             }
         }
+    }
+    generateMap(){
+        this.current.visited++;
+        
+        let next = this.current.checkNeighbours();
+        if(next){
+            next.visited++;
+            this.cellstack.push(this.current);
+
+            this.current.removeWall(next);
+
+            this.current = next;
+        }
+        else if (this.cellstack.length > 0){
+            this.current = this.cellstack.pop();
+        }
+    }
+    initMap(){
+        if(this.cellstack != 0 || !this.mapStartedGenerating){
+            frameRate(10);
+            this.centerSp.x = this.current.centerX;
+            this.centerSp.y = this.current.centerY;
+
+            this.mapStartedGenerating = true;
+            this.generateMap();    
+        }
+        else {
+            frameRate(30);
+            GameState.doneMapGeneration = true;
+            GameState.showMapGeneration = false;
+            if(this.centerSp){
+                this.centerSp.remove();
+            }
+        }
+        
     }
 
     generateHexagonGrid(radius, hexSize) {
