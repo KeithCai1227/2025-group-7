@@ -7,6 +7,8 @@ class Tank{
     static TANK_WIDTH = 20;
     static GUN_HEIGHT = 16;
     static GUN_WIDTH = 10;
+    static WHEEL_HEIGHT = 12;
+    static WHEEL_WIDTH = 20;
     static PROJECTILE_SPAWN_DIST = 6;
     static UP_DIRECTION = 0;
     static DOWN_DIRECTION = 1;
@@ -29,6 +31,9 @@ class Tank{
         //this.tankSprite.width = Tank.TANK_HEIGHT;
         //this.tankSprite.height = Tank.TANK_WIDTH;
         this.tankSprite = new Sprite(locX, locY, Tank.TANK_WIDTH, "hexagon");
+        // add wheels as colliders
+        this.tankSprite.addCollider(0, Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
+        this.tankSprite.addCollider(0, -Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
         this.tankSprite.autoUpdate = false;
         this.tankSprite.autoDraw = false;
