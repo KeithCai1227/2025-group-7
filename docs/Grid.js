@@ -8,8 +8,8 @@ class Grid {
         this.cellstack = [];
         this.grid = [];
         walls = new Group();
-        walls.color = 'red';
-        walls.stroke = 'red';
+        walls.color = color(GameState.themeColor[GameState.themeColorIndex]);
+        walls.stroke = color(GameState.themeColor[GameState.themeColorIndex]);
         walls.strokeWeight = '0';
         walls.overlaps(walls);
         walls.collider = ('static');
@@ -107,7 +107,7 @@ class Grid {
     draw() {
 
         drawingContext.shadowBlur = 15;
-        drawingContext.shadowColor = color(255, 150, 150);
+        drawingContext.shadowColor = color(GameState.themeColor[GameState.themeColorIndex]);
         
         walls.draw();
         drawingContext.shadowBlur = 0;

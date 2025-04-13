@@ -34,6 +34,8 @@ class GameState{
 
     static showMapGeneration = false;
     static doneMapGeneration = false;
+    static themeColor = /*red, blue, green, white*/ [[255, 0, 0], [0, 0, 255], [0, 255, 0], [255, 255, 255]];
+    static themeColorIndex = 0;
     
     constructor(){ 
         this.isGameOver = false;
@@ -158,6 +160,7 @@ class GameState{
         //collision checks
         this.checkProjectileTankOverlaps();
         this.checkPickupTankOverlaps();
+        this.checkProjectileWallOverlaps();
 
         for(let i = 0; i < this.tankList.length; i++){
             if(this.tankList[i].tankWeapon.weaponType == Weapon.SAW_TYPE){
@@ -236,6 +239,7 @@ class GameState{
             //only refresh map once
             if(this.isGameOver){
                 walls.remove();
+                GameState.themeColorIndex = (GameState.themeColorIndex + 1) % GameState.themeColor.length;
                 this.gameMap = new Grid(GameState.GRID_HEIGHT);
                 this.gameMap.initGrid();
                 do{
