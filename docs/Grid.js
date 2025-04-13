@@ -13,8 +13,8 @@ class Grid {
         walls.strokeWeight = '0';
         walls.overlaps(walls);
         walls.collider = ('static');
-        //walls.autoDraw = false;
-        //walls.autoUpdate = false;
+        walls.autoDraw = false;
+        walls.autoUpdate = false;
         this.mapStartedGenerating = false;
         this.mapStartedCreating = false;
         let centerSp;

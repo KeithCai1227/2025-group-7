@@ -5,9 +5,9 @@ class Tank{
     saw;
     static TANK_HEIGHT = 30;
     static TANK_WIDTH = 20;
-    static GUN_HEIGHT = 6;
-    static GUN_WIDTH = 8;
-    static PROJECTILE_SPAWN_DIST = 15;
+    static GUN_HEIGHT = 16;
+    static GUN_WIDTH = 10;
+    static PROJECTILE_SPAWN_DIST = 6;
     static UP_DIRECTION = 0;
     static DOWN_DIRECTION = 1;
     static LEFT_DIRECTION = 2;
@@ -21,13 +21,14 @@ class Tank{
         this.tankWeapon =  new Weapon(Weapon.BULLET_TYPE);
 
         //create a sprite in P5 Play for the tank
-        this.tankSprite = new Sprite();
-        this.tankSprite.x = locX;
+        //this.tankSprite = new Sprite();
+        //this.tankSprite.x = locX;
         this.INITIALX = locX;
-        this.tankSprite.y = locY;
+        //this.tankSprite.y = locY;
         this.INITIALY = locY;
-        this.tankSprite.width = Tank.TANK_HEIGHT;
-        this.tankSprite.height = Tank.TANK_WIDTH;
+        //this.tankSprite.width = Tank.TANK_HEIGHT;
+        //this.tankSprite.height = Tank.TANK_WIDTH;
+        this.tankSprite = new Sprite(locX, locY, Tank.TANK_WIDTH, "hexagon");
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
         this.tankSprite.autoUpdate = false;
         this.tankSprite.autoDraw = false;
