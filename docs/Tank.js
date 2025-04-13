@@ -9,7 +9,7 @@ class Tank{
     static GUN_WIDTH = 10;
     static WHEEL_HEIGHT = 12;
     static WHEEL_WIDTH = 20;
-    static PROJECTILE_SPAWN_DIST = 6;
+    static PROJECTILE_SPAWN_DIST = 10;
     static UP_DIRECTION = 0;
     static DOWN_DIRECTION = 1;
     static LEFT_DIRECTION = 2;
