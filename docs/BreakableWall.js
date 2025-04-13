@@ -18,9 +18,7 @@ class BreakableWall {
         let bwcolor = map(this.hitPoints, 0, 3, 255, 100);
         this.sprite.color = color(bwshade);
     }
-}
-
-checkProjectileWallOverlaps() {
+    checkProjectileWallOverlaps() {
         for (let proj of this.projectileList) {
             for (let wall of this.mapTiles) {
                 if (proj.sprite.overlapping(wall.sprite)) {
@@ -28,4 +26,7 @@ checkProjectileWallOverlaps() {
                 }
             }
         }
+    }
 }
+
+

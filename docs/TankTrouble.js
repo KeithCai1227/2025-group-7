@@ -6,7 +6,7 @@ let setupStage;
 let endOfGame;
 
 //key codes for firing of tanks
-let ZERO_CODE = 48;
+let SPACE_CODE = 32;
 let Q_CODE = 81;
 
 let maxGames = 5;
@@ -63,7 +63,7 @@ function keyPressed() {
     }
     else{
         //detect if tank 1 (human player) has fired
-        if (keyCode === ZERO_CODE && !tankGame.getIsGameOver()){
+        if (keyCode === SPACE_CODE && !tankGame.getIsGameOver() && !GameState.showMapGeneration) {
             if(tankGame.tankList[0].tankWeapon.weaponType == Weapon.SAW_TYPE){
                 tankGame.tankList[0].saw.strike();
             }
@@ -76,7 +76,7 @@ function keyPressed() {
 
         //if the game in two player mode, detect if tank 2 fired
         if(GameState.twoPlayerMode){
-            if (keyCode === Q_CODE && !tankGame.getIsGameOver()) {
+            if (keyCode === Q_CODE && !tankGame.getIsGameOver() && !GameState.showMapGeneration) {
                 if(tankGame.tankList[1].tankWeapon.weaponType == Weapon.SAW_TYPE){
                     tankGame.tankList[1].saw.strike();
                 }
