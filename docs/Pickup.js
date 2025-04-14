@@ -9,8 +9,8 @@ class Pickup {
         this.sprite = new Sprite();
         this.sprite.x = cellX * 90.5 + 62;
         this.sprite.y = cellY * 105 + 54 + (cellX % 2 == 0 ? 0 : 52.5);
-        this.sprite.width = 10;
-        this.sprite.height = 10;
+        this.sprite.width = 30;
+        this.sprite.height = 30;
         this.sprite.collider = "static";
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
@@ -20,11 +20,13 @@ class Pickup {
         
         if(randomiser == 0){
             this.type = "HEALTH";
-            this.sprite.color = color(200, 0, 0);
+            this.sprite.image = 'images/health-pickup.webp';
+            this.sprite.image.scale = 0.1;
         }else if(randomiser == 1){
             // refresh ammo
             this.type = "AMMO";
-            this.sprite.color = color(0, 0, 200);  
+            this.sprite.image = 'images/ammo-pickup.webp';
+            this.sprite.image.scale = 0.1;
         }else if(randomiser == 2){
             //saw weapon pickup
             this.type = "SAW"
@@ -33,33 +35,20 @@ class Pickup {
         else if(randomiser == 3){
             // laser weapon pickup
             this.type = "LASER";
-            this.sprite.color = color(255, 255, 0);
+            this.sprite.image = 'images/laser-pickup.webp';
+            this.sprite.image.scale = 0.1;
         }
         else{
             // bomb weapon pickup
             this.type = "BOMB";
-            this.sprite.color = color(255, 255, 255);
+            this.sprite.image = 'images/bomb-pickup.webp';
+            this.sprite.image.scale = 0.1;
         }
-            
-            
+        
     }
 
     draw(){
-
-        drawingContext.shadowBlur = 15;
-        if(this.sprite.color != color(0, 0, 0)){
-        drawingContext.shadowColor = this.sprite.color;
-        } else{
-            drawingContext.shadowColor = color(255, 255, 255);
-        }
-        
-            
-        
         this.sprite.draw();
-        drawingContext.shadowBlur = 0;
-        drawingContext.shadowColor = 'transparent';
-
-        
     }
 
     update(){
