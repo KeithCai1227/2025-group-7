@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="icons-1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="1.4645623"
+     inkscape:cx="314.76981"
+     inkscape:cy="348.90971"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="0.99999998"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter12"
+       x="-0.021041667"
+       y="-0.084166663"
+       width="1.0420833"
+       height="1.1683333">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.84375003"
+         id="feGaussianBlur12" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter13"
+       x="-0.75416672"
+       y="-3.0166667"
+       width="2.5083334"
+       height="7.0333333">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="37.500002"
+         id="feGaussianBlur13" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;stroke:none;stroke-width:1;fill-opacity:1"
+       id="rect1"
+       width="165"
+       height="90"
+       x="5"
+       y="45" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g12"
+       id="use13"
+       style="filter:url(#filter13)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g12"
+       id="use12"
+       style="filter:url(#filter12)" />
+    <g
+       id="g12">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         d="m 60.000001,79.999998 5,-5.000001 h 20 l 5,5.000001 v 19.999999 l -5,5.000003 h -20 l -5,-5.000003 z"
+         id="path1" />
+      <circle
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+         id="path2"
+         cx="75"
+         cy="93.616669"
+         r="7.5" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1"
+         d="m 68.470834,91.05833 -2.000001,-1.999998 4,-4 2.000001,1.999998 z"
+         id="path3" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         d="m 67.385035,86.410468 c 0,0 -2.543935,-2.593663 -0.914202,-3.990803 1.16648,-1 5.028586,0.394633 6.529169,0.580333 4,0.495006 4,-1.388719 4,-1.388719"
+         id="path4"
+         sodipodi:nodetypes="cssc" />
+      <path
+         sodipodi:type="star"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
+         id="path5"
+         inkscape:flatsided="false"
+         sodipodi:sides="5"
+         sodipodi:cx="82"
+         sodipodi:cy="81"
+         sodipodi:r1="3.3389394"
+         sodipodi:r2="1.6694697"
+         sodipodi:arg1="-2.6871113"
+         sodipodi:arg2="-2.0587928"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 79,79.534218 2.217257,-0.0088 1.249734,-1.831522 0.693555,2.106012 2.12807,0.622596 -1.788616,1.310404 0.06549,2.216307 -1.798981,-1.296137 -2.087598,0.747157 0.676785,-2.111462 z"
+         inkscape:transform-center-x="0.31212451"
+         inkscape:transform-center-y="0.007055012"
+         transform="rotate(-26.431653,78.775193,84.338187)" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path1"
+         id="use5"
+         transform="translate(45.000002)" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
+         d="m 117,99.999997 h 6 v -7.000002 h 7 v -5.999998 h -7 v -6.999999 h -6 v 6.999999 h -7 v 5.999998 h 7 z"
+         id="path6" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#path1"
+         id="use6"
+         transform="translate(-45.000001)" />
+      <g
+         id="g9">
+        <g
+           id="g10">
+          <path
+             style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.447213;stroke-dasharray:none;stroke-opacity:1"
+             d="m 27.999999,84.999996 h 4 v 12.000001 h -4 z"
+             id="path7" />
+          <path
+             style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
+             d="m 27.999999,97.999996 h 4 v 2.000001 h -4 v -1.988611 z"
+             id="path8" />
+          <path
+             style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
+             d="M 27.999999,83.999998 30,78.999997 l 1.999999,5.000001 z"
+             id="path9" />
+        </g>
+        <use
+           x="0"
+           y="0"
+           xlink:href="#g10"
+           id="use10"
+           transform="translate(6.0000019)" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#g10"
+           id="use11"
+           transform="translate(-6.0000019)" />
+      </g>
+    </g>
+  </g>
+</svg>
