@@ -26,18 +26,22 @@ class Saw {
         this.collisionSprite.diameter = this.sawSprite.height * this.scaleFactor;
         this.collisionSprite.opacity = 0;
         this.collisionSprite.overlaps(this.tankSprite);
+        this.collisionSprite.overlaps(this.tankSprite.wheels[0]);
+        this.collisionSprite.overlaps(this.tankSprite.wheels[1]);
         this.setSpriteLocation(this.collisionSprite, this.collisionOffset);
 
         //attach sprites to tank
         this.glueJoint1 = new GlueJoint(this.collisionSprite, this.tankSprite);
         this.sawSprite.overlaps(allSprites); 
+        this.sawSprite.overlaps(this.tankSprite.wheels[0]);
+        this.sawSprite.overlaps(this.tankSprite.wheels[1]);
 
        
         this.setSpriteLocation(this.sawSprite, this.sawOffset);
         this.glueJoint2 = new GlueJoint(this.sawSprite, this.tankSprite);
-        this.sawSprite.mass = 0;
-        this.tankSprite.mass = 0;
-        this.collisionSprite.mass = 0;
+        //this.sawSprite.mass = 0;
+        //this.tankSprite.mass = 0;
+        //this.collisionSprite.mass = 0;
     
     }
 

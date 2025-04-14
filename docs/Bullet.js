@@ -1,4 +1,5 @@
 class Bullet extends Projectile{
+    static BULLET_SIZE = 10;
 
     constructor(x, y, angle) {
         super(x, y, angle, Weapon.BULLET_TIME);
@@ -6,7 +7,7 @@ class Bullet extends Projectile{
         this.sprite.x = x;
         this.sprite.y = y;
         this.sprite.duration = Weapon.BULLET_TIME;
-        this.sprite.diameter = 10;
+        this.sprite.diameter = Bullet.BULLET_SIZE;
         this.sprite.color = color(255, 255, 255);
         this.sprite.direction = angle;
         this.sprite.speed = 4;

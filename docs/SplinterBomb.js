@@ -4,7 +4,7 @@ class SplinterBomb extends Projectile{
 
     constructor(x, y, angle){
         super(x, y, angle, Weapon.BOMB_TIME);
-        this.sprite = new Sprite(x, y, SplinterBomb.BOMB_SIZE, 'pentagon');
+        this.sprite = new Sprite(x, y, SplinterBomb.BOMB_SIZE, 'hexagon');
         this.sprite.duration = Weapon.BOMB_TIME;
         this.sprite.color = color(255, 255, 255);
         this.sprite.direction = angle;

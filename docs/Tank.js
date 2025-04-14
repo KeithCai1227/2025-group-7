@@ -3,9 +3,9 @@ class Tank{
     tankWeapon; //which particular type of weapon the tank has
     tankSprite; //sprite created with P5 Play
     saw;
-    static TANK_HEIGHT = 30;
+    static TANK_HEIGHT = 20;
     static TANK_WIDTH = 20;
-    static GUN_HEIGHT = 16;
+    static GUN_HEIGHT = 20;
     static GUN_WIDTH = 10;
     static WHEEL_HEIGHT = 12;
     static WHEEL_WIDTH = 20;
@@ -31,10 +31,20 @@ class Tank{
         //this.tankSprite.width = Tank.TANK_HEIGHT;
         //this.tankSprite.height = Tank.TANK_WIDTH;
         this.tankSprite = new Sprite(locX, locY, Tank.TANK_WIDTH, "hexagon");
-        // add wheels as colliders
-        this.tankSprite.addCollider(0, Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
-        this.tankSprite.addCollider(0, -Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
+
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
+        // add wheels as colliders
+        this.tankSprite.wheels = new Group();
+        this.tankSprite.wheels.color = 'gray';
+        this.tankSprite.wheels.autoDraw = false;
+        this.tankSprite.wheels.autoUpdate = false;
+        new this.tankSprite.wheels.Sprite(this.tankSprite.x, this.tankSprite.y + (Tank.WHEEL_HEIGHT + Tank.TANK_HEIGHT)/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
+        new this.tankSprite.wheels.Sprite(this.tankSprite.x, this.tankSprite.y - (Tank.WHEEL_HEIGHT + Tank.TANK_HEIGHT)/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
+
+        new GlueJoint(this.tankSprite, this.tankSprite.wheels[0]);
+        new GlueJoint(this.tankSprite, this.tankSprite.wheels[1]);
+        //this.tankSprite.addCollider(0, Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
+        //this.tankSprite.addCollider(0, -Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
         this.tankSprite.autoUpdate = false;
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
@@ -45,8 +55,7 @@ class Tank{
             this.tankSprite.color = color(240, 0, 0);
         } else this.tankSprite.color = color(0, 240, 0);
 
-      
-
+        console.log(this.tankSprite.layer, this.tankSprite.wheels[0].layer, this.tankSprite.wheels[1].layer);
         //set the tank's speed and life based on the difficulty level
         if(difficultyLevel == GameState.EASY){
             this.tankLife = 3;
@@ -59,7 +68,26 @@ class Tank{
     
     draw(){
         //call the draw method of the underlying sprite
+
+        
+
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = this.tankSprite.wheels.color;
+
+        this.tankSprite.wheels.draw();
+        
+        drawingContext.shadowBlur = 0;
+        drawingContext.shadowColor = 'transparent';
+
+        drawingContext.shadowBlur = 10;
+        drawingContext.shadowColor = this.tankSprite.color;
+
         this.tankSprite.draw();
+        
+        drawingContext.shadowBlur = 0;
+        drawingContext.shadowColor = 'transparent';
+        
+        
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
         }
@@ -70,7 +98,8 @@ class Tank{
 
     fire(){
         //Create new projectile according to appropriate weapon type
-        let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST;
+        let weaponSize = (this.tankWeapon.weaponType == Weapon.BULLET_TYPE ? Bullet.BULLET_SIZE : this.tankWeapon.weaponType == Weapon.BOMB_TYPE? SplinterBomb.BOMB_SIZE: 0);
+        let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST + weaponSize/2;
         let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
         let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation);
 
@@ -138,6 +167,10 @@ class Tank{
         this.tankSprite.x = this.INITIALX;
         this.tankSprite.y = this.INITIALY;
         this.tankSprite.rotation = this.INITIALROTATION;
+        this.tankSprite.wheels[0].x = this.tankSprite.x;
+        this.tankSprite.wheels[0].y = this.tankSprite.y + Tank.TANK_HEIGHT/2;
+        this.tankSprite.wheels[1].x = this.tankSprite.x;
+        this.tankSprite.wheels[1].y = this.tankSprite.y - Tank.TANK_HEIGHT/2;
     }
 
     //animates tank destruction
@@ -147,6 +180,8 @@ class Tank{
     
     update(){
         //call the update method of the underlying sprite
+
+        this.tankSprite.wheels.update();
         this.tankSprite.update();
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.update();
