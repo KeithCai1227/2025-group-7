@@ -17,8 +17,10 @@ class Pickup {
         this.sprite.overlaps(allSprites);
         // selects pick-up by using millis as a pseudo-random number
         let randomiser = Math.floor(Math.random() * 100) % 5;
+        this.type = "SAW"
+        this.sprite.color = color(0, 200, 0);
         
-        if(randomiser == 0){
+       /* if(randomiser == 0){
             this.type = "HEALTH";
             this.sprite.color = color(200, 0, 0);
         }else if(randomiser == 1){
@@ -39,7 +41,7 @@ class Pickup {
             // bomb weapon pickup
             this.type = "BOMB";
             this.sprite.color = color(255, 255, 255);
-        }
+        }*/
             
             
     }

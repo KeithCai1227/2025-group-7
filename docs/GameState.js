@@ -286,7 +286,7 @@ class GameState{
 
     checkSawTankOverlaps(sawTank){
         for(let i = 0; i < this.tankList.length; i++){
-            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) && sawTank.saw.isStriking){
+            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite)){
                 this.tankList[i].lifeDecrease(sawTank.saw.damage);
             }
         }
@@ -308,7 +308,7 @@ class GameState{
                         this.tankList[i].tankWeapon = new Weapon(Weapon.BOMB_TYPE);
                     } else if (this.pickupList[j].type == "SAW"){
                         if(this.tankList[i].tankWeapon.weaponType != Weapon.SAW_TYPE){
-                        this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
+                        this.tankList[i].saw = new Saw(this.tankList[i].tankSprite, this.tankList[i].index);
                         }
                         this.tankList[i].tankWeapon = new Weapon(Weapon.SAW_TYPE);
                     } else if (this.pickupList[j].type == "LASER") {
