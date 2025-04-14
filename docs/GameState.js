@@ -311,7 +311,10 @@ class GameState{
                         this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
                         }
                         this.tankList[i].tankWeapon = new Weapon(Weapon.SAW_TYPE);
-                    } 
+                    } else if (this.pickupList[j].type == "LASER") {
+                        this.removeSawIfNeeded(this.tankList[i]);
+                        this.tankList[i].tankWeapon = new Weapon(Weapon.LASER_TYPE);
+                    }
                     this.pickupList.splice(j, 1);
                 } else j++;
             }
