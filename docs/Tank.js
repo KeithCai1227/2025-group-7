@@ -55,7 +55,6 @@ class Tank{
             this.tankSprite.color = color(240, 0, 0);
         } else this.tankSprite.color = color(0, 240, 0);
 
-        console.log(this.tankSprite.layer, this.tankSprite.wheels[0].layer, this.tankSprite.wheels[1].layer);
         //set the tank's speed and life based on the difficulty level
         if(difficultyLevel == GameState.EASY){
             this.tankLife = 3;
