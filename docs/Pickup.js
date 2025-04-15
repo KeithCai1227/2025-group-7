@@ -21,29 +21,26 @@ class Pickup {
         if(randomiser == 0){
             this.type = "HEALTH";
             this.sprite.image = 'images/health-pickup.webp';
-            this.sprite.image.scale = 0.1;
         }else if(randomiser == 1){
             // refresh ammo
             this.type = "AMMO";
             this.sprite.image = 'images/ammo-pickup.webp';
-            this.sprite.image.scale = 0.1;
         }else if(randomiser == 2){
             //saw weapon pickup
             this.type = "SAW"
-            this.sprite.color = color(0, 200, 0);
+            this.sprite.image = 'images/saw-pickup.webp';
         }
         else if(randomiser == 3){
             // laser weapon pickup
             this.type = "LASER";
             this.sprite.image = 'images/laser-pickup.webp';
-            this.sprite.image.scale = 0.1;
         }
         else{
             // bomb weapon pickup
             this.type = "BOMB";
             this.sprite.image = 'images/bomb-pickup.webp';
-            this.sprite.image.scale = 0.1;
         }
+        this.sprite.image.scale = 0.1;
         
     }
 
