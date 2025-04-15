@@ -57,6 +57,10 @@ class Tank{
         this.tankSprite.x = locX;
         this.tankSprite.y = locY;
 
+        this.tankSprite.debug = true;
+        this.tankSprite.image = 'images/tank-image.webp';
+        this.tankSprite.image.scale = 0.1;
+
         /*
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
         */
