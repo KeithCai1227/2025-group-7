@@ -15,7 +15,27 @@ class Tank{
     static LEFT_DIRECTION = 2;
     static RIGHT_DIRECTION = 3;
     static NO_DIRECTION = 4;
-    
+
+    static TANK_COORDS = [[0, 15.5], [12.5, 9], [12.5, 12.5], [21, 12.5], [21, -12.5], [12.5, -12.5],
+                            [12.5, -7.5], [6.5, -12.5], [6.5, -21]];
+    static{
+        //need to add other half of tank co-ordinates
+        let numPoints = Tank.TANK_COORDS.length;
+        for(let cnt = numPoints - 1; cnt >= 0; cnt--){
+            let xCoord = -Tank.TANK_COORDS[cnt][0];
+            let yCoord = Tank.TANK_COORDS[cnt][1];
+            Tank.TANK_COORDS.push([xCoord, yCoord]);
+        }
+        
+        //need to rotate all coords by 90 degrees
+        //to align with P5 Play direction system
+        for(let cnt = 0; cnt < Tank.TANK_COORDS.length; cnt++){
+            let tempX = Tank.TANK_COORDS[cnt][0];
+            Tank.TANK_COORDS[cnt][0] = -Tank.TANK_COORDS[cnt][1];
+            Tank.TANK_COORDS[cnt][1] = tempX;
+        }
+    } 
+
     //locX and locY are the initial co-ordinates
     //initialDirection is the initial direction the tank is pointing in
     //initialDirection should be in degrees measured clockwise from x-axis
@@ -30,9 +50,18 @@ class Tank{
         this.INITIALY = locY;
         //this.tankSprite.width = Tank.TANK_HEIGHT;
         //this.tankSprite.height = Tank.TANK_WIDTH;
-        this.tankSprite = new Sprite(locX, locY, Tank.TANK_WIDTH, "hexagon");
+        //let testCoords = [[-20,-20], [20,-20], [20,20], [-20,20], [-20,-20]];
 
+        //this.tankSprite = new Sprite(locX, locY, tankCoords);
+        this.tankSprite = new Sprite(Tank.TANK_COORDS);
+        this.tankSprite.x = locX;
+        this.tankSprite.y = locY;
+
+        /*
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
+        */
+
+        /*
         // add wheels as colliders
         this.tankSprite.wheels = new Group();
         this.tankSprite.wheels.color = 'gray';
@@ -45,12 +74,14 @@ class Tank{
         new GlueJoint(this.tankSprite, this.tankSprite.wheels[1]);
         //this.tankSprite.addCollider(0, Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
         //this.tankSprite.addCollider(0, -Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
+        */
+
         this.tankSprite.autoUpdate = false;
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
         this.tankSprite.speed = 0;
-        this.tankSprite.rotation = initialDirection;
-        this.INITIALROTATION = initialDirection;
+        this.tankSprite.rotation = 0;//initialDirection;
+        this.INITIALROTATION = 0;//initialDirection;
         if(index === 1){
             this.tankSprite.color = color(240, 0, 0);
         } else this.tankSprite.color = color(0, 240, 0);
@@ -68,8 +99,7 @@ class Tank{
     draw(){
         //call the draw method of the underlying sprite
 
-        
-
+        /*
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = this.tankSprite.wheels.color;
 
@@ -80,12 +110,14 @@ class Tank{
 
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = this.tankSprite.color;
+        */
 
         this.tankSprite.draw();
         
+        /*
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
-        
+        */
         
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
@@ -166,10 +198,12 @@ class Tank{
         this.tankSprite.x = this.INITIALX;
         this.tankSprite.y = this.INITIALY;
         this.tankSprite.rotation = this.INITIALROTATION;
+        /*
         this.tankSprite.wheels[0].x = this.tankSprite.x;
         this.tankSprite.wheels[0].y = this.tankSprite.y + Tank.TANK_HEIGHT/2;
         this.tankSprite.wheels[1].x = this.tankSprite.x;
         this.tankSprite.wheels[1].y = this.tankSprite.y - Tank.TANK_HEIGHT/2;
+        */
     }
 
     //animates tank destruction
@@ -180,7 +214,7 @@ class Tank{
     update(){
         //call the update method of the underlying sprite
 
-        this.tankSprite.wheels.update();
+        //this.tankSprite.wheels.update();
         this.tankSprite.update();
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.update();
