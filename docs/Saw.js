@@ -9,33 +9,31 @@ class Saw {
         this.damage = Infinity;
         this.tankIndex = tankIndex;
         this.tankSprite = tankSprite;
-        this.sawOffset = 25;
-        this.collisionOffset = 30;
+        this.sawOffset = 33;
+        this.collisionOffset = 37;
+
+        //create saw sprite and load in image
         this.sawSprite = new Sprite(); 
         this.sawSprite.img = "./spikedram.png";
-
-        //this.sawSprite.width = 35;
-        //this.sawSprite.height = 10;
         this.sawSprite.img.scale = 0.1;
         this.sawSprite.overlaps(allSprites);
         this.sawSprite.rotation = this.tankSprite.rotation + 90;
+        this.setSpriteLocation(this.sawSprite, this.sawOffset);
 
+        //create sprite that acts as collider
         this.collisionSprite = new Sprite();
         this.collisionSprite.height = 10;
         this.collisionSprite.width = 35;
-
-
-        this.setSpriteLocation(this.sawSprite, this.sawOffset);
-
         this.collisionSprite.rotation = this.tankSprite.rotation + 90;
         this.setSpriteLocation(this.collisionSprite, this.collisionOffset);
         this.collisionSprite.opacity = 0;
 
+        //attach sprites to tank
         this.glueJoint = new GlueJoint(this.sawSprite, this.tankSprite);
         this.glueJoint1 = new GlueJoint(this.collisionSprite, this.tankSprite);
+
         this.sawSprite.mass = this.tankSprite.mass;
         this.collisionSprite.mass = this.tankSprite.mass;
-
         this.collisionSprite.rotationLock = true;
 
     }
