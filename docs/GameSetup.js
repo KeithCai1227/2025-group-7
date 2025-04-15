@@ -177,7 +177,7 @@ class GameSetup{
         }
     }
 
-    mousePressed() {
+    async mousePressed() {
         // Check if any button was clicked
         const mouseXVal = mouseX;
         const mouseYVal = mouseY;
@@ -185,10 +185,12 @@ class GameSetup{
         // Check mode selection
         if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.mode.onePlayer)) {
             GameState.twoPlayerMode = false;
+            this.selector = this.ON_MODE;
             return;
         }
         if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.mode.twoPlayer)) {
             GameState.twoPlayerMode = true;
+            this.selector = this.ON_MODE;
             return;
         }
         
@@ -230,7 +232,10 @@ class GameSetup{
         
         // Check start game button
         if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.start)) {
+            this.selector = this.ON_START;
+            await delay(100);
             this.startGame();
+            
             return;
         }
     }
