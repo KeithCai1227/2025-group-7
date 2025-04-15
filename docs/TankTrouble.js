@@ -4,6 +4,7 @@ let startingScreen;
 let twoPlayerMode;
 let setupStage;
 let endOfGame;
+let controllersImg;
 
 //key codes for firing of tanks
 let SPACE_CODE = 32;
@@ -17,6 +18,7 @@ function setup() {
     frameRate(30);
     setupStage = true;
     startingScreen = new GameSetup();
+    controllersImg = loadImage('Controllers.png');
 }
 
 function draw() {

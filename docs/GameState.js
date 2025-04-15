@@ -372,5 +372,16 @@ class GameState{
         text(scoreString2, xMargin, GameState.GRID_HEIGHT + yMargin);
         text(hitPointString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 1.3));
         text(ammoString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 2.6));
+        
+        // Display controller instructions at the bottom
+        if (controllersImg) {
+            const imgWidth = 200; // Adjust as needed
+            const imgHeight = 200; // Adjust as needed
+            const imgX = GameState.CANVAS_WIDTH / 2 - imgWidth / 2;
+            const imgY = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT - imgHeight - 10;
+            
+            image(controllersImg, imgX, imgY, imgWidth, imgHeight);
+            
+        }
     }
 }
