@@ -79,3 +79,14 @@ function keyPressed() {
         }
     }
 }
+
+function mousePressed() {
+    if (setupStage) {
+        startingScreen.mousePressed();
+    } else if (endOfGame && keyCode === ENTER) {
+        allSprites.remove();
+        endOfGame = false;
+        setup();
+        gameEndScreen = null;
+    }
+}
