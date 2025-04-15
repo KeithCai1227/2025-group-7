@@ -16,7 +16,7 @@ class Tank{
     static RIGHT_DIRECTION = 3;
     static NO_DIRECTION = 4;
 
-    static TANK_COORDS = [[0, 15.5], [12.5, 9], [12.5, 12.5], [21, 12.5], [21, -12.5], [12.5, -12.5],
+    static TANK_COORDS = [[0, 15.5], [12.5, 9], [21, 9], [21, -7.5],
                             [12.5, -7.5], [6.5, -12.5], [6.5, -21]];
     static{
         //need to add other half of tank co-ordinates
