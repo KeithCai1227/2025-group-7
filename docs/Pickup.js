@@ -41,7 +41,6 @@ class Pickup {
             this.sprite.image = 'images/bomb-pickup.webp';
         }
         this.sprite.image.scale = 0.1;
-        
     }
 
     draw(){
