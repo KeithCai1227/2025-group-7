@@ -29,8 +29,8 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="0.70710678"
-     inkscape:cx="642.05296"
-     inkscape:cy="339.41125"
+     inkscape:cx="640.63874"
+     inkscape:cy="151.32085"
      inkscape:window-width="1920"
      inkscape:window-height="1018"
      inkscape:window-x="-6"
@@ -277,14 +277,15 @@
            id="path12"
            sodipodi:nodetypes="cccccccc" />
       </g>
-      <path
-         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
-         d="m 240.00001,79.999998 5,-5.000001 h 20 l 5,5.000001 v 19.999999 l -5,5.000003 h -20 l -5,-5.000003 z"
-         id="path1-7-1" />
       <g
          id="g4"
          inkscape:label="Saw"
          transform="matrix(0.88639503,0,0,0.88639503,28.660606,9.8760344)">
+        <path
+           style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-opacity:1"
+           d="m 240.00001,79.999998 5,-5.000001 h 20 l 5,5.000001 v 19.999999 l -5,5.000003 h -20 l -5,-5.000003 z"
+           id="path1-7-1"
+           transform="matrix(1.1281652,0,0,1.1281652,-32.333897,-11.141798)" />
         <ellipse
            style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.833515;stroke-dasharray:none;stroke-opacity:1"
            id="path15"
