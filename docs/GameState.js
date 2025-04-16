@@ -267,7 +267,7 @@ class GameState{
     checkProjectileTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
             for (let j = 0; j < GameState.projectileList.length; ) {
-                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite)){
+                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite) || GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite.wheels)){
 
                     //first account for damage from projectile to tank
                     //only reduce tank lives if game still in play
