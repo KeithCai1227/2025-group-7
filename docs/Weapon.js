@@ -49,6 +49,5 @@ class Weapon{
 
     resetAmmo() {
         this.numberOfRounds = 0;
-    }
-    
+    } 
 }

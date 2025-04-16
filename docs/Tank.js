@@ -74,6 +74,10 @@ class Tank{
         this.tankSprite.wheels[1].opacity = 0;
         this.tankSprite.image.offset.x = 60;
         this.tankSprite.image.scale = 0.1;
+
+        //to keep track of how many bullets are fired
+        //enables resetting bullet count once special weapons used
+        this.bulletRoundCount = 0;
     }
     
     draw(){
@@ -114,6 +118,7 @@ class Tank{
 
         if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
             this.tankWeapon.numberOfRounds++;
+            this.bulletRoundCount++;
             return new Bullet(projX, projY, this.tankSprite.rotation);
         }
         else if(this.tankWeapon.weaponType == Weapon.LASER_TYPE){
@@ -132,7 +137,7 @@ class Tank{
         //if you have used up all of a special weapon, reset to bullet with half capacity
         if(!this.canFire() && !(this.tankWeapon.weaponType == Weapon.BULLET_TYPE)){
             this.tankWeapon = new Weapon(Weapon.BULLET_TYPE);
-            this.tankWeapon.capacity = Math.round(0.5*Weapon.BULLET_CAPACITY);
+            this.tankWeapon.numberOfRounds = this.bulletRoundCount;
         }
     }
 
