@@ -77,6 +77,11 @@ class Tank{
         //to keep track of how many bullets are fired
         //enables resetting bullet count once special weapons used
         this.bulletRoundCount = 0;
+
+        //scale animation effect when bullet fired or
+        //projectile damage taken
+        //counts the frames to apply effect for
+        this.scaleAniFrameCount = 0;
     }
     
     draw(){
@@ -110,6 +115,10 @@ class Tank{
         let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
         let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation);
 
+        //visual indication of firing through "scale" animation
+        this.tankSprite.anis.scale = 0.11;
+        this.scaleAniFrameCount = 1;
+
         if(this.tankWeapon.weaponType == Weapon.BULLET_TYPE){
             this.tankWeapon.numberOfRounds++;
             this.bulletRoundCount++;
@@ -141,6 +150,10 @@ class Tank{
     }
 
     lifeDecrease(damage){
+        //visual indication of firing through "scale" animation
+        this.tankSprite.anis.scale = 0.11;
+        this.scaleAniFrameCount = 1;
+        
         if(this.tankLife - damage > 0){
             this.tankLife -= damage;
         }else{
@@ -198,6 +211,13 @@ class Tank{
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.update();
         }
+
+        //scale animation updates
+        if(this.scaleAniFrameCount == 1)
+            this.tankSprite.anis.scale = 0.1;
+        if(this.scaleAniFrameCount > 0)
+            this.scaleAniFrameCount--;
+        console.log(this.scaleAniFrameCount);
     }
     
     //updates the rotation and speed attributes of the tank sprite
