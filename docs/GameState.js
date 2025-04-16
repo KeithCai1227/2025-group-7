@@ -287,7 +287,7 @@ class GameState{
 
     checkSawTankOverlaps(sawTank){
         for(let i = 0; i < this.tankList.length; i++){
-            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite)){
+            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) || GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite.wheels)){
                 this.tankList[i].lifeDecrease(sawTank.saw.damage);
             }
         }
