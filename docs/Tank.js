@@ -31,7 +31,6 @@ class Tank{
         //this.tankSprite.width = Tank.TANK_HEIGHT;
         //this.tankSprite.height = Tank.TANK_WIDTH;
         this.tankSprite = new Sprite(locX, locY, Tank.TANK_WIDTH, "hexagon");
-
         this.tankSprite.addCollider((Tank.GUN_HEIGHT + Tank.TANK_HEIGHT)/2, 0, Tank.GUN_HEIGHT, Tank.GUN_WIDTH);
         // add wheels as colliders
         this.tankSprite.wheels = new Group();
@@ -40,7 +39,6 @@ class Tank{
         this.tankSprite.wheels.autoUpdate = false;
         new this.tankSprite.wheels.Sprite(this.tankSprite.x, this.tankSprite.y + (Tank.WHEEL_HEIGHT + Tank.TANK_HEIGHT)/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
         new this.tankSprite.wheels.Sprite(this.tankSprite.x, this.tankSprite.y - (Tank.WHEEL_HEIGHT + Tank.TANK_HEIGHT)/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
-
         new GlueJoint(this.tankSprite, this.tankSprite.wheels[0]);
         new GlueJoint(this.tankSprite, this.tankSprite.wheels[1]);
         //this.tankSprite.addCollider(0, Tank.TANK_HEIGHT/2, Tank.WHEEL_WIDTH, Tank.WHEEL_HEIGHT);
@@ -72,8 +70,9 @@ class Tank{
             this.tankSprite.image = 'images/tank-image-green.webp';
         this.tankSprite.wheels[0].opacity = 0;
         this.tankSprite.wheels[1].opacity = 0;
-        this.tankSprite.image.offset.x = 60;
-        this.tankSprite.image.scale = 0.1;
+        this.tankSprite.addAni('move', 'images/tank-moving-ani/tank-moving1.webp', 2);
+        this.tankSprite.anis.scale = 0.1;
+        this.tankSprite.anis.offset.x = 60;
 
         //to keep track of how many bullets are fired
         //enables resetting bullet count once special weapons used
@@ -82,16 +81,12 @@ class Tank{
     
     draw(){
         //call the draw method of the underlying sprite
-
         /*
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = this.tankSprite.wheels.color;
-
         this.tankSprite.wheels.draw();
-        
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
-
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = this.tankSprite.color;
         */
@@ -100,7 +95,6 @@ class Tank{
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
         */
-        
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
         }
@@ -199,7 +193,6 @@ class Tank{
     
     update(){
         //call the update method of the underlying sprite
-
         this.tankSprite.wheels.update();
         this.tankSprite.update();
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
@@ -221,13 +214,16 @@ class Tank{
         if(directionOfMove == Tank.UP_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
             this.tankSprite.speed = 1*this.spdFactor;
+            this.tankSprite.ani.play();
         }
         else if(directionOfMove == Tank.DOWN_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
             this.tankSprite.speed = -0.5*this.spdFactor;
+            this.tankSprite.ani.pause();
         }
         else {
             this.tankSprite.speed = 0;
+            this.tankSprite.ani.pause();
         }
     }
 }
