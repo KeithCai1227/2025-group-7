@@ -24,6 +24,32 @@ class GameSetup{
         //create canvas
         createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
         displayMode('centered');
+
+        // Define button areas for mouse interaction
+        this.buttons = {
+            mode: {
+                onePlayer: { x: GameState.CANVAS_WIDTH/2 + this.HORZ2, y: this.BELOW_TITLE, width: 200, height: this.REG_TEXT + 25 },
+                twoPlayer: { x: GameState.CANVAS_WIDTH/2 + this.HORZ3, y: this.BELOW_TITLE, width: 200, height: this.REG_TEXT + 25 }
+            },
+            p1Diff: {
+                easy: { x: GameState.CANVAS_WIDTH/2 + this.HORZ2, y: this.BELOW_TITLE + this.VERT_SP, width: 100, height: this.REG_TEXT + 25 },
+                hard: { x: GameState.CANVAS_WIDTH/2 + this.HORZ3, y: this.BELOW_TITLE + this.VERT_SP, width: 100, height: this.REG_TEXT + 25 }
+            },
+            p2Diff: {
+                easy: { x: GameState.CANVAS_WIDTH/2 + this.HORZ2, y: this.BELOW_TITLE + 2*this.VERT_SP, width: 100, height: this.REG_TEXT + 25 },
+                hard: { x: GameState.CANVAS_WIDTH/2 + this.HORZ3, y: this.BELOW_TITLE + 2*this.VERT_SP, width: 100, height: this.REG_TEXT + 25 }
+            },
+            mapGen: {
+                on: { x: GameState.CANVAS_WIDTH/2 + this.HORZ2, y: this.BELOW_TITLE + 3*this.VERT_SP, width: 100, height: this.REG_TEXT + 25 },
+                off: { x: GameState.CANVAS_WIDTH/2 + this.HORZ3, y: this.BELOW_TITLE + 3*this.VERT_SP, width: 100, height: this.REG_TEXT + 25 }
+            },
+            start: { 
+                x: GameState.CANVAS_WIDTH/2 + this.HORZ4, 
+                y: this.BELOW_TITLE + 4*this.VERT_SP, 
+                width: 500, 
+                height: 100 
+            }
+        };
     }
 
     draw(){
@@ -149,6 +175,82 @@ class GameSetup{
                 GameState.showMapGeneration = !GameState.showMapGeneration;
             }
         }
+    }
+
+    async mousePressed() {
+        // Check if any button was clicked
+        const mouseXVal = mouseX;
+        const mouseYVal = mouseY;
+        
+        // Check mode selection
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.mode.onePlayer)) {
+            GameState.twoPlayerMode = false;
+            this.selector = this.ON_MODE;
+            return;
+        }
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.mode.twoPlayer)) {
+            GameState.twoPlayerMode = true;
+            this.selector = this.ON_MODE;
+            return;
+        }
+        
+        // Check player 1 difficulty
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.p1Diff.easy)) {
+            GameState.player1Difficulty = GameState.EASY;
+            this.selector = this.ON_P1DIFF;
+            return;
+        }
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.p1Diff.hard)) {
+            GameState.player1Difficulty = GameState.HARD;
+            this.selector = this.ON_P1DIFF;
+            return;
+        }
+        
+        // Check player 2 difficulty
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.p2Diff.easy)) {
+            GameState.player2Difficulty = GameState.EASY;
+            this.selector = this.ON_P2DIFF;
+            return;
+        }
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.p2Diff.hard)) {
+            GameState.player2Difficulty = GameState.HARD;
+            this.selector = this.ON_P2DIFF;
+            return;
+        }
+        
+        // Check map generation
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.mapGen.on)) {
+            GameState.showMapGeneration = true;
+            this.selector = this.ON_MAPGEN;
+            return;
+        }
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.mapGen.off)) {
+            GameState.showMapGeneration = false;
+            this.selector = this.ON_MAPGEN;
+            return;
+        }
+        
+        // Check start game button
+        if (this.isMouseInButton(mouseXVal, mouseYVal, this.buttons.start)) {
+            this.selector = this.ON_START;
+            await delay(100);
+            this.startGame();
+            
+            return;
+        }
+    }
+
+    isMouseInButton(mouseX, mouseY, button) {
+        return mouseX > button.x - button.width/2 && 
+               mouseX < button.x + button.width/2 && 
+               mouseY > button.y - button.height/2 && 
+               mouseY < button.y + button.height/2;
+    }
+
+    startGame() {
+        tankGame = new GameState();
+        setupStage = false;
+        startingScreen = null;
     }
 
 }

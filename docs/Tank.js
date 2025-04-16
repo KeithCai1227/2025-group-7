@@ -51,7 +51,7 @@ class Tank{
         this.tankSprite.speed = 0;
         this.tankSprite.rotation = initialDirection;
         this.INITIALROTATION = initialDirection;
-        if(index === 1){
+        if(this.index === 1){
             this.tankSprite.color = color(240, 0, 0);
         } else this.tankSprite.color = color(0, 240, 0);
 

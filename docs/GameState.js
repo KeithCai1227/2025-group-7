@@ -286,7 +286,7 @@ class GameState{
 
     checkSawTankOverlaps(sawTank){
         for(let i = 0; i < this.tankList.length; i++){
-            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) && sawTank.saw.isStriking){
+            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite)){
                 this.tankList[i].lifeDecrease(sawTank.saw.damage);
             }
         }
@@ -308,7 +308,7 @@ class GameState{
                         this.tankList[i].tankWeapon = new Weapon(Weapon.BOMB_TYPE);
                     } else if (this.pickupList[j].type == "SAW"){
                         if(this.tankList[i].tankWeapon.weaponType != Weapon.SAW_TYPE){
-                        this.tankList[i].saw = new Saw(this.tankList[i].tankSprite);
+                        this.tankList[i].saw = new Saw(this.tankList[i].tankSprite, this.tankList[i].index);
                         }
                         this.tankList[i].tankWeapon = new Weapon(Weapon.SAW_TYPE);
                     } else if (this.pickupList[j].type == "LASER") {
@@ -372,5 +372,16 @@ class GameState{
         text(scoreString2, xMargin, GameState.GRID_HEIGHT + yMargin);
         text(hitPointString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 1.3));
         text(ammoString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 2.6));
+        
+        // Display controller instructions at the bottom
+        if (controllersImg) {
+            const imgWidth = 200; // Adjust as needed
+            const imgHeight = 200; // Adjust as needed
+            const imgX = GameState.CANVAS_WIDTH / 2 - imgWidth / 2;
+            const imgY = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT - imgHeight - 10;
+            
+            image(controllersImg, imgX, imgY, imgWidth, imgHeight);
+            
+        }
     }
 }
