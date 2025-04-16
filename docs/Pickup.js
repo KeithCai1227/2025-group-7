@@ -1,11 +1,39 @@
 class Pickup {
 
-    constructor(gridWidth, gridHeight){
-        let cellX = floor(random(0, 9));
-        let cellY = floor(random(0, 3));
+    constructor(gridWidth, gridHeight, pickups){
+        
+        let cells = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ]
+
+        for (let i = 0; i < pickups.length; i++){
+            cells[pickups[i].y][pickups[i].x] = 1;
+        }
+
+        let spawnCell = floor(random(0, 39 - pickups.length));
+        let cellCount = 0;
+        let cellX, cellY;
+        let cellFound = false;
+        for (let j = 0; j < 4 && cellFound == false; j++){
+            for (let i = 0; i < 10 && cellFound == false; i++){
+                if (cellCount == spawnCell){
+                    cellFound = true;
+                    cellX = i;
+                    cellY = j;
+                    break;
+                }
+                if (cells[j][i] == 0){
+                    cellCount++;
+                }
+            }
+        }
 
         // currently draws 10 x 10 box with a block colour, but this can be
         // replaced with a bespoke image once we have weapons system fleshed out
+
         this.sprite = new Sprite();
         this.sprite.x = cellX * 90.5 + 62;
         this.sprite.y = cellY * 105 + 54 + (cellX % 2 == 0 ? 0 : 52.5);
@@ -15,6 +43,11 @@ class Pickup {
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
         this.sprite.overlaps(allSprites);
+
+        // store cell co-ordinates for look-up by later constructors
+        this.x = cellX;
+        this.y = cellY;
+
         // selects pick-up by using millis as a pseudo-random number
         let randomiser = Math.floor(Math.random() * 100) % 5;
         

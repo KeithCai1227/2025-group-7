@@ -145,7 +145,8 @@ class GameState{
         //update pickups
         if(millis() > this.nextPickupSpawn){
             if (this.pickupList.length < 5){
-                this.pickupList.push(new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT));
+                let newPickup = new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT, this.pickupList);
+                this.pickupList.push(newPickup);
             }
             this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
         }         
@@ -266,7 +267,7 @@ class GameState{
     checkProjectileTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
             for (let j = 0; j < GameState.projectileList.length; ) {
-                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite)){
+                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite) || GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite.wheels)){
 
                     //first account for damage from projectile to tank
                     //only reduce tank lives if game still in play
@@ -286,8 +287,10 @@ class GameState{
 
     checkSawTankOverlaps(sawTank){
         for(let i = 0; i < this.tankList.length; i++){
-            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite)){
-                this.tankList[i].lifeDecrease(sawTank.saw.damage);
+            if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) || sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite.wheels)){
+                if(this.tankList[i].tankSprite != sawTank.tankSprite){
+                    this.tankList[i].lifeDecrease(sawTank.saw.damage);
+                }
             }
         }
     }
@@ -422,7 +425,7 @@ class GameState{
         endShape(CLOSE);
         
         //bar fill
-        let fillLevel = (this.tankList[1].getLife() / this.tankList[0].initialLife) * 200; 
+        let fillLevel = (this.tankList[1].getLife() / this.tankList[1].initialLife) * 200; 
 
         fill(this.tankList[1].tankSprite.color);
         beginShape();
