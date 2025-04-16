@@ -64,13 +64,15 @@ class Tank{
         this.spdFactor = 3;
         this.initialLife = this.tankLife;
 
-        if(index == 1)
-            this.tankSprite.image = 'images/tank-image-red.webp';
-        else
-            this.tankSprite.image = 'images/tank-image-green.webp';
         this.tankSprite.wheels[0].opacity = 0;
         this.tankSprite.wheels[1].opacity = 0;
-        this.tankSprite.addAni('move', 'images/tank-moving-ani/tank-moving1.webp', 2);
+        console.log(index);
+        if(index === 1){
+            this.tankSprite.addAni('move', 'images/tank-moving-ani/tank-moving1.webp', 2);
+        }else{
+            console.log(index);
+            this.tankSprite.addAni('move', 'images/green-tank-moving/green-moving1.webp', 2);
+        }
         this.tankSprite.anis.scale = 0.1;
         this.tankSprite.anis.offset.x = 60;
 
@@ -153,7 +155,7 @@ class Tank{
         //visual indication of firing through "scale" animation
         this.tankSprite.anis.scale = 0.11;
         this.scaleAniFrameCount = 1;
-        
+
         if(this.tankLife - damage > 0){
             this.tankLife -= damage;
         }else{
