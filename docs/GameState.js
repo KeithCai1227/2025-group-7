@@ -82,7 +82,7 @@ class GameState{
     }
     
     draw(){
-        background(200, 200, 200);
+        background(0);
         
         fill('black'); // Different color for the window
         rect(480, 240, 960, 480); // Position & size
@@ -344,44 +344,156 @@ class GameState{
 
 
     drawHUD(){
-        //obtain strings for scores
-        let scoreString1 = "Score : ";
-        let scoreString2 = "Score : ";
-        if(!GameState.twoPlayerMode) scoreString2 = "CPU Score : ";
-        let hitPointString = "Health : ";
-        let ammoString = "Ammo : ";
-        scoreString1 = scoreString1.concat(this.player1.getScore().toString());
-        scoreString2 = scoreString2.concat(this.player2.getScore().toString());
-        let hitPointString1 = hitPointString.concat(this.tankList[0].getLife().toFixed(2));
-        let hitPointString2 = hitPointString.concat(this.tankList[1].getLife().toFixed(2));
-        let ammoString1 = ammoString.concat(this.tankList[0].getAmmo().toString());
-        let ammoString2 = ammoString.concat(this.tankList[1].getAmmo().toString());
 
-        //display scores below the grid
-        let xMargin = 25;
-        let yMargin = 25;
+        strokeWeight(5);
         textFont('Courier New');
+
+        let offset = GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2);
+
+        //P1 weapon hex
+        stroke(this.tankList[1].tankSprite.color);
+        beginShape();
+        vertex(200, offset + 0);
+        vertex(175, offset + 43.3);
+        vertex(125, offset + 43.3);
+        vertex(100, offset + 0);
+        vertex(125, offset + -43.3);
+        vertex(175, offset + -43.3);
+        endShape(CLOSE);
+
+        //P2 weapon hex
+        stroke(this.tankList[0].tankSprite.color);
+        beginShape();
+        vertex(GameState.CANVAS_WIDTH - 200, offset + 0);
+        vertex(GameState.CANVAS_WIDTH - 175, offset + 43.3);
+        vertex(GameState.CANVAS_WIDTH - 125, offset + 43.3);
+        vertex(GameState.CANVAS_WIDTH - 100, offset + 0);
+        vertex(GameState.CANVAS_WIDTH - 125, offset + -43.3);
+        vertex(GameState.CANVAS_WIDTH - 175, offset + -43.3);
+        endShape(CLOSE);
+
+        offset -= 30;
+
+        //P1 score hex
+        stroke(this.tankList[1].tankSprite.color);
+        beginShape();
+        vertex(105,  offset + 0);
+        vertex(92.5, offset + 21.65);
+        vertex(67.5, offset + 21.65);
+        vertex(55,   offset + 0);
+        vertex(67.5, offset + -21.65);
+        vertex(92.5, offset + -21.65);
+        endShape(CLOSE);
+        //print score
+        strokeWeight(0);
+        fill(this.tankList[1].tankSprite.color);
+        text(this.player2.getScore(), 80, offset - 11);
+        strokeWeight(5);
         fill('black');
-        textStyle(BOLD);
-        textSize(GameState.LOWER_PANEL_HT/4 - yMargin);
-        textAlign(RIGHT, TOP);
-        text(scoreString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin);
-        text(hitPointString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 1.3));
-        text(ammoString1, GameState.CANVAS_WIDTH - xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 2.6));
-        textAlign(LEFT, TOP);
-        text(scoreString2, xMargin, GameState.GRID_HEIGHT + yMargin);
-        text(hitPointString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 1.3));
-        text(ammoString2, xMargin, GameState.GRID_HEIGHT + yMargin + ((GameState.LOWER_PANEL_HT/4 - yMargin) * 2.6));
+
+        //P2 score hex
+        stroke(this.tankList[0].tankSprite.color);
+        beginShape();
+        vertex(GameState.CANVAS_WIDTH - 105,  offset + 0);
+        vertex(GameState.CANVAS_WIDTH - 92.5, offset + 21.65);
+        vertex(GameState.CANVAS_WIDTH - 67.5, offset + 21.65);
+        vertex(GameState.CANVAS_WIDTH - 55,   offset + 0);
+        vertex(GameState.CANVAS_WIDTH - 67.5, offset + -21.65);
+        vertex(GameState.CANVAS_WIDTH - 92.5, offset + -21.65);
+        endShape(CLOSE);
+        //print score
+        strokeWeight(0);
+        fill(this.tankList[0].tankSprite.color);
+        text(this.player1.getScore(), GameState.CANVAS_WIDTH - 80, offset - 11);
+        strokeWeight(5);
+        fill('black');
+
+        offset =  GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2) - 5;
+
+        //P1 life bar
+        
+        //bar outline
+        stroke(this.tankList[1].tankSprite.color);
+        beginShape();
+        vertex(210,   offset + 0);
+        vertex(197.5, offset + -21.65);
+        vertex(397.5, offset + -21.65);
+        vertex(410,   offset + 0);
+        endShape(CLOSE);
+        
+        //bar fill
+        let fillLevel = (this.tankList[1].getLife() / this.tankList[0].initialLife) * 200; 
+
+        fill(this.tankList[1].tankSprite.color);
+        beginShape();
+        vertex(210,   offset + 0);
+        vertex(197.5, offset + -21.65);
+        vertex(197.5 + fillLevel, offset + -21.65);
+        vertex(210 + fillLevel, offset + 0);
+        endShape(CLOSE);
+        fill('black');
+
+        //P2 life bar
+        //bar outline
+        stroke(this.tankList[0].tankSprite.color);
+        beginShape();
+        vertex(GameState.CANVAS_WIDTH - 210,   offset + 0);
+        vertex(GameState.CANVAS_WIDTH - 197.5, offset + -21.65);
+        vertex(GameState.CANVAS_WIDTH - 397.5, offset + -21.65);
+        vertex(GameState.CANVAS_WIDTH - 410,   offset + 0);
+        endShape(CLOSE);
+        
+        //bar fill
+        fillLevel = (this.tankList[0].getLife() / this.tankList[0].initialLife) * 200; 
+
+        fill(this.tankList[0].tankSprite.color);
+        beginShape();
+        vertex(GameState.CANVAS_WIDTH - 210,   offset + 0);
+        vertex(GameState.CANVAS_WIDTH - 197.5, offset + -21.65);
+        vertex(GameState.CANVAS_WIDTH - 197.5 - fillLevel, offset + -21.65);
+        vertex(GameState.CANVAS_WIDTH - 210 - fillLevel,   offset + 0);
+        endShape(CLOSE);
+        fill('black');
+
+        offset =  GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2) + 5;
+        strokeWeight(0);
+
+        //P1 ammo
+        fill(this.tankList[1].tankSprite.color);
+        for (let i = 0; i < this.tankList[1].getAmmo(); i++){
+            beginShape();
+            let xoffset = (20 * i);
+            vertex(210 + xoffset,   offset + 0);
+            vertex(197.5 + xoffset, offset + 21.65);
+            vertex(212.5 + xoffset, offset + 21.65);
+            vertex(225 + xoffset,   offset + 0);
+            endShape(CLOSE);
+        }
+
+        //P2 ammo
+        fill(this.tankList[0].tankSprite.color);
+        for (let i = 0; i < this.tankList[0].getAmmo(); i++){
+            beginShape();
+            let xoffset = (20 * i);
+            vertex(GameState.CANVAS_WIDTH - (210 + xoffset),   offset + 0);
+            vertex(GameState.CANVAS_WIDTH - (197.5 + xoffset), offset + 21.65);
+            vertex(GameState.CANVAS_WIDTH - (212.5 + xoffset), offset + 21.65);
+            vertex(GameState.CANVAS_WIDTH - (225 + xoffset),   offset + 0);
+            endShape(CLOSE);
+        }
+
+        //reset global drawing parameters
+        fill('black');
         
         // Display controller instructions at the bottom
-        if (controllersImg) {
-            const imgWidth = 200; // Adjust as needed
-            const imgHeight = 200; // Adjust as needed
-            const imgX = GameState.CANVAS_WIDTH / 2 - imgWidth / 2;
-            const imgY = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT - imgHeight - 10;
+        //if (controllersImg) {
+        //    const imgWidth = 200; // Adjust as needed
+        //    const imgHeight = 200; // Adjust as needed
+        //    const imgX = GameState.CANVAS_WIDTH / 2 - imgWidth / 2;
+        //    const imgY = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT - imgHeight - 10;
             
-            image(controllersImg, imgX, imgY, imgWidth, imgHeight);
+        //    image(controllersImg, imgX, imgY, imgWidth, imgHeight);
             
-        }
+        //}
     }
 }

@@ -57,8 +57,10 @@ class Tank{
 
         //set the tank's speed and life based on the difficulty level
         if(difficultyLevel == GameState.EASY){
+            this.initialLife = 3;
             this.tankLife = 3;
         } else if(difficultyLevel == GameState.HARD){
+            this.initialLife = 1;
             this.tankLife = 1;
         }
         this.spdFactor = 3;
@@ -148,8 +150,13 @@ class Tank{
     }
 
     lifeIncrement(){
-        // this currently increments regardless of current health - ie there is no "maximum". Something to discuss?
-        this.tankLife++;
+        if (this.tankLife < this.initialLife){
+            this.tankLife++;
+        }
+
+        if (this.tankLife > this.initialLife){
+            this.tankLife = this.initialLife;
+        }
     }
 
     // life refresh when game restarts
