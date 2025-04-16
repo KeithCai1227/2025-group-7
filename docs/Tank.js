@@ -70,7 +70,6 @@ class Tank{
         if(index === 1){
             this.tankSprite.addAni('move', 'images/tank-moving-ani/tank-moving1.webp', 2);
         }else{
-            console.log(index);
             this.tankSprite.addAni('move', 'images/green-tank-moving/green-moving1.webp', 2);
         }
         this.tankSprite.anis.scale = 0.1;
@@ -219,7 +218,6 @@ class Tank{
             this.tankSprite.anis.scale = 0.1;
         if(this.scaleAniFrameCount > 0)
             this.scaleAniFrameCount--;
-        console.log(this.scaleAniFrameCount);
     }
     
     //updates the rotation and speed attributes of the tank sprite
