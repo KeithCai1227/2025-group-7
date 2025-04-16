@@ -423,7 +423,7 @@ class GameState{
         endShape(CLOSE);
         
         //bar fill
-        let fillLevel = (this.tankList[1].getLife() / this.tankList[0].initialLife) * 200; 
+        let fillLevel = (this.tankList[1].getLife() / this.tankList[1].initialLife) * 200; 
 
         fill(this.tankList[1].tankSprite.color);
         beginShape();
