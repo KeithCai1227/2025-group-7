@@ -145,7 +145,8 @@ class GameState{
         //update pickups
         if(millis() > this.nextPickupSpawn){
             if (this.pickupList.length < 5){
-                this.pickupList.push(new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT));
+                let newPickup = new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT, this.pickupList);
+                this.pickupList.push(newPickup);
             }
             this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
         }         
