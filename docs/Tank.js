@@ -63,13 +63,21 @@ class Tank{
         }
         this.spdFactor = 3;
         this.initialLife = this.tankLife;
+
+        if(index == 1)
+            this.tankSprite.image = 'images/tank-image-red.webp';
+        else
+            this.tankSprite.image = 'images/tank-image-green.webp';
+        this.tankSprite.wheels[0].opacity = 0;
+        this.tankSprite.wheels[1].opacity = 0;
+        this.tankSprite.image.offset.x = 60;
+        this.tankSprite.image.scale = 0.1;
     }
     
     draw(){
         //call the draw method of the underlying sprite
 
-        
-
+        /*
         drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = this.tankSprite.wheels.color;
 
@@ -80,12 +88,12 @@ class Tank{
 
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = this.tankSprite.color;
-
+        */
         this.tankSprite.draw();
-        
+        /*
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
-        
+        */
         
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
