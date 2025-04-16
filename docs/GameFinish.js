@@ -19,6 +19,7 @@ class GameFinish{
     }
 
     draw(){
+        textAlign(LEFT, TOP);
         background(200, 200, 200);
         
         strokeWeight(10);
