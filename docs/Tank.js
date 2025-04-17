@@ -1,3 +1,5 @@
+let destroyAnim;
+
 class Tank{
 
     tankWeapon; //which particular type of weapon the tank has
@@ -21,7 +23,8 @@ class Tank{
     //initialDirection should be in degrees measured clockwise from x-axis
     constructor(locX, locY, initialDirection, difficultyLevel, index){
         this.tankWeapon =  new Weapon(Weapon.BULLET_TYPE);
-
+        this.index = index;
+        this.destroyed = false;
         //create a sprite in P5 Play for the tank
         //this.tankSprite = new Sprite();
         //this.tankSprite.x = locX;
@@ -47,6 +50,8 @@ class Tank{
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
         this.tankSprite.speed = 0;
+           //this.hasShield = false;         
+           //this.shieldSprite = null;
         this.tankSprite.rotation = initialDirection;
         this.INITIALROTATION = initialDirection;
         if(this.index === 1){
@@ -83,6 +88,7 @@ class Tank{
         //projectile damage taken
         //counts the frames to apply effect for
         this.scaleAniFrameCount = 0;
+
     }
     
     draw(){
@@ -96,21 +102,33 @@ class Tank{
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = this.tankSprite.color;
         */
-        this.tankSprite.draw();
+        if(!this.isDestroyed) this.tankSprite.draw();
         /*
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
         */
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
+                /*if (this.hasShield && this.shieldSprite) {
+            this.shieldSprite.draw();}*/
+        
         }
+
+        if(this.isDestroyed){
+            destroyAnim.play();
+            destroyAnim.looping = false;
+            animation(destroyAnim, this.tankSprite.x, this.tankSprite.y);
+        }
+
     }
+
     canFire(){
         return (this.tankWeapon.numberOfRounds < this.tankWeapon.capacity);
     }
 
     fire(){
         //Create new projectile according to appropriate weapon type
+        this.tankWeapon.fireSound.play();
         let weaponSize = (this.tankWeapon.weaponType == Weapon.BULLET_TYPE ? Bullet.BULLET_SIZE : this.tankWeapon.weaponType == Weapon.BOMB_TYPE? SplinterBomb.BOMB_SIZE: 0);
         let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST + weaponSize/2;
         let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
@@ -161,7 +179,61 @@ class Tank{
             this.tankLife = 0;
         }
     }
-
+/*receiveDamage(amount) {
+        if (this.hasShield) {
+            this.deactivateShield();  
+        } else {
+            this.lifeDecrease(amount); 
+            if (this.tankLife <= 0) {
+                this.destroy(); /
+            }
+        }
+    }
+    activateShield() {
+        this.hasShield = true;
+    
+        if (!this.shieldSprite) {
+            this.shieldSprite = new Sprite();
+            this.shieldSprite.diameter = Math.max(Tank.TANK_WIDTH, Tank.TANK_HEIGHT) * 2.5; 
+            this.shieldSprite.shape = 'circle'; 
+            this.shieldSprite.x = this.tankSprite.x;
+            this.shieldSprite.y = this.tankSprite.y;
+            this.shieldSprite.collider = 'none';
+            this.shieldSprite.stroke = color(0, 200, 255);
+            this.shieldSprite.strokeWeight = 3;
+            this.shieldSprite.color = color(0, 200, 255, 50);
+            this.shieldSprite.autoUpdate = false;
+            this.shieldSprite.autoDraw = false;
+        }
+    }
+    
+    deactivateShield() {
+        this.hasShield = false;
+    
+        if (this.shieldSprite) {
+            this.shieldSprite.remove();
+            this.shieldSprite = null;
+        }
+    
+        this.showShieldBreakEffect(); 
+    }
+    showShieldBreakEffect() {
+        for (let i = 0; i < 20; i++) {
+            const particle = new Sprite();
+            particle.x = this.tankSprite.x;
+            particle.y = this.tankSprite.y;
+            particle.width = 4;
+            particle.height = 4;
+            particle.color = color(0, 200, 255);
+            particle.stroke = color(0, 100, 255);
+            particle.velocity.x = random(-4, 4);
+            particle.velocity.y = random(-4, 4);
+            particle.life = 20; 
+            particle.autoUpdate = true;
+            particle.autoDraw = true;
+        }
+    }
+        */
     lifeIncrement(){
         if (this.tankLife < this.initialLife){
             this.tankLife++;
@@ -202,7 +274,25 @@ class Tank{
 
     //animates tank destruction
     destroy(){
-        //AT THE MOMENT NO ANIMATION IS DISPLAYED
+        if(this.index === 1){
+            destroyAnim = loadAnimation('destroyanim-red/1.png', 'destroyanim-red/2.png', 'destroyanim-red/3.png', 'destroyanim-red/4.png',
+            'destroyanim-red/5.png', 'destroyanim-red/6.png', 'destroyanim-red/7.png', 'destroyanim-red/8.png', 'destroyanim-red/9.png',
+            'destroyanim-green/10.png');
+        }
+        else{
+            destroyAnim = loadAnimation('destroyanim-green/1.png', 'destroyanim-green/2.png', 'destroyanim-green/3.png', 'destroyanim-green/4.png',
+            'destroyanim-green/5.png', 'destroyanim-green/6.png', 'destroyanim-green/7.png', 'destroyanim-green/8.png', 'destroyanim-green/9.png',
+            'destroyanim-green/10.png');
+        }
+        destroyAnim.frameDelay = 1;
+        destroyAnim.rotation = this.tankSprite.rotation;
+        this.isDestroyed = true;
+
+        setTimeout (() => {
+            this.isDestroyed = false;
+        }, 2000);
+
+
     }
     
     update(){
@@ -218,6 +308,12 @@ class Tank{
             this.tankSprite.anis.scale = 0.1;
         if(this.scaleAniFrameCount > 0)
             this.scaleAniFrameCount--;
+        console.log(this.scaleAniFrameCount);
+        /* if (this.hasShield && this.shieldSprite) {
+            this.shieldSprite.x = this.tankSprite.x;
+            this.shieldSprite.y = this.tankSprite.y;
+    
+        }*/
     }
     
     //updates the rotation and speed attributes of the tank sprite
@@ -245,5 +341,27 @@ class Tank{
             this.tankSprite.speed = 0;
             this.tankSprite.ani.pause();
         }
+    }
+
+    //returns current co-ordinates of the tank, in terms of grid cells,
+    //to exclude it from new Pickup placement - currently hardcodes values
+    //for grid and cell size
+    getCurrentCell(){
+
+        //naive approximation of cell position based on breaking map
+        //into a 90.5 * 105 rectangular grid
+        let column = floor(this.tankSprite.x / 90.5);
+        let row;
+        let columnIsOdd = (column % 2 == 1);
+
+        if (columnIsOdd){
+            row = floor((this.tankSprite.y - 52.5) / 105);
+        } else row = floor(this.tankSprite.y / 105);
+
+        //additional logic can be implemented to disambiguate edge cases if needed
+        //but shouldn't be necessary since Pickups don't spawn on edges anyway...
+
+        return [row, column];
+
     }
 }

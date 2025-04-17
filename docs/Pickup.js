@@ -1,25 +1,30 @@
 class Pickup {
 
-    constructor(gridWidth, gridHeight, pickups){
+    constructor(gridWidth, gridHeight, pickups, tanks){
         
         let cells = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]
 
         for (let i = 0; i < pickups.length; i++){
             cells[pickups[i].y][pickups[i].x] = 1;
         }
 
-        let spawnCell = floor(random(0, 39 - pickups.length));
+        for (let i = 0; i < tanks.length; i++){
+            let tankCell = tanks[i].getCurrentCell();
+            cells[tankCell[0]][tankCell[1]] = 1;
+        }
+
+        let spawnCell = floor(random(0, 39 - pickups.length - 2));
         let cellCount = 0;
         let cellX, cellY;
         let cellFound = false;
         for (let j = 0; j < 4 && cellFound == false; j++){
             for (let i = 0; i < 10 && cellFound == false; i++){
-                if (cellCount == spawnCell){
+                if (cellCount == spawnCell && cells[j][i] == 0){
                     cellFound = true;
                     cellX = i;
                     cellY = j;
@@ -30,9 +35,6 @@ class Pickup {
                 }
             }
         }
-
-        // currently draws 10 x 10 box with a block colour, but this can be
-        // replaced with a bespoke image once we have weapons system fleshed out
 
         this.sprite = new Sprite();
         this.sprite.x = cellX * 90.5 + 62;
@@ -68,6 +70,10 @@ class Pickup {
             this.type = "LASER";
             this.sprite.image = 'images/laser-pickup.webp';
         }
+        /*else if (randomiser == 4) {
+            this.type = "SHIELD"; 
+            this.sprite.color = color(0, 200, 255); }*/
+        
         else{
             // bomb weapon pickup
             this.type = "BOMB";

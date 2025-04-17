@@ -145,7 +145,7 @@ class GameState{
         //update pickups
         if(millis() > this.nextPickupSpawn){
             if (this.pickupList.length < 5){
-                let newPickup = new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT, this.pickupList);
+                let newPickup = new Pickup(this.CANVAS_WIDTH, this.GRID_HEIGHT, this.pickupList, this.tankList);
                 this.pickupList.push(newPickup);
             }
             this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
@@ -186,7 +186,7 @@ class GameState{
                     }
     
                     this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
-                    this.restartGame();
+                    this.restartGame(this.tankList[i]);
                 }
             }
         }
@@ -222,7 +222,8 @@ class GameState{
     }
 
     //restart game when tank dies
-    restartGame(){
+    restartGame(tankSprite){
+        tankSprite.destroy();
     // wait 2 seconds before restart
         setTimeout (() => {
             //get rid of all current projectiles
@@ -274,7 +275,7 @@ class GameState{
                     if(!this.isGameOver){
                         //each projectile has a "damage"
                         let damage = GameState.projectileList[j].damage;
-                        this.tankList[i].lifeDecrease(damage);
+                        this.tankList[i].lifeDecrease(damage);//this.tankList[i].receiveDamage(damage);
                     }
 
                     //next remove the projectile
@@ -289,7 +290,7 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) || sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite.wheels)){
                 if(this.tankList[i].tankSprite != sawTank.tankSprite){
-                    this.tankList[i].lifeDecrease(sawTank.saw.damage);
+                    this.tankList[i].lifeDecrease(sawTank.saw.damage);//this.tankList[i].receiveDamage(damage);
                 }
             }
         }
@@ -317,7 +318,9 @@ class GameState{
                     } else if (this.pickupList[j].type == "LASER") {
                         this.removeSawIfNeeded(this.tankList[i]);
                         this.tankList[i].tankWeapon = new Weapon(Weapon.LASER_TYPE);
-                    }
+                    } 
+                    /*else if (this.pickupList[j].type == "SHIELD") {
+                        this.tankList[i].activateShield();}*/
                     this.pickupList.splice(j, 1);
                 } else j++;
             }
