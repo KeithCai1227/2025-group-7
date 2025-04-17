@@ -72,8 +72,8 @@ class Pickup {
         }
         /*else if (randomiser == 4) {
             this.type = "SHIELD"; 
-            this.sprite.color = color(0, 200, 255); */
-        }
+            this.sprite.color = color(0, 200, 255); }*/
+        
         else{
             // bomb weapon pickup
             this.type = "BOMB";
