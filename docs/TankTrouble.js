@@ -17,6 +17,8 @@ function preload() {
     audioBombShot    = loadSound('audio/bombShot.mp3');
     audioBulletShot  = loadSound('audio/bulletShot.mp3');
     audioLaserShot   = loadSound('audio/laserShot.mp3');
+    audioMediumHit   = loadSound('audio/mediumHit.mp3');
+    audioTankDestroy = loadSound('audio/tankDestroy.mp3');
 }
 
 function setup() {
