@@ -36,28 +36,45 @@ class Laser extends Projectile {
         this.hitTarget = null;
         const wallsArray = Array.isArray(walls) ? walls : [];
         let tankList = [];
-
+    
+        this.wallsDestroyed = 0; 
+    
         try {
             if (typeof tankGame !== 'undefined' && tankGame && tankGame.tankList) {
                 tankList = tankGame.tankList;
             }
         } catch (e) {}
-
+    
         while (distanceTraveled < this.maxDistance && !hitSomething) {
             const currentX = rayX + dirX * distanceTraveled;
             const currentY = rayY + dirY * distanceTraveled;
-
+    
             for (let wall of wallsArray) {
                 if (wall && this.pointInWall(currentX, currentY, wall)) {
-                    this.endX = currentX;
-                    this.endY = currentY;
-                    hitSomething = true;
+                    if (wall.outerWall) {
+                        this.endX = currentX;
+                        this.endY = currentY;
+                        hitSomething = true;
+                        break;
+                    }
+                    if (this.wallsDestroyed < 2) {
+                        try {
+                            wall.remove(); 
+                            this.wallsDestroyed++;
+                        } catch (e) {
+                            console.warn("cannot break:", e);
+                        }
+                    } else {
+                        this.endX = currentX;
+                        this.endY = currentY;
+                        hitSomething = true;
+                    }
                     break;
                 }
             }
-
+    
             if (hitSomething) break;
-
+    
             for (let tank of tankList) {
                 if (tank && tank.tankSprite && !this.isFiringTank(tank, rayX, rayY)) {
                     if (this.pointInTank(currentX, currentY, tank)) {
@@ -69,10 +86,11 @@ class Laser extends Projectile {
                     }
                 }
             }
-
+    
             distanceTraveled += step;
         }
     }
+    
 
     pointInWall(x, y, wall) {
         const dx = x - wall.x;
