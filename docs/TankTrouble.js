@@ -12,6 +12,10 @@ let Q_CODE = 81;
 
 let maxGames = 5;
 
+function preload() {
+    audioBombExplode = loadSound('audio/bombExplode.mp3');
+}
+
 function setup() {
     //standardise frame rate to ensure animations and speed consistent
     //accross different machines
