@@ -47,6 +47,8 @@ class Tank{
         this.tankSprite.autoDraw = false;
         this.tankSprite.rotationLock = true;
         this.tankSprite.speed = 0;
+           //this.hasShield = false;         
+           //this.shieldSprite = null;
         this.tankSprite.rotation = initialDirection;
         this.INITIALROTATION = initialDirection;
         if(this.index === 1){
@@ -104,6 +106,9 @@ class Tank{
         */
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
+                /*if (this.hasShield && this.shieldSprite) {
+            this.shieldSprite.draw();}*/
+        
         }
     }
     canFire(){
@@ -163,7 +168,61 @@ class Tank{
             this.tankLife = 0;
         }
     }
-
+/*receiveDamage(amount) {
+        if (this.hasShield) {
+            this.deactivateShield();  
+        } else {
+            this.lifeDecrease(amount); 
+            if (this.tankLife <= 0) {
+                this.destroy(); /
+            }
+        }
+    }
+    activateShield() {
+        this.hasShield = true;
+    
+        if (!this.shieldSprite) {
+            this.shieldSprite = new Sprite();
+            this.shieldSprite.diameter = Math.max(Tank.TANK_WIDTH, Tank.TANK_HEIGHT) * 2.5; 
+            this.shieldSprite.shape = 'circle'; 
+            this.shieldSprite.x = this.tankSprite.x;
+            this.shieldSprite.y = this.tankSprite.y;
+            this.shieldSprite.collider = 'none';
+            this.shieldSprite.stroke = color(0, 200, 255);
+            this.shieldSprite.strokeWeight = 3;
+            this.shieldSprite.color = color(0, 200, 255, 50);
+            this.shieldSprite.autoUpdate = false;
+            this.shieldSprite.autoDraw = false;
+        }
+    }
+    
+    deactivateShield() {
+        this.hasShield = false;
+    
+        if (this.shieldSprite) {
+            this.shieldSprite.remove();
+            this.shieldSprite = null;
+        }
+    
+        this.showShieldBreakEffect(); 
+    }
+    showShieldBreakEffect() {
+        for (let i = 0; i < 20; i++) {
+            const particle = new Sprite();
+            particle.x = this.tankSprite.x;
+            particle.y = this.tankSprite.y;
+            particle.width = 4;
+            particle.height = 4;
+            particle.color = color(0, 200, 255);
+            particle.stroke = color(0, 100, 255);
+            particle.velocity.x = random(-4, 4);
+            particle.velocity.y = random(-4, 4);
+            particle.life = 20; 
+            particle.autoUpdate = true;
+            particle.autoDraw = true;
+        }
+    }
+        */
     lifeIncrement(){
         if (this.tankLife < this.initialLife){
             this.tankLife++;
@@ -221,6 +280,11 @@ class Tank{
         if(this.scaleAniFrameCount > 0)
             this.scaleAniFrameCount--;
         console.log(this.scaleAniFrameCount);
+        /* if (this.hasShield && this.shieldSprite) {
+            this.shieldSprite.x = this.tankSprite.x;
+            this.shieldSprite.y = this.tankSprite.y;
+    
+        }*/
     }
     
     //updates the rotation and speed attributes of the tank sprite
