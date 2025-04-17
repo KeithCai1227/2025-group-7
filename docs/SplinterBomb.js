@@ -41,5 +41,7 @@ class SplinterBomb extends Projectile{
         for(let i = 0; i < SplinterBomb.NUM_SPLINTERS; i++){
             GameState.projectileList.push(new Splinter(x, y, 0));
         }
+
+        audioBombExplode.play();
     }
 }

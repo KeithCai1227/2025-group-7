@@ -276,6 +276,9 @@ class GameState{
                         //each projectile has a "damage"
                         let damage = GameState.projectileList[j].damage;
                         this.tankList[i].lifeDecrease(damage);//this.tankList[i].receiveDamage(damage);
+                        if (this.tankList[i].getLife() > 0){
+                            audioMediumHit.play();
+                        } else audioTankDestroy.play();
                     }
 
                     //next remove the projectile
