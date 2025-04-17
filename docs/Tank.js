@@ -248,4 +248,26 @@ class Tank{
             this.tankSprite.ani.pause();
         }
     }
+
+    //returns current co-ordinates of the tank, in terms of grid cells,
+    //to exclude it from new Pickup placement - currently hardcodes values
+    //for grid and cell size
+    getCurrentCell(){
+
+        //naive approximation of cell position based on breaking map
+        //into a 90.5 * 105 rectangular grid
+        let column = floor(this.tankSprite.x / 90.5);
+        let row;
+        let columnIsOdd = (column % 2 == 1);
+
+        if (columnIsOdd){
+            row = floor((this.tankSprite.y - 52.5) / 105);
+        } else row = floor(this.tankSprite.y / 105);
+
+        //additional logic can be implemented to disambiguate edge cases if needed
+        //but shouldn't be necessary since Pickups don't spawn on edges anyway...
+
+        return [row, column];
+
+    }
 }
