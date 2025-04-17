@@ -1,3 +1,5 @@
+let destroyAnim;
+
 class Tank{
 
     tankWeapon; //which particular type of weapon the tank has
@@ -21,7 +23,8 @@ class Tank{
     //initialDirection should be in degrees measured clockwise from x-axis
     constructor(locX, locY, initialDirection, difficultyLevel, index){
         this.tankWeapon =  new Weapon(Weapon.BULLET_TYPE);
-
+        this.index = index;
+        this.destroyed = false;
         //create a sprite in P5 Play for the tank
         //this.tankSprite = new Sprite();
         //this.tankSprite.x = locX;
@@ -86,6 +89,7 @@ class Tank{
         //projectile damage taken
         //counts the frames to apply effect for
         this.scaleAniFrameCount = 0;
+
     }
     
     draw(){
@@ -99,7 +103,7 @@ class Tank{
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = this.tankSprite.color;
         */
-        this.tankSprite.draw();
+        if(!this.isDestroyed) this.tankSprite.draw();
         /*
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
@@ -110,7 +114,15 @@ class Tank{
             this.shieldSprite.draw();}*/
         
         }
+
+        if(this.isDestroyed){
+            destroyAnim.play();
+            destroyAnim.looping = false;
+            animation(destroyAnim, this.tankSprite.x, this.tankSprite.y);
+        }
+
     }
+
     canFire(){
         return (this.tankWeapon.numberOfRounds < this.tankWeapon.capacity);
     }
@@ -263,7 +275,25 @@ class Tank{
 
     //animates tank destruction
     destroy(){
-        //AT THE MOMENT NO ANIMATION IS DISPLAYED
+        if(this.index === 1){
+            destroyAnim = loadAnimation('destroyanim-red/1.png', 'destroyanim-red/2.png', 'destroyanim-red/3.png', 'destroyanim-red/4.png',
+            'destroyanim-red/5.png', 'destroyanim-red/6.png', 'destroyanim-red/7.png', 'destroyanim-red/8.png', 'destroyanim-red/9.png',
+            'destroyanim-green/10.png');
+        }
+        else{
+            destroyAnim = loadAnimation('destroyanim-green/1.png', 'destroyanim-green/2.png', 'destroyanim-green/3.png', 'destroyanim-green/4.png',
+            'destroyanim-green/5.png', 'destroyanim-green/6.png', 'destroyanim-green/7.png', 'destroyanim-green/8.png', 'destroyanim-green/9.png',
+            'destroyanim-green/10.png');
+        }
+        destroyAnim.frameDelay = 1;
+        destroyAnim.rotation = this.tankSprite.rotation;
+        this.isDestroyed = true;
+
+        setTimeout (() => {
+            this.isDestroyed = false;
+        }, 2000);
+
+
     }
     
     update(){

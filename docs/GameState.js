@@ -186,7 +186,7 @@ class GameState{
                     }
     
                     this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
-                    this.restartGame();
+                    this.restartGame(this.tankList[i]);
                 }
             }
         }
@@ -222,7 +222,8 @@ class GameState{
     }
 
     //restart game when tank dies
-    restartGame(){
+    restartGame(tankSprite){
+        tankSprite.destroy();
     // wait 2 seconds before restart
         setTimeout (() => {
             //get rid of all current projectiles
