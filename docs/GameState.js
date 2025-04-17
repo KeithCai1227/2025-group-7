@@ -357,77 +357,78 @@ class GameState{
         strokeWeight(5);
         textFont('Courier New');
 
-        let offset = GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2);
-
+        let offsetY = GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2);
+        let offsetX = GameState.CANVAS_WIDTH / 2;
+        let separator = -35;
         //P1 weapon hex
         stroke(this.tankList[1].tankSprite.color);
         beginShape();
-        vertex(200, offset + 0);
-        vertex(175, offset + 43.3);
-        vertex(125, offset + 43.3);
-        vertex(100, offset + 0);
-        vertex(125, offset + -43.3);
-        vertex(175, offset + -43.3);
+        vertex((offsetX - 280) + separator, offsetY + 0);
+        vertex((offsetX - 305) + separator, offsetY + 43.3);
+        vertex((offsetX - 355) + separator, offsetY + 43.3);
+        vertex((offsetX - 380) + separator, offsetY + 0);
+        vertex((offsetX - 355) + separator, offsetY + -43.3);
+        vertex((offsetX - 305) + separator, offsetY + -43.3);
         endShape(CLOSE);
 
         //P2 weapon hex
         stroke(this.tankList[0].tankSprite.color);
         beginShape();
-        vertex(GameState.CANVAS_WIDTH - 200, offset + 0);
-        vertex(GameState.CANVAS_WIDTH - 175, offset + 43.3);
-        vertex(GameState.CANVAS_WIDTH - 125, offset + 43.3);
-        vertex(GameState.CANVAS_WIDTH - 100, offset + 0);
-        vertex(GameState.CANVAS_WIDTH - 125, offset + -43.3);
-        vertex(GameState.CANVAS_WIDTH - 175, offset + -43.3);
+        vertex((offsetX + 280) - separator, offsetY + 0);
+        vertex((offsetX + 305) - separator, offsetY + 43.3);
+        vertex((offsetX + 355) - separator, offsetY + 43.3);
+        vertex((offsetX + 380) - separator, offsetY + 0);
+        vertex((offsetX + 355) - separator, offsetY + -43.3);
+        vertex((offsetX + 305) - separator, offsetY + -43.3);
         endShape(CLOSE);
 
-        offset -= 30;
+        offsetY -= 30;
 
         //P1 score hex
         stroke(this.tankList[1].tankSprite.color);
         beginShape();
-        vertex(105,  offset + 0);
-        vertex(92.5, offset + 21.65);
-        vertex(67.5, offset + 21.65);
-        vertex(55,   offset + 0);
-        vertex(67.5, offset + -21.65);
-        vertex(92.5, offset + -21.65);
+        vertex((offsetX - 375) + separator,  offsetY + 0);
+        vertex((offsetX - 387.5) + separator, offsetY + 21.65);
+        vertex((offsetX - 412.5) + separator, offsetY + 21.65);
+        vertex((offsetX - 425) + separator,   offsetY + 0);
+        vertex((offsetX - 412.5) + separator, offsetY + -21.65);
+        vertex((offsetX - 387.5) + separator, offsetY + -21.65);
         endShape(CLOSE);
         //print score
         strokeWeight(0);
         fill(this.tankList[1].tankSprite.color);
-        text(this.player2.getScore(), 80, offset - 11);
+        text(this.player2.getScore(), (offsetX - 400) + separator, offsetY - 11);
         strokeWeight(5);
         fill('black');
 
         //P2 score hex
         stroke(this.tankList[0].tankSprite.color);
         beginShape();
-        vertex(GameState.CANVAS_WIDTH - 105,  offset + 0);
-        vertex(GameState.CANVAS_WIDTH - 92.5, offset + 21.65);
-        vertex(GameState.CANVAS_WIDTH - 67.5, offset + 21.65);
-        vertex(GameState.CANVAS_WIDTH - 55,   offset + 0);
-        vertex(GameState.CANVAS_WIDTH - 67.5, offset + -21.65);
-        vertex(GameState.CANVAS_WIDTH - 92.5, offset + -21.65);
+        vertex((offsetX + 375) - separator,  offsetY + 0);
+        vertex((offsetX + 387.5) - separator, offsetY + 21.65);
+        vertex((offsetX + 412.5) - separator, offsetY + 21.65);
+        vertex((offsetX + 425) - separator,   offsetY + 0);
+        vertex((offsetX + 412.5) - separator, offsetY + -21.65);
+        vertex((offsetX + 387.5) - separator, offsetY + -21.65);
         endShape(CLOSE);
         //print score
         strokeWeight(0);
         fill(this.tankList[0].tankSprite.color);
-        text(this.player1.getScore(), GameState.CANVAS_WIDTH - 80, offset - 11);
+        text(this.player1.getScore(), (offsetX + 400) - separator, offsetY - 11);
         strokeWeight(5);
         fill('black');
 
-        offset =  GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2) - 5;
+        offsetY =  GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2) - 5;
 
         //P1 life bar
         
         //bar outline
         stroke(this.tankList[1].tankSprite.color);
         beginShape();
-        vertex(210,   offset + 0);
-        vertex(197.5, offset + -21.65);
-        vertex(397.5, offset + -21.65);
-        vertex(410,   offset + 0);
+        vertex((offsetX - 270) + separator,   offsetY + 0);
+        vertex((offsetX - 282.5) + separator, offsetY + -21.65);
+        vertex((offsetX - 82.5) + separator, offsetY + -21.65);
+        vertex((offsetX - 70) + separator,   offsetY + 0);
         endShape(CLOSE);
         
         //bar fill
@@ -435,10 +436,10 @@ class GameState{
 
         fill(this.tankList[1].tankSprite.color);
         beginShape();
-        vertex(210,   offset + 0);
-        vertex(197.5, offset + -21.65);
-        vertex(197.5 + fillLevel, offset + -21.65);
-        vertex(210 + fillLevel, offset + 0);
+        vertex((offsetX - 270) + separator,   offsetY + 0);
+        vertex((offsetX - 282.5) + separator, offsetY + -21.65);
+        vertex((offsetX - 282.5) + separator + fillLevel, offsetY + -21.65);
+        vertex((offsetX - 270) + separator + fillLevel, offsetY + 0);
         endShape(CLOSE);
         fill('black');
 
@@ -446,10 +447,10 @@ class GameState{
         //bar outline
         stroke(this.tankList[0].tankSprite.color);
         beginShape();
-        vertex(GameState.CANVAS_WIDTH - 210,   offset + 0);
-        vertex(GameState.CANVAS_WIDTH - 197.5, offset + -21.65);
-        vertex(GameState.CANVAS_WIDTH - 397.5, offset + -21.65);
-        vertex(GameState.CANVAS_WIDTH - 410,   offset + 0);
+        vertex((offsetX + 270) - separator,   offsetY + 0);
+        vertex((offsetX + 282.5) - separator, offsetY + -21.65);
+        vertex((offsetX + 82.5) - separator, offsetY + -21.65);
+        vertex((offsetX + 70) - separator,   offsetY + 0);
         endShape(CLOSE);
         
         //bar fill
@@ -457,14 +458,14 @@ class GameState{
 
         fill(this.tankList[0].tankSprite.color);
         beginShape();
-        vertex(GameState.CANVAS_WIDTH - 210,   offset + 0);
-        vertex(GameState.CANVAS_WIDTH - 197.5, offset + -21.65);
-        vertex(GameState.CANVAS_WIDTH - 197.5 - fillLevel, offset + -21.65);
-        vertex(GameState.CANVAS_WIDTH - 210 - fillLevel,   offset + 0);
+        vertex((offsetX + 270) - separator,   offsetY + 0);
+        vertex((offsetX + 282.5) - separator, offsetY + -21.65);
+        vertex((offsetX + 282.5) - separator - fillLevel, offsetY + -21.65);
+        vertex((offsetX + 270) - separator - fillLevel,   offsetY + 0);
         endShape(CLOSE);
         fill('black');
 
-        offset =  GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2) + 5;
+        offsetY =  GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2) + 5;
         strokeWeight(0);
 
         //P1 ammo
@@ -472,10 +473,10 @@ class GameState{
         for (let i = 0; i < this.tankList[1].getAmmo(); i++){
             beginShape();
             let xoffset = (20 * i);
-            vertex(210 + xoffset,   offset + 0);
-            vertex(197.5 + xoffset, offset + 21.65);
-            vertex(212.5 + xoffset, offset + 21.65);
-            vertex(225 + xoffset,   offset + 0);
+            vertex((offsetX - 270) + separator + xoffset,   offsetY + 0);
+            vertex((offsetX - 282.5) + separator + xoffset, offsetY + 21.65);
+            vertex((offsetX - 267.5) + separator + xoffset, offsetY + 21.65);
+            vertex((offsetX - 255) + separator + xoffset,   offsetY + 0);
             endShape(CLOSE);
         }
 
@@ -484,10 +485,10 @@ class GameState{
         for (let i = 0; i < this.tankList[0].getAmmo(); i++){
             beginShape();
             let xoffset = (20 * i);
-            vertex(GameState.CANVAS_WIDTH - (210 + xoffset),   offset + 0);
-            vertex(GameState.CANVAS_WIDTH - (197.5 + xoffset), offset + 21.65);
-            vertex(GameState.CANVAS_WIDTH - (212.5 + xoffset), offset + 21.65);
-            vertex(GameState.CANVAS_WIDTH - (225 + xoffset),   offset + 0);
+            vertex((offsetX + 270) - separator - xoffset,   offsetY + 0);
+            vertex((offsetX + 282.5) - separator - xoffset, offsetY + 21.65);
+            vertex((offsetX + 267.5) - separator - xoffset, offsetY + 21.65);
+            vertex((offsetX + 255) - separator - xoffset,   offsetY + 0);
             endShape(CLOSE);
         }
 
@@ -495,14 +496,14 @@ class GameState{
         fill('black');
         
         // Display controller instructions at the bottom
-        //if (controllersImg) {
-        //    const imgWidth = 200; // Adjust as needed
-        //    const imgHeight = 200; // Adjust as needed
-        //    const imgX = GameState.CANVAS_WIDTH / 2 - imgWidth / 2;
-        //    const imgY = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT - imgHeight - 10;
+        if (controllersImg) {
+            const imgWidth = 200; // Adjust as needed
+            const imgHeight = 200; // Adjust as needed
+            const imgX = offsetX - imgWidth / 2;
+            const imgY = GameState.GRID_HEIGHT + GameState.LOWER_PANEL_HT - imgHeight - 10;
             
-        //    image(controllersImg, imgX, imgY, imgWidth, imgHeight);
+            image(controllersImg, imgX, imgY, imgWidth, imgHeight);
             
-        //}
+        }
     }
 }
