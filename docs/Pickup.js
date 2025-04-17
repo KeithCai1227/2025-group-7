@@ -70,6 +70,10 @@ class Pickup {
             this.type = "LASER";
             this.sprite.image = 'images/laser-pickup.webp';
         }
+        /*else if (randomiser == 4) {
+            this.type = "SHIELD"; 
+            this.sprite.color = color(0, 200, 255); */
+        }
         else{
             // bomb weapon pickup
             this.type = "BOMB";
