@@ -71,7 +71,7 @@ class Tank{
 
         this.tankSprite.wheels[0].opacity = 0;
         this.tankSprite.wheels[1].opacity = 0;
-        console.log(index);
+        //console.log(index);
         if(index === 1){
             this.tankSprite.addAni('move', 'images/tank-moving-ani/tank-moving1.webp', 2);
         }else{
@@ -308,7 +308,7 @@ class Tank{
             this.tankSprite.anis.scale = 0.1;
         if(this.scaleAniFrameCount > 0)
             this.scaleAniFrameCount--;
-        console.log(this.scaleAniFrameCount);
+        //console.log(this.scaleAniFrameCount);
         /* if (this.hasShield && this.shieldSprite) {
             this.shieldSprite.x = this.tankSprite.x;
             this.shieldSprite.y = this.tankSprite.y;
