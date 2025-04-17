@@ -275,7 +275,7 @@ class GameState{
                     if(!this.isGameOver){
                         //each projectile has a "damage"
                         let damage = GameState.projectileList[j].damage;
-                        this.tankList[i].lifeDecrease(damage);
+                        this.tankList[i].lifeDecrease(damage);//this.tankList[i].receiveDamage(damage);
                     }
 
                     //next remove the projectile
@@ -290,7 +290,7 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) || sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite.wheels)){
                 if(this.tankList[i].tankSprite != sawTank.tankSprite){
-                    this.tankList[i].lifeDecrease(sawTank.saw.damage);
+                    this.tankList[i].lifeDecrease(sawTank.saw.damage);//this.tankList[i].receiveDamage(damage);
                 }
             }
         }
