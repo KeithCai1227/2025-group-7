@@ -112,6 +112,7 @@ class Tank{
 
     fire(){
         //Create new projectile according to appropriate weapon type
+        this.tankWeapon.fireSound.play();
         let weaponSize = (this.tankWeapon.weaponType == Weapon.BULLET_TYPE ? Bullet.BULLET_SIZE : this.tankWeapon.weaponType == Weapon.BOMB_TYPE? SplinterBomb.BOMB_SIZE: 0);
         let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST + weaponSize/2;
         let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);

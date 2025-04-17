@@ -25,21 +25,25 @@ class Weapon{
             this.weaponType = weaponType;
             this.capacity = Weapon.BULLET_CAPACITY;
             this.numberOfRounds = 0;
+            this.fireSound = audioBulletShot;
         }
         else if(weaponType == Weapon.LASER_TYPE){
             this.weaponType = weaponType;
             this.capacity = Weapon.LASER_CAPACITY;
             this.numberOfRounds = 0;
+            this.fireSound = audioLaserShot;
         }
         else if(weaponType == Weapon.BOMB_TYPE){
             this.weaponType = weaponType;
             this.capacity = Weapon.BOMB_CAPACITY;
             this.numberOfRounds = 0;
+            this.fireSound = audioBombShot;
         }
         else if(weaponType == Weapon.SAW_TYPE){
             this.weaponType = weaponType;
             this.capacity = null;
             this.numberOfRounds = null;
+            this.fireSound = audioLaserShot;
         }
     }
 

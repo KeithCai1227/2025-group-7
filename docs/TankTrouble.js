@@ -14,6 +14,9 @@ let maxGames = 5;
 
 function preload() {
     audioBombExplode = loadSound('audio/bombExplode.mp3');
+    audioBombShot    = loadSound('audio/bombShot.mp3');
+    audioBulletShot  = loadSound('audio/bulletShot.mp3');
+    audioLaserShot   = loadSound('audio/laserShot.mp3');
 }
 
 function setup() {
