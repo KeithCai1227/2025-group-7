@@ -31,19 +31,23 @@ class Weapon {
             case Weapon.BULLET_TYPE:
                 this.capacity = Weapon.BULLET_CAPACITY;
                 this.fireSound = audioBulletShot;
+                this.icon = imgAmmoIcon;
                 break;
             case Weapon.LASER_TYPE:
                 this.capacity = Weapon.LASER_CAPACITY;
                 this.fireSound = audioLaserShot;
+                this.icon = imgLaserIcon;
                 break;
             case Weapon.BOMB_TYPE:
                 this.capacity = Weapon.BOMB_CAPACITY;
                 this.fireSound = audioBombShot;
+                this.icon = imgBombIcon;
                 break;
             case Weapon.SAW_TYPE:
                 this.capacity = null;
                 this.numberOfRounds = null;
-                this.fireSound = audioLaserShot; 
+                this.fireSound = audioLaserShot;
+                this.icon = imgSawIcon;
                 break;
             default:
                 throw new Error("Invalid weapon type");

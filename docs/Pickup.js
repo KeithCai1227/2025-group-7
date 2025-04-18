@@ -55,20 +55,20 @@ class Pickup {
         
         if(randomiser == 0){
             this.type = "HEALTH";
-            this.sprite.image = 'images/health-pickup.webp';
+            this.sprite.image = imgHealthPickup;
         }else if(randomiser == 1){
             // refresh ammo
             this.type = "AMMO";
-            this.sprite.image = 'images/ammo-pickup.webp';
+            this.sprite.image = imgAmmoPickup;
         }else if(randomiser == 2){
             //saw weapon pickup
             this.type = "SAW"
-            this.sprite.image = 'images/saw-pickup.webp';
+            this.sprite.image = imgSawPickup;
         }
         else if(randomiser == 3){
             // laser weapon pickup
             this.type = "LASER";
-            this.sprite.image = 'images/laser-pickup.webp';
+            this.sprite.image = imgLaserPickup;
         }
         /*else if (randomiser == 4) {
             this.type = "SHIELD"; 
@@ -77,7 +77,7 @@ class Pickup {
         else{
             // bomb weapon pickup
             this.type = "BOMB";
-            this.sprite.image = 'images/bomb-pickup.webp';
+            this.sprite.image = imgBombPickup;
         }
         this.sprite.image.scale = 0.1;
     }

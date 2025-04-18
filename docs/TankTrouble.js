@@ -13,12 +13,30 @@ let Q_CODE = 81;
 let maxGames = 5;
 
 function preload() {
+
+    //audio file preloads
     audioBombExplode = loadSound('audio/bombExplode.mp3');
     audioBombShot    = loadSound('audio/bombShot.mp3');
     audioBulletShot  = loadSound('audio/bulletShot.mp3');
     audioLaserShot   = loadSound('audio/laserShot.mp3');
     audioMediumHit   = loadSound('audio/mediumHit.mp3');
     audioTankDestroy = loadSound('audio/tankDestroy.mp3');
+
+    //image file preloads
+    imgAmmoIcon     = loadImage('images/ammo-icon.webp');
+    imgAmmoPickup   = loadImage('images/ammo-pickup.webp');
+    imgBombIcon     = loadImage('images/bomb-icon.webp');
+    imgBombPickup   = loadImage('images/bomb-pickup.webp');
+    imgHealthIcon   = loadImage('images/health-icon.webp');
+    imgHealthPickup = loadImage('images/health-pickup.webp');
+    imgLaserIcon    = loadImage('images/laser-icon.webp');
+    imgLaserPickup  = loadImage('images/laser-pickup.webp');
+    imgSawIcon      = loadImage('images/saw-icon.webp');
+    imgSawPickup    = loadImage('images/saw-pickup.webp');
+    imgSpeedIcon    = loadImage('images/speed-icon.webp');
+    imgSpeedPickup  = loadImage('images/speed-pickup.webp');
+    imgTankGreen    = loadImage('images/tank-image-green.webp');
+    imgTankRed      = loadImage('images/tank-image-red.webp');
 }
 
 function setup() {

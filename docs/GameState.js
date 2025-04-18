@@ -360,6 +360,7 @@ class GameState{
         let offsetY = GameState.GRID_HEIGHT + (GameState.LOWER_PANEL_HT / 2);
         let offsetX = GameState.CANVAS_WIDTH / 2;
         let separator = -35;
+
         //P1 weapon hex
         stroke(this.tankList[1].tankSprite.color);
         beginShape();
@@ -370,6 +371,7 @@ class GameState{
         vertex((offsetX - 355) + separator, offsetY + -43.3);
         vertex((offsetX - 305) + separator, offsetY + -43.3);
         endShape(CLOSE);
+        image(this.tankList[1].tankWeapon.icon, offsetX - 392, offsetY - 28.3, 55, 55);
 
         //P2 weapon hex
         stroke(this.tankList[0].tankSprite.color);
@@ -381,6 +383,7 @@ class GameState{
         vertex((offsetX + 355) - separator, offsetY + -43.3);
         vertex((offsetX + 305) - separator, offsetY + -43.3);
         endShape(CLOSE);
+        image(this.tankList[0].tankWeapon.icon, offsetX + 337, offsetY - 28.3, 55, 55);
 
         offsetY -= 30;
 
