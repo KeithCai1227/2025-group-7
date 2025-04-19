@@ -53,12 +53,12 @@ class GameSetup{
     }
 
     draw(){
-        background(200, 200, 200);
+        background(0, 0, 0);
 
         //display the game title
         strokeWeight(0);
-        textFont('Courier New');
-        fill('black');
+        textFont('Orbitron');
+        fill('red'); // changed
         textStyle(BOLD);
         textSize(this.HEAD_TEXT);
         textAlign(CENTER, TOP);
@@ -66,15 +66,15 @@ class GameSetup{
 
         //put in user selection box
         rectMode(CENTER);
-        fill('black');
+        fill('#CCCCCC'); // changed
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 100);
-        fill(200, 200, 200);
+        fill(55, 55, 55);
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 490, 90);
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 500, 50);
         rect(GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + this.selector*this.VERT_SP + this.REG_TEXT/2, 400, 100);
 
         //put in mode selection
-        fill('black');
+        fill('#CCCCCC'); // changed
         textSize(this.REG_TEXT);
         textAlign(RIGHT, TOP);
         text('NUMBER OF PLAYERS:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE);
@@ -106,50 +106,50 @@ class GameSetup{
         text('START GAME', GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + 4*this.VERT_SP);
 
         //highlight player mode selection
-        fill('black');
+        fill('#CCCCCC'); // changed
         if(!GameState.twoPlayerMode){
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('ONE PLAYER', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE);
         }else{
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + this.REG_TEXT/2, 200, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('TWO PLAYER', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE);
         }
 
         //highlight difficulty selection for player 1
-        fill('black');
+        fill('#CCCCCC'); // changed
         if(GameState.player1Difficulty === GameState.EASY){
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('EASY', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + this.VERT_SP);
         }else{
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + this.VERT_SP);
         }
 
         //highlight difficulty selection for player 2
-        fill('black');
+        fill('#CCCCCC'); // changed
         if(GameState.player2Difficulty === GameState.EASY){
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 2*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('EASY', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 2*this.VERT_SP);
         }else{
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 2*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('HARD', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 2*this.VERT_SP);
         }
         //highlight map generation selection
-        fill('black');
+        fill('#CCCCCC'); // changed
         if(GameState.showMapGeneration){
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 3*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('ON', GameState.CANVAS_WIDTH/2 + this.HORZ2, this.BELOW_TITLE + 3*this.VERT_SP);
         }
         else{
             rect(GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 3*this.VERT_SP + this.REG_TEXT/2, 100, this.REG_TEXT + 25);
-            fill('white');
+            fill('black');
             text('OFF', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 3*this.VERT_SP);
         }
 

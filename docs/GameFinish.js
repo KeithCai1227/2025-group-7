@@ -20,10 +20,10 @@ class GameFinish{
 
     draw(){
         textAlign(LEFT, TOP);
-        background(200, 200, 200);
+        background(0, 0, 0);
         
         strokeWeight(10);
-        fill('black');
+        fill('red');
         textFont('Courier New');
         textSize(110);
         text("GAME COMPLETE", this.gameCompleteX, this.gameCompleteY);
@@ -37,7 +37,7 @@ class GameFinish{
         }
 
         rect(this.newGameRectX, this.newGameRectY, this.newGameRectWidth, this.newGameRectHeight);
-        fill('white');
+        fill('black');
         textSize(30);
         text("Press Enter for New Game", this.newGameX, this.newGameY);
 
