@@ -62,7 +62,7 @@ class GameSetup{
         textStyle(BOLD);
         textSize(this.HEAD_TEXT);
         textAlign(CENTER, TOP);
-        text('Tank Trouble', GameState.CANVAS_WIDTH/2, 25);
+        text('Hex Wars', GameState.CANVAS_WIDTH/2, 25);
 
         //put in user selection box
         rectMode(CENTER);
