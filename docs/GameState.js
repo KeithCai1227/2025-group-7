@@ -14,9 +14,9 @@ class GameState{
     RAND1Y = floor(random(0, 3)); 
     RAND2X = floor(random(0, 4));
     RAND2Y = floor(random(0, 3));
-    TANK1X = this.RAND1X*90.5 + 62;
+    TANK1X = this.RAND1X*90.5 + 72;
     TANK1Y = this.RAND1Y*105 + 54 + (this.RAND1X%2 == 0? 0 : 52.5);
-    TANK2X = this.RAND2X*90.5 + 62;
+    TANK2X = this.RAND2X*90.5 + 72;
     TANK2Y = this.RAND2Y*105 + 54 + (this.RAND2X%2 == 0? 0 : 52.5);
     ANGLE1 = atan2(this.TANK2Y - this.TANK1Y, this.TANK2X - this.TANK1X);
     ANGLE2 = atan2(this.TANK1Y - this.TANK2Y, this.TANK1X - this.TANK2X);
@@ -77,7 +77,9 @@ class GameState{
         this.player2 = new Player(GameState.player2Difficulty, GameState.twoPlayerMode, keyListener2);
 
         //establishes initial time for first Pickup to spawn
+        
         this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
+        
         
     }
     
@@ -218,7 +220,7 @@ class GameState{
 
     pickupSpawnInterval(){
         //ten seconds - ie 5,000 milliseconds - plus a random number of milliseconds up to another 5s
-        return 5000 + Math.floor(Math.random() * 5000);
+        return 5000 + Math.floor(Math.random() * 5000) + GameState.showMapGeneration? 30000 : 0;
     }
 
     //restart game when tank dies
@@ -252,7 +254,7 @@ class GameState{
                 //complete destroy method in tank class
                 //change position refresh when tank spawn implemented
                 //for now back to original positions
-                this.tankList[i].positionRefresh();
+                this.regenerateTankPosition();
                 this.tankList[i].numberOfRoundsRefresh();
                 this.tankList[i].lifeRefresh();
                 this.tankList[i].tankWeapon = new Weapon(Weapon.BULLET_TYPE);
@@ -508,5 +510,32 @@ class GameState{
             image(controllersImg, imgX, imgY, imgWidth, imgHeight);
             
         }
+    }
+
+    regenerateTankPosition(tank){
+        this.RAND1X = floor(random(5, 9)); 
+        this.RAND1Y = floor(random(0, 3)); 
+        this.RAND2X = floor(random(0, 4));
+        this.RAND2Y = floor(random(0, 3));
+        this.TANK1X = this.RAND1X*90.5 + 72;
+        this.TANK1Y = this.RAND1Y*105 + 54 + (this.RAND1X%2 == 0? 0 : 52.5);
+        this.TANK2X = this.RAND2X*90.5 + 72;
+        this.TANK2Y = this.RAND2Y*105 + 54 + (this.RAND2X%2 == 0? 0 : 52.5);
+        this.ANGLE1 = atan2(this.TANK2Y - this.TANK1Y, this.TANK2X - this.TANK1X);
+        this.ANGLE2 = atan2(this.TANK1Y - this.TANK2Y, this.TANK1X - this.TANK2X);
+        this.TANK1ROT = this.ANGLE1;
+        this.TANK2ROT = this.ANGLE2;
+        this.tankList[0].tankSprite.x = this.TANK1X;
+        this.tankList[0].tankSprite.y = this.TANK1Y;
+        this.tankList[0].tankSprite.rotation = this.TANK1ROT;
+        this.tankList[1].tankSprite.x = this.TANK2X;
+        this.tankList[1].tankSprite.y = this.TANK2Y;
+        this.tankList[1].tankSprite.rotation = this.TANK2ROT;
+        this.tankList[0].tankSprite.wheels.x = this.TANK1X;
+        this.tankList[0].tankSprite.wheels.y = this.TANK1Y;
+        this.tankList[0].tankSprite.wheels.rotation = this.TANK1ROT;
+        this.tankList[1].tankSprite.wheels.x = this.TANK2X;
+        this.tankList[1].tankSprite.wheels.y = this.TANK2Y;
+        this.tankList[1].tankSprite.wheels.rotation = this.TANK2ROT;
     }
 }
