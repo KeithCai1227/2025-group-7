@@ -33,7 +33,7 @@ class Saw {
         this.glueJoint1 = new GlueJoint(this.collisionSprite, this.tankSprite);
 
         this.sawSprite.mass = 0;
-        this.collisionSprite.mass = this.tankSprite.mass;
+        //this.collisionSprite.mass = this.tankSprite.mass;
         this.collisionSprite.rotationLock = true;
 
     }
