@@ -94,7 +94,7 @@ function keyPressed() {
         //detect if tank 1 (human player) has fired
         if (keyCode === SPACE_CODE && !tankGame.getIsGameOver() && !GameState.showMapGeneration) {
                 if(tankGame.tankList[0].canFire()){
-                    tankGame.addProjectile(tankGame.tankList[0].fire());
+                    tankGame.addProjectile(tankGame.tankList[0].fire(), tankGame.tankList[0]);
                 }
         }
 
@@ -102,7 +102,7 @@ function keyPressed() {
         if(GameState.twoPlayerMode){
             if (keyCode === Q_CODE && !tankGame.getIsGameOver() && !GameState.showMapGeneration) {
                     if(tankGame.tankList[1].canFire()){    
-                        tankGame.addProjectile(tankGame.tankList[1].fire());
+                        tankGame.addProjectile(tankGame.tankList[1].fire(), tankGame.tankList[1]);
                     }
             }
         }

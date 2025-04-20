@@ -1,5 +1,5 @@
 class SplinterBomb extends Projectile{
-    static BOMB_SIZE = 10;
+    static BOMB_SIZE = 8;
     static NUM_SPLINTERS = 40;
 
     constructor(x, y, angle){
@@ -16,6 +16,7 @@ class SplinterBomb extends Projectile{
         this.sprite.friction = 0;
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
+        this.sprite.visible = false;
 
         //bomb has no damage - but its splinters do
         this.damage = 0;

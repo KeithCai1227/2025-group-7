@@ -17,6 +17,7 @@ class Splinter extends Projectile{
         this.sprite.friction = 0;
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
+        this.leftTurret = true;
 
         //each splinter inflicts this damage
         this.damage = 0.5;

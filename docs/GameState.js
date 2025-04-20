@@ -98,6 +98,13 @@ class GameState{
             return;
         }
         
+        //draw projectiles
+        for(let i = 0; i < GameState.projectileList.length; i++){
+            if(GameState.projectileList[i].sprite.visible){
+                GameState.projectileList[i].draw();
+            }
+        } 
+
         
     
         //draw tanks
@@ -110,10 +117,7 @@ class GameState{
             this.pickupList[i].draw();
         }
 
-        //draw projectiles
-        for(let i = 0; i < GameState.projectileList.length; i++){
-            GameState.projectileList[i].draw();
-        } 
+        
 
         //draw scores of players
         this.drawHUD();
@@ -133,16 +137,28 @@ class GameState{
         }
         
         //update projectiles
-        for(let i = 0; i < GameState.projectileList.length; ){
+        for(let i = 0; i < GameState.projectileList.length; i++){
             if (GameState.projectileList[i].despawnTime < millis()) {
                 GameState.projectileList[i].remove();
                 GameState.projectileList.splice(i, 1);
             }
             else {
                 GameState.projectileList[i].update();
-                i++;
             }
         } 
+
+        //No collision until projectile leaves turret
+        for(let projectile of GameState.projectileList){
+            if(!projectile.leftTurret){
+                if(projectile.sprite.overlapped(projectile.tank.tankSprite) ||
+                    projectile.sprite.colliding(walls)){
+                    projectile.sprite.collides(projectile.tank.tankSprite);
+                    projectile.sprite.collides(projectile.tank.tankSprite.wheels);
+                    projectile.leftTurret = true;
+                    projectile.sprite.visible = true;
+                }
+            }
+        }
         
         //update pickups
         if(millis() > this.nextPickupSpawn){
@@ -196,7 +212,10 @@ class GameState{
         this.setCurrentWinner();
     }
     
-    addProjectile(newProjectile){
+    addProjectile(newProjectile, tank){
+        newProjectile.tank = tank;
+        newProjectile.sprite.overlaps(tank.tankSprite);
+        newProjectile.sprite.overlaps(tank.tankSprite.wheels);
         GameState.projectileList.push(newProjectile);
     }
 
@@ -220,7 +239,7 @@ class GameState{
 
     pickupSpawnInterval(){
         //ten seconds - ie 5,000 milliseconds - plus a random number of milliseconds up to another 5s
-        return 5000 + Math.floor(Math.random() * 5000) + GameState.showMapGeneration? 30000 : 0;
+        return 5000 + Math.floor(Math.random() * 5000) + (GameState.showMapGeneration? 30000 : 0);
     }
 
     //restart game when tank dies
@@ -269,24 +288,26 @@ class GameState{
     
     checkProjectileTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
-            for (let j = 0; j < GameState.projectileList.length; ) {
-                if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite) || GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite.wheels)){
+            for (let j = 0; j < GameState.projectileList.length; j++) {
+                if(GameState.projectileList[j].leftTurret){
+                    if (GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite) || GameState.projectileList[j].sprite.collides(this.tankList[i].tankSprite.wheels)){
 
-                    //first account for damage from projectile to tank
-                    //only reduce tank lives if game still in play
-                    if(!this.isGameOver){
-                        //each projectile has a "damage"
-                        let damage = GameState.projectileList[j].damage;
-                        this.tankList[i].lifeDecrease(damage);//this.tankList[i].receiveDamage(damage);
-                        if (this.tankList[i].getLife() > 0){
-                            audioMediumHit.play();
-                        } else audioTankDestroy.play();
+                        //first account for damage from projectile to tank
+                        //only reduce tank lives if game still in play
+                        if(!this.isGameOver){
+                            //each projectile has a "damage"
+                            let damage = GameState.projectileList[j].damage;
+                            this.tankList[i].lifeDecrease(damage);//this.tankList[i].receiveDamage(damage);
+                            if (this.tankList[i].getLife() > 0){
+                                audioMediumHit.play();
+                            } else audioTankDestroy.play();
+                        }
+
+                        //next remove the projectile
+                        GameState.projectileList[j].remove();
+                        GameState.projectileList.splice(j, 1);
                     }
-
-                    //next remove the projectile
-                    GameState.projectileList[j].remove();
-                    GameState.projectileList.splice(j, 1);
-                }else j++;
+                }
             }
         }
     }

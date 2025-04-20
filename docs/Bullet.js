@@ -15,6 +15,7 @@ class Bullet extends Projectile{
         this.sprite.friction = 0;
         this.sprite.autoUpdate = false;
         this.sprite.autoDraw = false;
+        this.sprite.visible = false;
 
         //how much to decrement tank life by
         this.damage = 1;

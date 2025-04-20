@@ -12,6 +12,7 @@ class Projectile {
 		this.angle = angle;
 		this.duration = duration;
 		this.despawnTime = millis() + (this.duration * 1000);
+		this.leftTurret = false;
 	}
 	draw(){}
 	update(){}

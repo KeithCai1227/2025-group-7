@@ -11,7 +11,7 @@ class Tank{
     static GUN_WIDTH = 10;
     static WHEEL_HEIGHT = 12;
     static WHEEL_WIDTH = 20;
-    static PROJECTILE_SPAWN_DIST = 10;
+    static PROJECTILE_SPAWN_DIST = -5;
     static UP_DIRECTION = 0;
     static DOWN_DIRECTION = 1;
     static LEFT_DIRECTION = 2;
@@ -129,8 +129,7 @@ class Tank{
     fire(){
         //Create new projectile according to appropriate weapon type
         this.tankWeapon.fireSound.play();
-        let weaponSize = (this.tankWeapon.weaponType == Weapon.BULLET_TYPE ? Bullet.BULLET_SIZE : this.tankWeapon.weaponType == Weapon.BOMB_TYPE? SplinterBomb.BOMB_SIZE: 0);
-        let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST + weaponSize/2;
+        let projDist = Tank.TANK_HEIGHT/2 + Tank.GUN_HEIGHT + Tank.PROJECTILE_SPAWN_DIST;
         let projX = this.tankSprite.x + projDist*cos(this.tankSprite.rotation);
         let projY = this.tankSprite.y + projDist*sin(this.tankSprite.rotation);
 
@@ -151,7 +150,7 @@ class Tank{
         else if(this.tankWeapon.weaponType == Weapon.BOMB_TYPE){
             this.tankWeapon.numberOfRounds++;
             this.checkWeaponReset();
-            return new SplinterBomb(projX, projY, this.tankSprite.rotation);
+            return new SplinterBomb(projX, projY, this.tankSprite.rotation, this);
         }
     }
 
