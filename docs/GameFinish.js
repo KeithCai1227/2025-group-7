@@ -1,30 +1,30 @@
 class GameFinish{
 
-    gameWinnerX = 150;
+    gameWinnerX = 265;
     gameWinnerY = 350;
     drawX = 375;
     drawY = 350;
-    gameCompleteX = 45;
+    gameCompleteX = 200;
     gameCompleteY = 200;
-    newGameX = 265;
+    newGameX = 320;
     newGameY = 500;
-    newGameRectX = 480;
+    newGameRectX = 490;
     newGameRectY = 515;
     newGameRectWidth = 450;
     newGameRectHeight = 60;
     
-    constructor(){
+    constructor(endImage, VT323Font){
         createCanvas(GameState.CANVAS_WIDTH, GameState.CANVAS_HEIGHT);
         displayMode('centered');
     }
 
     draw(){
         textAlign(LEFT, TOP);
-        background(0, 0, 0);
+        background(endImage);
         
         strokeWeight(10);
-        fill('red');
-        textFont('Courier New');
+        fill('white');
+        textFont(VT323Font);
         textSize(110);
         text("GAME COMPLETE", this.gameCompleteX, this.gameCompleteY);
 
@@ -36,9 +36,11 @@ class GameFinish{
             text(GameState.currentWinner + "!", this.drawX, this.drawY);
         }
 
+        strokeWeight(2);
         rect(this.newGameRectX, this.newGameRectY, this.newGameRectWidth, this.newGameRectHeight);
         fill('black');
-        textSize(30);
+        strokeWeight(0);
+        textSize(35);
         text("Press Enter for New Game", this.newGameX, this.newGameY);
 
         // add selector if more options added to screen 

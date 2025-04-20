@@ -1,8 +1,8 @@
 class GameSetup{
 
     //various params for layout of screen
-    HEAD_TEXT = 75;
-    REG_TEXT = 25;
+    HEAD_TEXT = 100;
+    REG_TEXT = 40;
     VERT_SP = 110;
     BELOW_TITLE = 170;
     HORZ1 = -100;
@@ -17,7 +17,7 @@ class GameSetup{
     ON_MAPGEN = 3;
     ON_START = 4;
 
-    constructor(){
+    constructor(introImage, VT323Font){
         //start off on the one-vs-two player mode setting
         this.selector = this.ON_MODE;
 
@@ -53,16 +53,16 @@ class GameSetup{
     }
 
     draw(){
-        background(0, 0, 0);
+        background(introImage);
 
         //display the game title
         strokeWeight(0);
-        textFont('Orbitron');
+        textFont(VT323Font);
         fill('red'); // changed
         textStyle(BOLD);
         textSize(this.HEAD_TEXT);
         textAlign(CENTER, TOP);
-        text('Hex Wars', GameState.CANVAS_WIDTH/2, 25);
+        text('HEX WARS', GameState.CANVAS_WIDTH/2, 25);
 
         //put in user selection box
         rectMode(CENTER);
@@ -77,7 +77,7 @@ class GameSetup{
         fill('#CCCCCC'); // changed
         textSize(this.REG_TEXT);
         textAlign(RIGHT, TOP);
-        text('NUMBER OF PLAYERS:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE);
+        //text('NUMBER OF PLAYERS:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE);
 
         //put in difficulty selection
         text('PLAYER 1 DIFFICULTY:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE + this.VERT_SP);

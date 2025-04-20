@@ -10,7 +10,7 @@ let controllersImg;
 let SPACE_CODE = 32;
 let Q_CODE = 81;
 
-let maxGames = 5;
+let maxGames = 1;
 
 function preload() {
 
@@ -37,6 +37,11 @@ function preload() {
     imgSpeedPickup  = loadImage('images/speed-pickup.webp');
     imgTankGreen    = loadImage('images/tank-image-green.webp');
     imgTankRed      = loadImage('images/tank-image-red.webp');
+    introImage      = loadImage('intro&endimages/introscreen.png');
+    endImage        = loadImage('intro&endimages/endscreenbg.png');
+
+    //font preload
+    VT323Font       = loadFont('fonts/VT323-Regular.ttf');
 }
 
 function setup() {
@@ -44,7 +49,7 @@ function setup() {
     //accross different machines
     frameRate(30);
     setupStage = true;
-    startingScreen = new GameSetup();
+    startingScreen = new GameSetup(introImage, VT323Font);
     controllersImg = loadImage('Controllers.png');
 }
 
@@ -54,7 +59,7 @@ function draw() {
     }
     else if(tankGame.getGameOverCnt() >= maxGames){
         endOfGame = true;
-        gameEndScreen = new GameFinish();
+        gameEndScreen = new GameFinish(endImage, VT323Font);
         if(endOfGame){    
             gameEndScreen.draw();
         }
