@@ -155,7 +155,10 @@ class GameState{
                     projectile.sprite.collides(projectile.tank.tankSprite);
                     projectile.sprite.collides(projectile.tank.tankSprite.wheels);
                     projectile.leftTurret = true;
-                    projectile.sprite.visible = true;
+                    if(projectile.sprite.overlapped(projectile.tank.tankSprite)){
+                        projectile.sprite.visible = true;
+                    }
+                    
                 }
             }
         }
