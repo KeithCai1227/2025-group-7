@@ -76,7 +76,7 @@ class Laser extends Projectile {
             if (hitSomething) break;
     
             for (let tank of tankList) {
-                if (tank && tank.tankSprite && !this.isFiringTank(tank, rayX, rayY)) {
+                if (tank && tank.tankSprite && !this.tank) {
                     if (this.pointInTank(currentX, currentY, tank)) {
                         this.endX = currentX;
                         this.endY = currentY;
