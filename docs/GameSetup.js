@@ -2,7 +2,7 @@ class GameSetup{
 
     //various params for layout of screen
     HEAD_TEXT = 100;
-    REG_TEXT = 40;
+    REG_TEXT = 25;
     VERT_SP = 110;
     BELOW_TITLE = 170;
     HORZ1 = -100;
@@ -57,12 +57,7 @@ class GameSetup{
 
         //display the game title
         strokeWeight(0);
-        textFont(VT323Font);
-        fill('red'); // changed
-        textStyle(BOLD);
-        textSize(this.HEAD_TEXT);
-        textAlign(CENTER, TOP);
-        text('HEX WARS', GameState.CANVAS_WIDTH/2, 25);
+        textFont(QargeoFont);
 
         //put in user selection box
         rectMode(CENTER);

@@ -54,6 +54,7 @@ function preload() {
 
     //font preload
     VT323Font       = loadFont('fonts/VT323-Regular.ttf');
+    QargeoFont      = loadFont('fonts/Qargeo-Regular.otf');
 }
 
 function setup() {
