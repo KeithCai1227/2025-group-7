@@ -140,8 +140,8 @@ class Laser extends Projectile {
     applyDamage() {
         if (this.hitTarget && !this.damageApplied) {
             try {
-                if (typeof this.hitTarget.lifeDecrease === 'function') {
-                    this.hitTarget.lifeDecrease(this.damage);
+                if (typeof this.hitTarget.receiveDamage === 'function') {
+                    this.hitTarget.receiveDamage(this.damage);
                     this.damageApplied = true;
                 }
             } catch (e) {}
