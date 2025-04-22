@@ -300,7 +300,7 @@ class GameState{
                         if(!this.isGameOver){
                             //each projectile has a "damage"
                             let damage = GameState.projectileList[j].damage;
-                            this.tankList[i].lifeDecrease(damage);//this.tankList[i].receiveDamage(damage);
+                            this.tankList[i].receiveDamage(damage);
                             if (this.tankList[i].getLife() > 0){
                                 audioMediumHit.play();
                             } else audioTankDestroy.play();
@@ -319,12 +319,13 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             if(sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite) || sawTank.saw.sawSprite.overlapping(this.tankList[i].tankSprite.wheels)){
                 if(this.tankList[i].tankSprite != sawTank.tankSprite){
-                    this.tankList[i].lifeDecrease(sawTank.saw.damage);//this.tankList[i].receiveDamage(damage);
+                    this.tankList[i].receiveDamage(sawTank.saw.damage);
                 }
             }
         }
     }
 
+    
     checkPickupTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
             for (let j = 0; j < this.pickupList.length; ) {
@@ -348,8 +349,8 @@ class GameState{
                         this.removeSawIfNeeded(this.tankList[i]);
                         this.tankList[i].tankWeapon = new Weapon(Weapon.LASER_TYPE);
                     } 
-                    /*else if (this.pickupList[j].type == "SHIELD") {
-                        this.tankList[i].activateShield();}*/
+                    else if (this.pickupList[j].type == "SHIELD") {
+                        this.tankList[i].activateShield();}
                     this.pickupList.splice(j, 1);
                 } else j++;
             }
