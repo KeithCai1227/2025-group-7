@@ -51,7 +51,7 @@ class Pickup {
         this.y = cellY;
 
         // selects pick-up by using millis as a pseudo-random number
-        let randomiser = Math.floor(Math.random() * 100) % 5;
+        let randomiser = Math.floor(Math.random() * 100) % 6;
         
         if(randomiser == 0){
             this.type = "HEALTH";
@@ -70,9 +70,9 @@ class Pickup {
             this.type = "LASER";
             this.sprite.image = imgLaserPickup;
         }
-        /*else if (randomiser == 4) {
+        else if (randomiser == 4) {
             this.type = "SHIELD"; 
-            this.sprite.color = color(0, 200, 255); }*/
+            this.sprite.image = "images/shield-pickup.webp"; }
         
         else{
             // bomb weapon pickup
