@@ -11,6 +11,8 @@ let SPACE_CODE = 32;
 let Q_CODE = 81;
 
 let maxGames = 5;
+let destroyAnimGreen = [];
+let destroyAnimRed = [];
 
 function preload() {
 
@@ -39,6 +41,16 @@ function preload() {
     imgTankRed      = loadImage('images/tank-image-red.webp');
     introImage      = loadImage('intro&endimages/introscreen.png');
     endImage        = loadImage('intro&endimages/endscreenbg.png');
+
+    //destroy animation image preloads
+    for(let i = 1; i <= 10; i++){
+        animImage = loadImage(`destroyanim-green/${i}.png`);
+        destroyAnimGreen.push(animImage);
+    }
+    for(let i = 1; i <= 10; i++){
+        animImage = loadImage(`destroyanim-red/${i}.png`);
+        destroyAnimRed.push(animImage);
+    }
 
     //font preload
     VT323Font       = loadFont('fonts/VT323-Regular.ttf');

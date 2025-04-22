@@ -111,8 +111,6 @@ class Tank{
         */
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
-        
-        
         }
 
         if(this.isDestroyed){
@@ -275,23 +273,17 @@ receiveDamage(amount) {
     //animates tank destruction
     destroy(){
         if(this.index === 1){
-            destroyAnim = loadAnimation('destroyanim-red/1.png', 'destroyanim-red/2.png', 'destroyanim-red/3.png', 'destroyanim-red/4.png',
-            'destroyanim-red/5.png', 'destroyanim-red/6.png', 'destroyanim-red/7.png', 'destroyanim-red/8.png', 'destroyanim-red/9.png',
-            'destroyanim-green/10.png');
+            destroyAnim = loadAnimation(...destroyAnimRed);
         }
         else{
-            destroyAnim = loadAnimation('destroyanim-green/1.png', 'destroyanim-green/2.png', 'destroyanim-green/3.png', 'destroyanim-green/4.png',
-            'destroyanim-green/5.png', 'destroyanim-green/6.png', 'destroyanim-green/7.png', 'destroyanim-green/8.png', 'destroyanim-green/9.png',
-            'destroyanim-green/10.png');
+            destroyAnim = loadAnimation(...destroyAnimGreen);
         }
         destroyAnim.frameDelay = 1;
         destroyAnim.rotation = this.tankSprite.rotation;
         this.isDestroyed = true;
-
         setTimeout (() => {
             this.isDestroyed = false;
         }, 2000);
-
 
     }
     
