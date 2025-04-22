@@ -103,14 +103,15 @@ class Tank{
         drawingContext.shadowColor = this.tankSprite.color;
         */
         if(!this.isDestroyed) this.tankSprite.draw();
+        if (this.hasShield && this.shieldSprite) {
+            this.shieldSprite.draw();}
         /*
         drawingContext.shadowBlur = 0;
         drawingContext.shadowColor = 'transparent';
         */
         if(this.tankWeapon.weaponType == Weapon.SAW_TYPE){
             this.saw.draw();
-                /*if (this.hasShield && this.shieldSprite) {
-            this.shieldSprite.draw();}*/
+        
         
         }
 
@@ -178,13 +179,13 @@ class Tank{
             this.tankLife = 0;
         }
     }
-/*receiveDamage(amount) {
+receiveDamage(amount) {
         if (this.hasShield) {
             this.deactivateShield();  
         } else {
             this.lifeDecrease(amount); 
             if (this.tankLife <= 0) {
-                this.destroy(); /
+                this.destroy(); 
             }
         }
     }
@@ -232,7 +233,7 @@ class Tank{
             particle.autoDraw = true;
         }
     }
-        */
+        
     lifeIncrement(){
         if (this.tankLife < this.initialLife){
             this.tankLife++;
@@ -308,11 +309,11 @@ class Tank{
         if(this.scaleAniFrameCount > 0)
             this.scaleAniFrameCount--;
         //console.log(this.scaleAniFrameCount);
-        /* if (this.hasShield && this.shieldSprite) {
+        if (this.hasShield && this.shieldSprite) {
             this.shieldSprite.x = this.tankSprite.x;
             this.shieldSprite.y = this.tankSprite.y;
     
-        }*/
+        }
     }
     
     //updates the rotation and speed attributes of the tank sprite
