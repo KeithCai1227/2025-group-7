@@ -62,6 +62,9 @@ class GameState{
         this.tankList.push(tank1);
         let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, GameState.player2Difficulty, 2);
         this.tankList.push(tank2);
+        
+        //variables for control of tank movement sound
+        this.tankMoving = false;
 
         //create new KeyListener object for the first tank
         let keyListener1, keyListener2;
@@ -135,6 +138,7 @@ class GameState{
         for(let i = 0; i < this.tankList.length; i++){
             this.tankList[i].update();
         }
+        this.controlTankSound();
         
         //update projectiles
         for(let i = 0; i < GameState.projectileList.length; i++){
@@ -386,6 +390,21 @@ class GameState{
                         wall.remove();
                     }
                 }
+            }
+        }
+    }
+
+    controlTankSound(){
+        if (this.tankList[0].inMotion || this.tankList[1].inMotion) {
+            if (!this.tankMoving) {
+                this.tankMoving = true;
+                audioTankMovement.loop();
+            }
+        }
+        else {
+            if (this.tankMoving) {
+                this.tankMoving = false;
+                audioTankMovement.stop();
             }
         }
     }

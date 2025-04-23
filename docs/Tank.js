@@ -89,6 +89,8 @@ class Tank{
         //counts the frames to apply effect for
         this.scaleAniFrameCount = 0;
 
+        this.inMotion = false;
+
     }
     
     draw(){
@@ -315,24 +317,29 @@ receiveDamage(amount) {
         if(directionOfMove == Tank.RIGHT_DIRECTION){
             if (this.tankSprite.speed === 0) this.tankSprite.rotation += 1*this.spdFactor;
             else this.tankSprite.rotation += 2*this.spdFactor;
+            this.inMotion = true;
         }
         else if(directionOfMove == Tank.LEFT_DIRECTION){
             if (this.tankSprite.speed === 0) this.tankSprite.rotation -= 1*this.spdFactor;
             else this.tankSprite.rotation -= 2*this.spdFactor;
+            this.inMotion = true;
         }
         else if(directionOfMove == Tank.UP_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
             this.tankSprite.speed = 1*this.spdFactor;
             this.tankSprite.ani.play();
+            this.inMotion = true;
         }
         else if(directionOfMove == Tank.DOWN_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
             this.tankSprite.speed = -0.5*this.spdFactor;
             this.tankSprite.ani.pause();
+            this.inMotion = true;
         }
         else {
             this.tankSprite.speed = 0;
             this.tankSprite.ani.pause();
+            this.inMotion = false;
         }
     }
 
