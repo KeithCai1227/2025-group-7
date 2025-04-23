@@ -49,7 +49,7 @@ function preload() {
     imgSpeedPickup  = loadImage('images/speed-pickup.webp');
     imgTankGreen    = loadImage('images/tank-image-green.webp');
     imgTankRed      = loadImage('images/tank-image-red.webp');
-    introImage      = loadImage('intro&endimages/introscreen.png');
+    introImage      = loadImage('intro&endimages/introscreen-alt.png');
     endImage        = loadImage('intro&endimages/endscreenbg.png');
     controllersImg  = loadImage('Controllers.png');
 
@@ -66,6 +66,8 @@ function preload() {
     //font preload
     VT323Font       = loadFont('fonts/VT323-Regular.ttf');
     QargeoFont      = loadFont('fonts/Qargeo-Regular.otf');
+    BatmanForever   = loadFont('fonts/batmfo__.ttf');
+    BatmanForeverAlt = loadFont('fonts/batmfa__.ttf');
 }
 
 function setup() {

@@ -1,7 +1,7 @@
 class GameSetup{
 
     //various params for layout of screen
-    HEAD_TEXT = 100;
+    HEAD_TEXT = 75;
     REG_TEXT = 25;
     VERT_SP = 110;
     BELOW_TITLE = 170;
@@ -57,6 +57,12 @@ class GameSetup{
 
         //display the game title
         strokeWeight(0);
+        textFont(BatmanForever);
+        rectMode(CENTER);
+        textSize(this.HEAD_TEXT);
+        fill('#FFFFFF'); // changed
+        text('HEX WARS', GameState.CANVAS_WIDTH/2 + this.HORZ4, 30);
+
         textFont(QargeoFont);
 
         //put in user selection box
@@ -75,6 +81,7 @@ class GameSetup{
         //text('NUMBER OF PLAYERS:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE);
 
         //put in difficulty selection
+        textFont(BatmanForeverAlt);
         text('PLAYER 1 DIFFICULTY:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE + this.VERT_SP);
         text('PLAYER 2 DIFFICULTY:', GameState.CANVAS_WIDTH/2 + this.HORZ1, this.BELOW_TITLE + 2*this.VERT_SP);
 
@@ -98,7 +105,9 @@ class GameSetup{
         text('OFF', GameState.CANVAS_WIDTH/2 + this.HORZ3, this.BELOW_TITLE + 3*this.VERT_SP);
 
         //put in "start game"
-        text('START GAME', GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + 4*this.VERT_SP);
+        textSize(1.5*this.REG_TEXT);
+        text('START GAME', GameState.CANVAS_WIDTH/2 + this.HORZ4, this.BELOW_TITLE + 3.8*this.VERT_SP);
+        textSize(this.REG_TEXT);
 
         //highlight player mode selection
         fill('#CCCCCC'); // changed
