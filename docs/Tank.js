@@ -153,6 +153,11 @@ class Tank{
             this.checkWeaponReset();
             return new SplinterBomb(projX, projY, this.tankSprite.rotation, this);
         }
+        else if(this.tankWeapon.weaponType == Weapon.MISSILE_TYPE){
+            this.tankWeapon.numberOfRounds++;
+            this.checkWeaponReset();
+          return new Missile(projX, projY,this.tankSprite.rotation,this)            
+      } 
     }
 
     checkWeaponReset(){

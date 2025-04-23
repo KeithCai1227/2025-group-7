@@ -1,3 +1,15 @@
+const CORNER_CELLS = [
+    { col: 0, row: 0 },  // 左上
+    { col: 9, row: 0 },  // 右上
+    { col: 0, row: 3 },  // 左下
+    { col: 9, row: 3 }   // 右下
+];
+function cellToXY(col, row) {
+    const x = col * 90.5 + 72;
+    const y = row * 105 + 54 + (col % 2 === 0 ? 0 : 52.5);
+    return { x, y };
+}
+
 class GameState{
     static projectileList;
     tankList;
@@ -71,8 +83,13 @@ class GameState{
         keyListener1 = new KeyListener(this.tankList[0], true);
 
         //create KeyListener for second tank if two player mode is true 
+        this.extraAIControllers = [];
         if(GameState.twoPlayerMode){
             keyListener2 = new KeyListener(this.tankList[1], false);
+            
+             this.player2 = new Player(GameState.player2Difficulty, GameState.twoPlayerMode, keyListener2);
+        } else {
+            this.spawnAITanks();
         }
         
         //create two Player objects
@@ -82,8 +99,33 @@ class GameState{
         //establishes initial time for first Pickup to spawn
         
         this.nextPickupSpawn = millis() + this.pickupSpawnInterval();
-        
-        
+    }
+    spawnAITanks() {
+        for (let i = this.tankList.length - 1; i >= 1; i--) {
+            this.tankList[i].tankSprite.remove();
+            this.tankList.splice(i, 1);
+        }
+        this.extraAIControllers = [];
+
+        CORNER_CELLS.forEach((cell, idx) => {
+            const { x, y } = cellToXY(cell.col, cell.row);
+            const rot = atan2(this.tankList[0].tankSprite.y - y, this.tankList[0].tankSprite.x - x);
+            const aiTank = new Tank(x, y, rot, GameState.player2Difficulty, idx + 2);
+            aiTank.spdFactor = 0.5;
+            aiTank.counted = false;
+            this.tankList.push(aiTank);
+
+            const aiCtrl = new AIController(aiTank, this, this.tankList[0], GameState.player2Difficulty);
+            this.extraAIControllers.push(aiCtrl);
+
+            if (idx === 0) {
+                this.player2 = new Player(GameState.player2Difficulty, false, aiCtrl);
+            }
+        });
+
+        //establishes initial time for first Pickup to spawn
+
+
     }
     
     draw(){
@@ -182,6 +224,10 @@ class GameState{
         //update tank movements based on user key presses
         this.player1.respondToPlayerInput();
         this.player2.respondToPlayerInput();
+
+        for (const ai of this.extraAIControllers) {
+            ai.update();
+        }
         
         //collision checks
         this.checkProjectileTankOverlaps();
@@ -363,7 +409,10 @@ class GameState{
                         this.removeSawIfNeeded(this.tankList[i]);
                         this.tankList[i].tankWeapon = new Weapon(Weapon.LASER_TYPE);
                         audioGenericPickup.play();
-                    } 
+                    } else if (this.pickupList[j].type == "MISSILE") {
+                        this.removeSawIfNeeded(this.tankList[i]);
+                        this.tankList[i].tankWeapon = new Weapon(Weapon.MISSILE_TYPE);    
+                    }
                     else if (this.pickupList[j].type == "SHIELD") {
                         this.tankList[i].activateShield();
                         audioShieldPickup.play();

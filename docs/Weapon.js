@@ -8,17 +8,20 @@ class Weapon {
     static LASER_TYPE = 1;
     static BOMB_TYPE = 2;
     static SAW_TYPE = 3;
+    static MISSILE_TYPE = 4;
 
     // Capacity of weapon types
     static BULLET_CAPACITY = 10;
     static LASER_CAPACITY = 1;
     static BOMB_CAPACITY = 1;
+    static MISSILE_CAPACITY = 1;
 
     // Time before weapon expires
     static BULLET_TIME = 10;
     static LASER_TIME = 8;
     static BOMB_TIME = 5;
     static SPLINTER_TIME = 2;
+    static MISSILE_TIME  = 4;
 
     /**
      * Creates a Weapon instance based on the provided type.
@@ -48,6 +51,11 @@ class Weapon {
                 this.numberOfRounds = null;
                 this.fireSound = audioLaserShot;
                 this.icon = imgSawIcon;
+                break;
+                case Weapon.MISSILE_TYPE:
+                this.capacity  = Weapon.MISSILE_CAPACITY;
+                this.fireSound = audioBulletShot;   // 先共用子弹声音
+                this.icon      = imgAmmoIcon;       // 如有图标可替换
                 break;
             default:
                 throw new Error("Invalid weapon type");
