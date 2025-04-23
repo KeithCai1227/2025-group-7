@@ -57,7 +57,7 @@ class GameSetup{
 
         //display the game title
         strokeWeight(0);
-        textFont(BatmanForever);
+        textFont(BatmanForeverAlt);
         rectMode(CENTER);
         textSize(this.HEAD_TEXT);
         fill('#FFFFFF'); // changed

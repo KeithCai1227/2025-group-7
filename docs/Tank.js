@@ -21,7 +21,7 @@ class Tank{
     //locX and locY are the initial co-ordinates
     //initialDirection is the initial direction the tank is pointing in
     //initialDirection should be in degrees measured clockwise from x-axis
-    constructor(locX, locY, initialDirection, difficultyLevel, index){
+    constructor(locX, locY, initialDirection, difficultyLevel, index, gameState){
         this.tankWeapon =  new Weapon(Weapon.BULLET_TYPE);
         this.index = index;
         this.destroyed = false;
@@ -91,6 +91,8 @@ class Tank{
 
         this.inMotion = false;
 
+        //fixing bug of missile missing gameState reference
+        this.gameState = gameState;
     }
     
     draw(){
@@ -156,7 +158,7 @@ class Tank{
         else if(this.tankWeapon.weaponType == Weapon.MISSILE_TYPE){
             this.tankWeapon.numberOfRounds++;
             this.checkWeaponReset();
-          return new Missile(projX, projY,this.tankSprite.rotation,this)            
+          return new Missile(projX, projY, this.tankSprite.rotation, this, this.gameState);            
       } 
     }
 

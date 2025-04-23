@@ -70,9 +70,9 @@ class GameState{
         
         //create two tanks
         this.tankList = [];
-        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, GameState.player1Difficulty, 1);
+        let tank1 = new Tank(this.TANK1X, this.TANK1Y, this.TANK1ROT, GameState.player1Difficulty, 1, this);
         this.tankList.push(tank1);
-        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, GameState.player2Difficulty, 2);
+        let tank2 = new Tank(this.TANK2X, this.TANK2Y, this.TANK2ROT, GameState.player2Difficulty, 2, this);
         this.tankList.push(tank2);
         
         //variables for control of tank movement sound
@@ -110,7 +110,7 @@ class GameState{
         CORNER_CELLS.forEach((cell, idx) => {
             const { x, y } = cellToXY(cell.col, cell.row);
             const rot = atan2(this.tankList[0].tankSprite.y - y, this.tankList[0].tankSprite.x - x);
-            const aiTank = new Tank(x, y, rot, GameState.player2Difficulty, idx + 2);
+            const aiTank = new Tank(x, y, rot, GameState.player2Difficulty, idx + 2, this);
             aiTank.spdFactor = 0.5;
             aiTank.counted = false;
             this.tankList.push(aiTank);
