@@ -6,6 +6,7 @@ class Missile extends Projectile {
     static HOMING_TIME = 3000;    // ms
     static TURN_RATE   = 4;       // ° 每帧最大转向
     static DAMAGE      = 2;
+    
   
     constructor(x, y, angle, ownerTank, gs) {
       super(x, y, angle, Weapon.MISSILE_TIME);
