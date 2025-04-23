@@ -17,6 +17,7 @@ let destroyAnimRed = [];
 function preload() {
 
     //audio file preloads
+    audioBackground       = loadSound('audio/background.wav');
     audioBombExplode      = loadSound('audio/bombExplode.mp3');
     audioBombShot         = loadSound('audio/bombShot.mp3');
     audioBulletShot       = loadSound('audio/bulletShot.mp3');
@@ -31,6 +32,7 @@ function preload() {
     audioProjectileBounce = loadSound('audio/projectileBounce.mp3');
     audioShieldPickup     = loadSound('audio/shieldPickup.mp3');
     audioTankDestroy      = loadSound('audio/tankDestroy.mp3');
+    audioTankMovement     = loadSound('audio/tankMovement.wav');
 
     //image file preloads
     imgAmmoIcon     = loadImage('images/ammo-icon.webp');
@@ -49,6 +51,7 @@ function preload() {
     imgTankRed      = loadImage('images/tank-image-red.webp');
     introImage      = loadImage('intro&endimages/introscreen.png');
     endImage        = loadImage('intro&endimages/endscreenbg.png');
+    controllersImg  = loadImage('Controllers.png');
 
     //destroy animation image preloads
     for(let i = 1; i <= 10; i++){
@@ -71,7 +74,6 @@ function setup() {
     frameRate(30);
     setupStage = true;
     startingScreen = new GameSetup(introImage, VT323Font);
-    controllersImg = loadImage('Controllers.png');
 }
 
 function draw() {
@@ -98,6 +100,7 @@ function keyPressed() {
         //check whether user is ready to begin game
         if(keyCode === ENTER){
             tankGame = new GameState();
+            audioBackground.loop();
             setupStage = false;
             //startingScreen can be garbage collected
             startingScreen = null;
@@ -111,6 +114,7 @@ function keyPressed() {
     else if(endOfGame){
         if(keyCode === ENTER){
             allSprites.remove();
+            audioBackground.stop();
             endOfGame = false;
             this.setup();
             gameEndScreen = null;

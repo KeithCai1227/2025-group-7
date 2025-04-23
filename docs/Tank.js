@@ -316,11 +316,11 @@ receiveDamage(amount) {
             if (this.tankSprite.speed === 0) this.tankSprite.rotation += 1*this.spdFactor;
             else this.tankSprite.rotation += 2*this.spdFactor;
         }
-        if(directionOfMove == Tank.LEFT_DIRECTION){
+        else if(directionOfMove == Tank.LEFT_DIRECTION){
             if (this.tankSprite.speed === 0) this.tankSprite.rotation -= 1*this.spdFactor;
             else this.tankSprite.rotation -= 2*this.spdFactor;
         }
-        if(directionOfMove == Tank.UP_DIRECTION){
+        else if(directionOfMove == Tank.UP_DIRECTION){
             this.tankSprite.direction = this.tankSprite.rotation;
             this.tankSprite.speed = 1*this.spdFactor;
             this.tankSprite.ani.play();
