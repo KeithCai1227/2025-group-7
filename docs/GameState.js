@@ -197,6 +197,7 @@ class GameState{
                 if(!this.isGameOver){
                     //update the relevant score
                     i == 0 ? this.player2.incScore() : this.player1.incScore();
+                    i == 0 ? audioP2Wins.play() : audioP1Wins.play();
 
                     this.isGameOver = true;
 
@@ -284,6 +285,12 @@ class GameState{
             
             //increment every time a game is won 
             this.gameOverCnt++;
+            if (this.gameOverCnt >= maxGames) {
+                //currently assumes one player always wins - ie odd number of rounds with always a clear winner
+                if (GameState.currentWinner == "Player 1") {
+                    audioP1MatchWin.play();
+                } else audioP2MatchWin.play();
+            }
             this.isGameOver = false;
         }, 2000);
       

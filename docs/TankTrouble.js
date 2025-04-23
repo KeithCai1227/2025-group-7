@@ -24,6 +24,10 @@ function preload() {
     audioHealthPickup     = loadSound('audio/healthPickup.mp3');
     audioLaserShot        = loadSound('audio/laserShot.mp3');
     audioMediumHit        = loadSound('audio/mediumHit.mp3');
+    audioP1MatchWin       = loadSound('audio/playerOneMatch.mp3');
+    audioP2MatchWin       = loadSound('audio/playerTwoMatch.mp3');
+    audioP1Wins           = loadSound('audio/playerOneWins.mp3');
+    audioP2Wins           = loadSound('audio/playerTwoWins.mp3');
     audioProjectileBounce = loadSound('audio/projectileBounce.mp3');
     audioShieldPickup     = loadSound('audio/shieldPickup.mp3');
     audioTankDestroy      = loadSound('audio/tankDestroy.mp3');
