@@ -142,6 +142,7 @@ function keyPressed() {
 function mousePressed() {
     if (setupStage) {
         startingScreen.mousePressed();
+        audioBackground.loop();
     } else if (endOfGame && keyCode === ENTER) {
         allSprites.remove();
         endOfGame = false;
