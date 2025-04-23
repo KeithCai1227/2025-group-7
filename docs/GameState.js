@@ -303,7 +303,7 @@ class GameState{
                             this.tankList[i].receiveDamage(damage);
                             if (this.tankList[i].getLife() > 0){
                                 audioMediumHit.play();
-                            } else audioTankDestroy.play();
+                            }
                         }
 
                         //next remove the projectile
@@ -324,7 +324,6 @@ class GameState{
             }
         }
     }
-
     
     checkPickupTankOverlaps(){
         for (let i = 0; i < this.tankList.length; i++) {
@@ -333,24 +332,31 @@ class GameState{
                     this.pickupList[j].sprite.remove();
                     if (this.pickupList[j].type == "HEALTH") {
                         this.tankList[i].lifeIncrement();
+                        audioHealthPickup.play();
                     } else if (this.pickupList[j].type == "AMMO"){
                         // currently just resets ammo
                         this.tankList[i].tankWeapon.resetAmmo();
+                        audioGenericPickup.play();
                     } else if (this.pickupList[j].type == "BOMB"){
                         // give tank the "bomb" weapon
                         this.removeSawIfNeeded(this.tankList[i]);
                         this.tankList[i].tankWeapon = new Weapon(Weapon.BOMB_TYPE);
+                        audioGenericPickup.play();
                     } else if (this.pickupList[j].type == "SAW"){
                         if(this.tankList[i].tankWeapon.weaponType != Weapon.SAW_TYPE){
                         this.tankList[i].saw = new Saw(this.tankList[i].tankSprite, this.tankList[i].index);
                         }
                         this.tankList[i].tankWeapon = new Weapon(Weapon.SAW_TYPE);
+                        audioGenericPickup.play();
                     } else if (this.pickupList[j].type == "LASER") {
                         this.removeSawIfNeeded(this.tankList[i]);
                         this.tankList[i].tankWeapon = new Weapon(Weapon.LASER_TYPE);
+                        audioGenericPickup.play();
                     } 
                     else if (this.pickupList[j].type == "SHIELD") {
-                        this.tankList[i].activateShield();}
+                        this.tankList[i].activateShield();
+                        audioShieldPickup.play();
+                    }
                     this.pickupList.splice(j, 1);
                 } else j++;
             }
@@ -363,21 +369,19 @@ class GameState{
         }
     }
     
-    
     //for now - empty
     checkProjectileWallOverlaps(){
-        for(let wall of walls){
-            if(!wall.outerWall){
-                for(let projectile of GameState.projectileList){
-                    if(wall.collides(projectile.sprite)){
+        for (let wall of walls){
+            for (let projectile of GameState.projectileList){
+                if (wall.collides(projectile.sprite)){
+                    audioProjectileBounce.play();
+                    if (!wall.outerWall) {
                         wall.remove();
                     }
                 }
             }
         }
     }
-
-
 
     drawHUD(){
 

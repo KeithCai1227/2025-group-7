@@ -281,6 +281,7 @@ receiveDamage(amount) {
         destroyAnim.frameDelay = 1;
         destroyAnim.rotation = this.tankSprite.rotation;
         this.isDestroyed = true;
+        audioTankDestroy.play();
         setTimeout (() => {
             this.isDestroyed = false;
         }, 2000);
@@ -335,7 +336,7 @@ receiveDamage(amount) {
         }
     }
 
-    //returns current co-ordinates of the tank, in terms of grid cells,
+    //returns APPROXIMATE co-ordinates of the tank, in terms of grid cells,
     //to exclude it from new Pickup placement - currently hardcodes values
     //for grid and cell size
     getCurrentCell(){
@@ -351,7 +352,21 @@ receiveDamage(amount) {
         } else row = floor(this.tankSprite.y / 105);
 
         //additional logic can be implemented to disambiguate edge cases if needed
-        //but shouldn't be necessary since Pickups don't spawn on edges anyway...
+        //but not currently necessary since Pickups don't spawn on edges anyway...
+
+        //bounds enforcement for broken edge cases
+        if (column < 0) {
+            columnn = 0;
+        }
+        if (row < 0) {
+            row = 0;
+        }
+        if (column > 9) {
+            column = 9;
+        }
+        if (row > 3) {
+            row = 3;
+        }
 
         return [row, column];
 

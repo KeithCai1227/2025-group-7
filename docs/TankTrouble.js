@@ -17,12 +17,16 @@ let destroyAnimRed = [];
 function preload() {
 
     //audio file preloads
-    audioBombExplode = loadSound('audio/bombExplode.mp3');
-    audioBombShot    = loadSound('audio/bombShot.mp3');
-    audioBulletShot  = loadSound('audio/bulletShot.mp3');
-    audioLaserShot   = loadSound('audio/laserShot.mp3');
-    audioMediumHit   = loadSound('audio/mediumHit.mp3');
-    audioTankDestroy = loadSound('audio/tankDestroy.mp3');
+    audioBombExplode      = loadSound('audio/bombExplode.mp3');
+    audioBombShot         = loadSound('audio/bombShot.mp3');
+    audioBulletShot       = loadSound('audio/bulletShot.mp3');
+    audioGenericPickup    = loadSound('audio/genericPickup.mp3');
+    audioHealthPickup     = loadSound('audio/healthPickup.mp3');
+    audioLaserShot        = loadSound('audio/laserShot.mp3');
+    audioMediumHit        = loadSound('audio/mediumHit.mp3');
+    audioProjectileBounce = loadSound('audio/projectileBounce.mp3');
+    audioShieldPickup     = loadSound('audio/shieldPickup.mp3');
+    audioTankDestroy      = loadSound('audio/tankDestroy.mp3');
 
     //image file preloads
     imgAmmoIcon     = loadImage('images/ammo-icon.webp');
